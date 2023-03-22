@@ -14,7 +14,21 @@
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
+        "resolve-url-loader": "^5.0.0",
+        "sass-loader": "^12.1.0",
         "vue": "^3.2.47",
         "vue-loader": "^16.8.3"
+    },
+    "dependencies": {
+        "@coreui/coreui": "^4.2.6",
+        "@coreui/vue": "^4.7.0",
+        "@vee-validate/i18n": "^4.8.3",
+        "@vee-validate/rules": "^4.8.3",
+        "config": "^3.3.9",
+        "coreui": "^0.4.2-alpha2",
+        "jquery": "^3.6.4",
+        "sass": "^1.59.3",
+        "vee-validate": "^4.8.3",
+        "vue-form": "^4.10.3"
     }
 }
