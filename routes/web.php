@@ -23,12 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
-Route::get('dashboard', [HomeController::class, 'index'])->name('home.index');
-Route::resource('user', UserController::class);
-Route::resource('category', CategoryController::class);
-Route::resource('customer', CustomerController::class);
-Route::resource('product', ProductController::class);
-// Route::resource('login', LoginController::class);
+
 
 
 Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
@@ -38,3 +33,11 @@ Route::get('/login', [LoginController::class, 'create'])->name('login.create');
 Route::post('login', [LoginController::class, 'store'])->name('login.store');
 
 Route::get('/logout', [LoginController::class, 'destroy']);
+
+Route::middleware('user')->group(function () {
+    Route::get('dashboard', [HomeController::class, 'index'])->name('home.index');
+    Route::resource('user', UserController::class);
+    Route::resource('category', CategoryController::class);
+    Route::resource('customer', CustomerController::class);
+    Route::resource('product', ProductController::class);
+});
