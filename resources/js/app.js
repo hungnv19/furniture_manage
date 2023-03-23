@@ -21,6 +21,9 @@ import ProductEdit from './components/product/edit.vue';
 import CustomerCreate from './components/customer/create.vue';
 import CustomerEdit from './components/customer/edit.vue';
 
+import LoginForm from './components/auth/login/index.vue';
+import RegisterForm from './components/auth/register/index.vue';
+
 
 
 
@@ -40,6 +43,9 @@ app.component("product-edit", ProductEdit);
 
 app.component("customer-create", CustomerCreate);
 app.component("customer-edit", CustomerEdit);
+
+app.component("login-form", LoginForm);
+app.component("register-form", RegisterForm);
 
 
 

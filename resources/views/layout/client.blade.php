@@ -38,27 +38,18 @@
 
 </head>
 
-<body class="hold-transition sidebar-mini layout-navbar-fixed">
+<body>
     <!-- Site wrapper -->
     <div id="app">
         <div class="wrapper">
-            @include('layout.navbar')
-            @include('layout.sliderbar')
 
-            <div class="content-wrapper">
+
+            <div class="container" style="margin-top: 50px">
                 <!-- Content Header (Page header) -->
                 @yield('content')
-
-
             </div>
             <!-- /.content-wrapper -->
 
-           
-
-            <!-- Control Sidebar -->
-            <aside class="control-sidebar control-sidebar-dark">
-                <!-- Control sidebar content goes here -->
-            </aside>
             <!-- /.control-sidebar -->
         </div>
     </div>
