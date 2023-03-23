@@ -23835,6 +23835,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   data: function data() {
     return {
       csrfToken: Laravel.csrfToken,
+      showError: false,
+      messageError: null,
       model: {
         email: "",
         password: ""
@@ -23880,6 +23882,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }, 500);
     },
     onSubmit: function onSubmit() {
+      // let that = this;
+      // axios
+      //   .post(that.data.urlUserLogin)
+      //   .then((res) => {
+      //     if (res.data.error) {
+      //       that.messageError = res.data.error;
+      //       that.showError = true;
+      //     }
+      //   })
+      //   .catch((res) => {
+      //     this.errors = res.response.data.res;
+      //   });
       this.$refs.formData.submit();
     }
   }
@@ -24898,10 +24912,20 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   require: ""
 }, "Password", -1 /* HOISTED */);
 var _hoisted_11 = {
+  "class": "form-group"
+};
+var _hoisted_12 = {
+  "class": "d-flex justify-content-center"
+};
+var _hoisted_13 = {
+  key: 0,
+  "class": "text-danger"
+};
+var _hoisted_14 = {
   "class": "col-md-12 text-center btn-box"
 };
-var _hoisted_12 = ["action"];
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_15 = ["action"];
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary"
 }, "Submit", -1 /* HOISTED */);
@@ -24957,13 +24981,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8 /* PROPS */, ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
         "class": "error",
         name: "password"
-      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_ctx.showError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.messageError), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
         action: $props.data.urlRegister,
         "class": "btn btn-outline-secondary",
         style: {
           "margin-right": "10px"
         }
-      }, " Register ", 8 /* PROPS */, _hoisted_12), _hoisted_13])], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_6)];
+      }, " Register ", 8 /* PROPS */, _hoisted_15), _hoisted_16])], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_6)];
     }),
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["onInvalidSubmit"])])])])])]);

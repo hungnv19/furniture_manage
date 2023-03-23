@@ -16,11 +16,9 @@
                 ref="formData"
                 enctype="multipart/form-data"
                 :action="data.urlStore"
-                
               >
                 <Field type="hidden" :value="csrfToken" name="_token" />
 
-                
                 <div class="form-group">
                   <label class="" require>Email</label>
                   <Field
@@ -49,10 +47,17 @@
 
                   <ErrorMessage class="error" name="password" />
                 </div>
+                <div class="form-group">
+                  <div class="d-flex justify-content-center">
+                    <div class="text-danger" v-if="showError">
+                      {{ messageError }}
+                    </div>
+                  </div>
+                </div>
 
                 <div class="col-md-12 text-center btn-box">
                   <a
-                   :action="data.urlRegister"
+                    :action="data.urlRegister"
                     class="btn btn-outline-secondary"
                     style="margin-right: 10px"
                   >
@@ -99,9 +104,9 @@ export default {
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-
+      showError: false,
+      messageError: null,
       model: {
-       
         email: "",
         password: "",
       },
@@ -111,7 +116,6 @@ export default {
     let messError = {
       en: {
         fields: {
-          
           email: {
             required: "The email field is required.",
             max: "The email may not be greater than 128.",
@@ -148,6 +152,18 @@ export default {
       );
     },
     onSubmit() {
+      // let that = this;
+      // axios
+      //   .post(that.data.urlUserLogin)
+      //   .then((res) => {
+      //     if (res.data.error) {
+      //       that.messageError = res.data.error;
+      //       that.showError = true;
+      //     }
+      //   })
+      //   .catch((res) => {
+      //     this.errors = res.response.data.res;
+      //   });
       this.$refs.formData.submit();
     },
   },

@@ -2,11 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
+    private User $user;
+    /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct(User $user)
+    {
+        
+        $this->user = $user;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -39,7 +52,7 @@ class LoginController extends Controller
         if (!auth()->attempt(request(['email', 'password']))) {
             return abort('403');
         }
-
+       
         return redirect()->route('home.index');
     }
 
@@ -89,5 +102,24 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/login');
+    }
+    function checkUserLogin(Request $request){
+        if ($this->checkUser($request)) {
+            return response()->json(['message' => 'Logged in successfully']);
+        } else {
+            return response()->json(['error' => 'Incorrect email or password!']);
+        }
+    }
+
+    protected function checkUser($request)
+    {
+        $userInfo = $this->user
+            ->where('email', $request->email)
+            ->first();
+
+        if ($userInfo) {
+            return Hash::check($request->password, $userInfo->password);
+        }
+        return false;
     }
 }
