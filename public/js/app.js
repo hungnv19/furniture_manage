@@ -23948,7 +23948,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           },
           email: {
             required: "The email field is required.",
-            max: "The email may not be greater than 128."
+            max: "The email may not be greater than 128.",
+            unique_email: "The email already exists",
+            email: "The Email must be a valid email address."
           },
           password: {
             required: "The password field is required.",
@@ -23959,6 +23961,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     };
     (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.configure)({
       generateMessage: (0,_vee_validate_i18n__WEBPACK_IMPORTED_MODULE_3__.localize)(messError)
+    });
+    var that = this;
+    (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.defineRule)("unique_email", function (value) {
+      return axios.post(that.data.urlCheckEmail, {
+        value: value
+      }).then(function (response) {
+        return response.data.valid;
+      })["catch"](function (error) {});
     });
   },
   methods: {
@@ -24232,7 +24242,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           },
           email: {
             required: "The email field is required.",
-            max: "The email may not be greater than 128."
+            max: "The email may not be greater than 128.",
+            unique_email: "The email already exists",
+            email: "The Email must be a valid email address."
           },
           phone: {
             required: "The phone field is required.",
@@ -24247,6 +24259,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     };
     (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.configure)({
       generateMessage: (0,_vee_validate_i18n__WEBPACK_IMPORTED_MODULE_3__.localize)(messError)
+    });
+    var that = this;
+    (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.defineRule)("unique_email", function (value) {
+      return axios.post(that.data.urlCheckEmail, {
+        value: value
+      }).then(function (response) {
+        return response.data.valid;
+      })["catch"](function (error) {});
     });
   },
   methods: {
@@ -24334,7 +24354,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           },
           email: {
             required: "The email field is required.",
-            max: "The email may not be greater than 128."
+            max: "The email may not be greater than 128.",
+            unique_email: "The email already exists",
+            email: "The Email must be a valid email address."
           },
           phone: {
             required: "The phone field is required.",
@@ -24349,6 +24371,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     };
     (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.configure)({
       generateMessage: (0,_vee_validate_i18n__WEBPACK_IMPORTED_MODULE_3__.localize)(messError)
+    });
+    var that = this;
+    (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.defineRule)("unique_email", function (value) {
+      return axios.post(that.data.urlCheckEmail, {
+        value: value,
+        id: that.data.user.id
+      }).then(function (response) {
+        return response.data.valid;
+      })["catch"](function (error) {});
     });
   },
   methods: {
@@ -24644,7 +24675,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           },
           email: {
             required: "The email field is required.",
-            max: "The email may not be greater than 128."
+            max: "The email may not be greater than 128.",
+            unique_email: "The email already exists",
+            email: "The Email must be a valid email address."
           },
           password: {
             required: "The password field is required.",
@@ -24655,6 +24688,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     };
     (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.configure)({
       generateMessage: (0,_vee_validate_i18n__WEBPACK_IMPORTED_MODULE_3__.localize)(messError)
+    });
+    var that = this;
+    (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.defineRule)("unique_email", function (value) {
+      return axios.post(that.data.urlCheckEmail, {
+        value: value
+      }).then(function (response) {
+        return response.data.valid;
+      })["catch"](function (error) {});
     });
   },
   methods: {
@@ -24741,7 +24782,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           },
           email: {
             required: "The email field is required.",
-            max: "The email may not be greater than 128."
+            max: "The email may not be greater than 128.",
+            unique_email: "The email already exists",
+            email: "The Email must be a valid email address."
           },
           password: {
             required: "The password field is required.",
@@ -24752,6 +24795,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     };
     (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.configure)({
       generateMessage: (0,_vee_validate_i18n__WEBPACK_IMPORTED_MODULE_3__.localize)(messError)
+    });
+    var that = this;
+    (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.defineRule)("unique_email", function (value) {
+      return axios.post(that.data.urlCheckEmail, {
+        value: value,
+        id: that.data.user.id
+      }).then(function (response) {
+        return response.data.valid;
+      })["catch"](function (error) {});
     });
   },
   methods: {
@@ -25023,7 +25075,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
           return _ctx.model.email = $event;
         }),
-        rules: "required|max:128",
+        rules: "required|max:128|email|unique_email",
         "class": "form-control",
         placeholder: "Enter email"
       }, null, 8 /* PROPS */, ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
@@ -25362,7 +25414,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
           return _ctx.model.email = $event;
         }),
-        rules: "required|max:128",
+        rules: "required|max:128|email|unique_email",
         "class": "form-control",
         placeholder: "Enter email"
       }, null, 8 /* PROPS */, ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
@@ -25525,7 +25577,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
           return _ctx.model.email = $event;
         }),
-        rules: "required|max:128",
+        rules: "required|max:128|email|unique_email",
         "class": "form-control",
         placeholder: "Enter email"
       }, null, 8 /* PROPS */, ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
@@ -26251,7 +26303,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
           return _ctx.model.email = $event;
         }),
-        rules: "required|max:128",
+        rules: "required|max:128|email|unique_email",
         "class": "form-control",
         placeholder: "Enter email"
       }, null, 8 /* PROPS */, ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
@@ -26386,7 +26438,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
           return _ctx.model.email = $event;
         }),
-        rules: "required|max:128",
+        rules: "required|max:128|email|unique_email",
         "class": "form-control",
         placeholder: "Enter email"
       }, null, 8 /* PROPS */, ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {

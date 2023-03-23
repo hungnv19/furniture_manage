@@ -40,7 +40,7 @@
                     name="email"
                     autocomplete="off"
                     v-model="model.email"
-                    rules="required|max:128"
+                    rules="required|max:128|email|unique_email"
                     class="form-control"
                     placeholder="Enter email"
                   />
@@ -141,6 +141,8 @@ export default {
           email: {
             required: "The email field is required.",
             max: "The email may not be greater than 128.",
+            unique_email: "The email already exists",
+            email: "The Email must be a valid email address.",
           },
           phone: {
             required: "The phone field is required.",
@@ -155,6 +157,18 @@ export default {
     };
     configure({
       generateMessage: localize(messError),
+    });
+    let that = this;
+    defineRule("unique_email", (value) => {
+      return axios
+        .post(that.data.urlCheckEmail, {
+          value: value,
+          id: that.data.user.id,
+        })
+        .then(function (response) {
+          return response.data.valid;
+        })
+        .catch((error) => {});
     });
   },
   methods: {

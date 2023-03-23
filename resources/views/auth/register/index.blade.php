@@ -6,7 +6,7 @@
             :data="{{ json_encode([
                 'urlStore' => route('register.store'),
                 'urlBack' => route('home.index'),
-                
+                'urlCheckEmail' => route('register.checkMail'),
             ]) }}">
         </register-form>
     </section>

@@ -17,9 +17,9 @@ class CheckUserLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->status == 1) {
+        if (Auth::check()) {
             return $next($request);
         }
-        return response()->json('Your account is inactive');
+        return abort('403');
     }
 }

@@ -14,7 +14,6 @@ class LoginController extends Controller
      */
     public function index()
     {
-        
     }
 
     /**
@@ -37,12 +36,10 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        if (auth()->attempt(request(['email', 'password'])) == false) {
-            return back()->withErrors([
-                'message' => 'The email or password is incorrect, please try again'
-            ]);
+        if (!auth()->attempt(request(['email', 'password']))) {
+            return abort('403');
         }
-        
+
         return redirect()->route('home.index');
     }
 

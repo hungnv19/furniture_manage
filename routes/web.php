@@ -41,3 +41,5 @@ Route::middleware('user')->group(function () {
     Route::resource('customer', CustomerController::class);
     Route::resource('product', ProductController::class);
 });
+
+Route::post('check-mail-register', [RegisterController::class, 'checkMailRegister'])->name('register.checkMail');

@@ -25,6 +25,7 @@
             :data="{{ json_encode([
                 'urlStore' => route('user.store'),
                 'urlBack' => route('user.index'),
+                'urlCheckEmail' => route('register.checkMail'),
             ]) }}">
         </user-create>
     </section>
