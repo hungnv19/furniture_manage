@@ -18,7 +18,7 @@
                 :action="data.urlUpdate"
               >
                 <Field type="hidden" :value="csrfToken" name="_token" />
-
+                <Field type="hidden" value="PUT" name="_method" />
                 <div class="form-group">
                   <label class="" require>Name</label>
                   <Field
@@ -41,9 +41,7 @@
                   >
                     Back
                   </a>
-                  <button type="submit" class="btn btn-primary">
-                    Submit
-                  </button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
               </form>
             </VeeForm>
@@ -85,9 +83,7 @@ export default {
     return {
       csrfToken: Laravel.csrfToken,
 
-      model:{
-        category_name: ''
-      }
+      model: this.data.category,
     };
   },
   created() {
@@ -101,6 +97,7 @@ export default {
         },
       },
     };
+    console.log(this.data.category);
     configure({
       generateMessage: localize(messError),
     });

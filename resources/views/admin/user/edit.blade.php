@@ -25,6 +25,7 @@
             :data="{{ json_encode([
                 'urlUpdate' => route('user.update', $user->id),
                 'urlBack' => route('user.index'),
+                'user' => $user,
             ]) }}">
         </user-edit>
     </section>

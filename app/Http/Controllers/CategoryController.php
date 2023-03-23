@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends BaseController
 {
@@ -97,17 +98,19 @@ class CategoryController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        // $this->category->find($id)->update($request->all());
 
-        // $category->category_name = $request->category_name;
+        try {
+            $category =  $this->category->where('id', $id)->first();
+            $category->category_name = $request->category_name;
 
-        // $category->save();
-        // if ($category) {
-        //     $this->setFlash(__('Thêm danh mục thành công'));
-        //     return redirect()->route('category.index');
-        // }
-        // $this->setFlash(__('Thêm danh mục thất bại'));
-        // return redirect()->route('category.index');
+            $category->save();
+            $this->setFlash(__('Cập nhật tin tuyển dụng thành công'));
+            return redirect()->route('category.index');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            $this->setFlash(__('Đã có một lỗi không mong muốn xảy ra'), 'error');
+            return redirect()->route('category.index');
+        }
     }
 
     /**
@@ -122,6 +125,5 @@ class CategoryController extends BaseController
             session()->flash('comment', 'Xóa comment thành công!');
             return redirect()->back();
         }
-       
     }
 }

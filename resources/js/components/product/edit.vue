@@ -18,6 +18,7 @@
                 :action="data.urlUpdate"
               >
                 <Field type="hidden" :value="csrfToken" name="_token" />
+                <Field type="hidden" value="PUT" name="_method" />
                 <div class="form-group">
                   <select
                     class="form-select"
@@ -213,18 +214,8 @@ export default {
     return {
       csrfToken: Laravel.csrfToken,
 
-      model: {
-        category_id: "",
-        product_name: "",
-        product_code: "",
-        root: "",
-        buying_price: "",
-        selling_price: "",
-        buying_date: "",
-        product_quantity: "",
-        
-      },
-      categories: []
+      model: this.data.product,
+      categories: [],
     };
   },
   created() {

@@ -26,6 +26,7 @@
                 'urlUpdate' => route('product.update', $product->id),
                 'urlBack' => route('product.index'),
                 'categories' => $categories,
+                'product' => $product,
             ]) }}">
         </product-edit>
     </section>

@@ -18,7 +18,7 @@
                 :action="data.urlUpdate"
               >
                 <Field type="hidden" :value="csrfToken" name="_token" />
-
+                <Field type="hidden" value="PUT" name="_method" />
                 <div class="form-group">
                   <label class="" require>Name</label>
                   <Field
@@ -47,20 +47,7 @@
 
                   <ErrorMessage class="error" name="email" />
                 </div>
-                <div class="form-group">
-                  <label class="" require>Password</label>
-                  <Field
-                    type="password"
-                    name="password"
-                    autocomplete="off"
-                    v-model="model.password"
-                    rules="required|max:128"
-                    class="form-control"
-                    placeholder="Enter password"
-                  />
-
-                  <ErrorMessage class="error" name="password" />
-                </div>
+                
 
                 <div class="col-md-12 text-center btn-box">
                   <a
@@ -112,11 +99,7 @@ export default {
     return {
       csrfToken: Laravel.csrfToken,
 
-      model: {
-        name: "",
-        email: "",
-        password: "",
-      },
+      model: this.data.user,
     };
   },
   created() {

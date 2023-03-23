@@ -6,14 +6,20 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends BaseController
 {
+    public Product $product;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(Product $product)
+    {
+        $this->product = $product;
+    }
     public function index()
     {
         $product = Product::get();
@@ -105,7 +111,25 @@ class ProductController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $product =  $this->product->where('id', $id)->first();
+            $product->category_id = $request->category_id;
+            $product->product_name = $request->product_name;
+            $product->product_code = $request->product_code;
+            $product->root = $request->root;
+            $product->buying_price = $request->buying_price;
+            $product->selling_price = $request->selling_price;
+            $product->buying_date = $request->buying_date;
+            $product->product_quantity = $request->product_quantity;
+
+            $product->save();
+            $this->setFlash(__('Cập nhật  thành công'));
+            return redirect()->route('product.index');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            $this->setFlash(__('Đã có một lỗi không mong muốn xảy ra'), 'error');
+            return redirect()->route('product.index');
+        }
     }
 
     /**

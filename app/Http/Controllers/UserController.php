@@ -5,14 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends BaseController
 {
+    public User $user;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+     
     public function index()
     {
         $user = User::get();
@@ -46,7 +54,7 @@ class UserController extends BaseController
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = Hash::make($request->password);
        
         $user->save();
         if ($user) {
@@ -92,7 +100,21 @@ class UserController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $user =  $this->user->where('id', $id)->first();
+            $user->name = $request->name;
+            $user->email = $request->email;
+          
+            
+            
+            $user->save();
+            $this->setFlash(__('Cập nhật tin tuyển dụng thành công'));
+            return redirect()->route('user.index');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            $this->setFlash(__('Đã có một lỗi không mong muốn xảy ra'), 'error');
+            return redirect()->route('user.index');
+        }
     }
 
     /**

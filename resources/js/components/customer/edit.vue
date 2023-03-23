@@ -15,11 +15,10 @@
                 @submit="handleSubmit($event, onSubmit)"
                 ref="formData"
                 enctype="multipart/form-data"
-                :action="data.urlStore"
+                :action="data.urlUpdate"
               >
                 <Field type="hidden" :value="csrfToken" name="_token" />
-             
-
+                <Field type="hidden" value="PUT" name="_method" />
                 <div class="form-group">
                   <label class="" require>name</label>
                   <Field
@@ -76,7 +75,6 @@
 
                   <ErrorMessage class="error" name="address" />
                 </div>
-               
 
                 <div class="col-md-12 text-center btn-box">
                   <a
@@ -128,15 +126,8 @@ export default {
     return {
       csrfToken: Laravel.csrfToken,
 
-      model: {
-        name: "",
-        email: "",
-        phone: "",
-        address: "",
-    
-        
-      },
-      categories: []
+      model: this.data.customer,
+      categories: [],
     };
   },
   created() {

@@ -25,6 +25,7 @@
             :data="{{ json_encode([
                 'urlUpdate' => route('customer.update', $customer->id),
                 'urlBack' => route('customer.index'),
+                'customer' => $customer,
             ]) }}">
         </customer-edit>
     </section>

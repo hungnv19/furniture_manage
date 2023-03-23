@@ -23,7 +23,7 @@
     <section class="content">
         <category-edit
             :data="{{ json_encode([
-                
+                'category' => $category,
                 'urlUpdate' => route('category.update', $category->id),
                 'urlBack' => route('category.index'),
                 

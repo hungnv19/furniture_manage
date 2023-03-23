@@ -91,7 +91,7 @@
                                         </td>
                                         <td>
                                             <a class="btn btn-sm btn-primary"
-                                                href="{{ route('user.edit', $user->id) }}">Edit</a>
+                                                href="{{ route('user.edit', $user->id) }}">Edit</a>                                                
                                             <form action="{{ route('user.destroy', $user->id) }}" method="Post"
                                                 style="display: inline-block; margin-left: 10px">
                                                 @csrf

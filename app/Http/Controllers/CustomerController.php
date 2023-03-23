@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
-
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends BaseController
 {
@@ -103,7 +103,21 @@ class CustomerController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $customer =  $this->customer->where('id', $id)->first();
+            $customer->name = $request->name;
+            $customer->email = $request->email;
+            $customer->phone = $request->phone;
+            $customer->address = $request->address;
+
+            $customer->save();
+            $this->setFlash(__('Cập nhật  thành công'));
+            return redirect()->route('customer.index');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            $this->setFlash(__('Đã có một lỗi không mong muốn xảy ra'), 'error');
+            return redirect()->route('customer.index');
+        }
     }
 
     /**

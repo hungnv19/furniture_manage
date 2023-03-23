@@ -1,6 +1,5 @@
 @extends('layout.admin')
 @section('content')
-  
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -27,7 +26,8 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">All Category</h3>
-                            <a class="btn btn-sm btn-primary" href="{{ route('category.create') }}" style="float: right;">Create</a>
+                            <a class="btn btn-sm btn-primary" href="{{ route('category.create') }}"
+                                style="float: right;">Create</a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -43,17 +43,18 @@
                                 <tbody>
                                     @foreach ($categories as $category)
                                         <tr>
-                                           
+
                                             <td>
                                                 {{ $category->id }}
-                                               
+
                                             </td>
                                             <td>
                                                 {{ $category->category_name }}
-                                              
+
                                             </td>
                                             <td>
-                                                <a class="btn btn-sm btn-primary" href="{{ route('category.edit', $category->id) }}">Edit</a>
+                                                <a class="btn btn-sm btn-primary"
+                                                    href="{{ route('category.edit', $category->id) }}">Edit</a>
                                                 <form action="{{ route('category.destroy', $category->id) }}" method="Post"
                                                     style="display: inline-block; margin-left: 10px">
                                                     @csrf
@@ -63,7 +64,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                   
+
                                 </tbody>
                             </table>
                         </div>
