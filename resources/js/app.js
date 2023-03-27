@@ -24,7 +24,8 @@ import CustomerEdit from './components/customer/edit.vue';
 import LoginForm from './components/auth/login/index.vue';
 import RegisterForm from './components/auth/register/index.vue';
 
-
+import BookingCreate from './components/booking/create.vue';
+import BookingEdit from './components/booking/edit.vue';
 
 
 
@@ -34,6 +35,9 @@ app.component("dash-broad", DashBroad);
 
 app.component("category-create", CategoryCreate);
 app.component("category-edit", CategoryEdit);
+
+app.component("booking-create", BookingCreate);
+app.component("booking-edit", BookingEdit);
 
 app.component("user-create", UserCreate);
 app.component("user-edit", UserEdit);

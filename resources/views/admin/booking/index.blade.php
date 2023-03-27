@@ -26,7 +26,8 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">All Booking </h3>
-
+                            <a class="btn btn-sm btn-primary" href="{{ route('booking.create') }}"
+                            style="float: right;">Create</a>
                         </div>
 
                         <div class="card-body">
@@ -72,7 +73,13 @@
                                             </td>
                                             <td>
                                                 <a class="btn btn-sm btn-primary"
-                                                    href="{{ route('booking.show', $appointment->id) }}">Detail</a>
+                                                    href="{{ route('booking.edit', $appointment->id) }}">Edit</a>
+                                                <form action="{{ route('booking.destroy', $appointment->id) }}" method="Post"
+                                                    style="display: inline-block; margin-left: 10px">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

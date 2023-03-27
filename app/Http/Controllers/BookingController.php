@@ -5,18 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
+use App\Models\Customer;
 
 class BookingController extends BaseController
 {
 
     public Appointment $appointments;
-  
 
-    public function __construct( Appointment $appointments)
+
+    public function __construct(Appointment $appointments)
     {
-     
+
         $this->appointments = $appointments;
-       
     }
     /**
      * Display a listing of the resource.
@@ -32,6 +32,7 @@ class BookingController extends BaseController
             ->get();
         return view('admin.booking.index', [
             'appointments' => $appointments,
+            'title' => 'Cuộc hẹn',
         ]);
     }
 
@@ -42,7 +43,12 @@ class BookingController extends BaseController
      */
     public function create()
     {
-        //
+        $customers = Customer::select('id', 'name as label')->get();
+
+        return view('admin.booking.create', [
+            'customers' => $customers,
+            'title' => 'Thêm cuộc hẹn',
+        ]);
     }
 
     /**
@@ -53,7 +59,20 @@ class BookingController extends BaseController
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $appointment = new Appointment();
+        $appointment->customer_id = $request->customer_id;
+        $appointment->date = $request->date;
+        $appointment->start_time = $request->start_time;
+        $appointment->end_time = $request->end_time;
+        $appointment->note = $request->note;
+        $appointment->save();
+        if ($appointment) {
+            $this->setFlash(__('Thêm cuộc hẹn thành công'));
+            return redirect()->route('booking.index');
+        }
+        $this->setFlash(__('Thêm cuộc hẹn thất bại'));
+        return redirect()->route('booking.index');
     }
 
     /**
@@ -64,7 +83,6 @@ class BookingController extends BaseController
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -75,7 +93,11 @@ class BookingController extends BaseController
      */
     public function edit($id)
     {
-        //
+        $appointment = Appointment::where('id', $id)->first();
+        return view('admin.booking.detail', [
+            'appointment' => $appointment,
+            'title' => 'Chi tiết cuộc hẹn'
+        ]);
     }
 
     /**
@@ -98,6 +120,8 @@ class BookingController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        $appointment = Appointment::find($id);
+        $appointment->delete();
+        return redirect()->back();
     }
 }
