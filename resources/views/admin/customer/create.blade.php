@@ -23,11 +23,10 @@
     <section class="content">
         <customer-create
             :data="{{ json_encode([
-                
+                'urlCheckEmail' => route('register.checkMail'),
                 'urlStore' => route('customer.store'),
                 'urlBack' => route('customer.index'),
-                
             ]) }}">
-            </customer-create>
+        </customer-create>
     </section>
 @endsection

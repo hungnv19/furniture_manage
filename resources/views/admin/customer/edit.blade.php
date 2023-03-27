@@ -18,11 +18,12 @@
         </div>
     </section>
 
-   
+
 
     <section class="content">
         <customer-edit
             :data="{{ json_encode([
+                'urlCheckEmail' => route('register.checkMail'),
                 'urlUpdate' => route('customer.update', $customer->id),
                 'urlBack' => route('customer.index'),
                 'customer' => $customer,

@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PosController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -40,6 +42,8 @@ Route::middleware('user')->group(function () {
     Route::resource('category', CategoryController::class);
     Route::resource('customer', CustomerController::class);
     Route::resource('product', ProductController::class);
+    Route::resource('pos', PosController::class);
+    Route::resource('booking', BookingController::class);
 });
 
 Route::post('check-mail-register', [RegisterController::class, 'checkMailRegister'])->name('register.checkMail');

@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Theme style -->
     <script>
@@ -63,7 +64,7 @@
     <!-- overlayScrollbars -->
     <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
-
+    
     <!-- AdminLTE for demo purposes -->
     <script src="../../dist/js/demo.js"></script>
 

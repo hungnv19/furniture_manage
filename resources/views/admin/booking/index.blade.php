@@ -4,12 +4,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Customer List</h1>
+                    <h1>Booking List</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Customer</a></li>
+                        <li class="breadcrumb-item"><a href="#">Booking</a></li>
 
                     </ol>
                 </div>
@@ -25,64 +25,54 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">All Customer </h3>
-                            <a class="btn btn-sm btn-primary" href="{{ route('customer.create') }}"
-                                style="float: right;">Create</a>
+                            <h3 class="card-title">All Booking </h3>
+
                         </div>
-                      
+
                         <div class="card-body">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Address</th>
-                                        <th>Photo</th>
-
+                                        <th>Date</th>
+                                        <th>Start</th>
+                                        <th>End</th>
+                                        <th>Customer</th>
+                                        <th>Status</th>
+                                        <th>Note</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($customers as $customer)
+                                    @foreach ($appointments as $appointment)
                                         <tr>
 
                                             <td>
-                                                {{ $customer->id }}
+                                                {{ $appointment->date }}
 
                                             </td>
                                             <td>
-                                                {{ $customer->name }}
+                                                {{ $appointment->start_time }}
 
                                             </td>
                                             <td>
-                                                {{ $customer->email }}
+                                                {{ $appointment->end_time }}
 
                                             </td>
                                             <td>
-                                                {{ $customer->phone }}
+                                                {{ $appointment->customer_name }}
 
                                             </td>
                                             <td>
-                                                {{ $customer->address }}
+                                                {{ $appointment->status }}
 
                                             </td>
                                             <td>
-                                                {{ $customer->photo }}
+                                                {{ $appointment->note }}
 
                                             </td>
                                             <td>
                                                 <a class="btn btn-sm btn-primary"
-                                                    href="{{ route('customer.edit', $customer->id) }}">Edit</a>
-
-                                                <form action="{{ route('customer.destroy', $customer->id) }}" method="Post"
-                                                    style="display: inline-block; margin-left: 10px">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                                </form>
-
+                                                    href="{{ route('booking.show', $appointment->id) }}">Detail</a>
                                             </td>
                                         </tr>
                                     @endforeach
