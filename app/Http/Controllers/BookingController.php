@@ -6,6 +6,7 @@ use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Models\Customer;
+use Illuminate\Support\Facades\DB;
 
 class BookingController extends BaseController
 {
@@ -93,10 +94,12 @@ class BookingController extends BaseController
      */
     public function edit($id)
     {
+        $customers = Customer::select('id', 'name as label')->get();
         $appointment = Appointment::where('id', $id)->first();
-        return view('admin.booking.detail', [
+        return view('admin.booking.edit', [
             'appointment' => $appointment,
-            'title' => 'Chi tiết cuộc hẹn'
+            'title' => 'Chi tiết cuộc hẹn',
+            'customers' => $customers,
         ]);
     }
 
@@ -109,7 +112,22 @@ class BookingController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $appointments =  $this->appointments->where('id', $id)->first();
+            $appointments->customer_id = $request->customer_id;
+            $appointments->date = $request->date;
+            $appointments->start_time = $request->start_time;
+            $appointments->end_time = $request->end_time;
+            $appointments->note = $request->note;
+
+            $appointments->save();
+            $this->setFlash(__('Cập nhật  thành công'));
+            return redirect()->route('booking.index');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            $this->setFlash(__('Đã có một lỗi không mong muốn xảy ra'), 'error');
+            return redirect()->route('booking.index');
+        }
     }
 
     /**

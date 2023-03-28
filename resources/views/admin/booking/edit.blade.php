@@ -23,11 +23,12 @@
     <section class="content">
         <booking-edit
             :data="{{ json_encode([
-                'appointment' => $appointment
+                'appointment' => $appointment,
                 'urlUpdate' => route('booking.update', $appointment->id),
                 'urlBack' => route('booking.index'),
-                
+                'customers' => $customers,
             ]) }}">
-            </booking-edit>
+        </booking-edit>
+
     </section>
 @endsection
