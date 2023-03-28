@@ -27,7 +27,7 @@
                         <div class="card-header">
                             <h3 class="card-title">All Booking </h3>
                             <a class="btn btn-sm btn-primary" href="{{ route('booking.create') }}"
-                            style="float: right;">Create</a>
+                                style="float: right;">Create</a>
                         </div>
 
                         <div class="card-body">
@@ -46,36 +46,35 @@
                                 <tbody>
                                     @foreach ($appointments as $appointment)
                                         <tr>
-
                                             <td>
                                                 {{ $appointment->date }}
-
                                             </td>
                                             <td>
                                                 {{ $appointment->start_time }}
-
                                             </td>
                                             <td>
                                                 {{ $appointment->end_time }}
-
                                             </td>
                                             <td>
                                                 {{ $appointment->customer_name }}
-
                                             </td>
-                                            <td>
-                                                {{ $appointment->status }}
-
-                                            </td>
+                                            @if ($appointment->status != 0)
+                                                <td>
+                                                    Processed
+                                                </td>
+                                            @else
+                                                <td>
+                                                    No process
+                                                </td>
+                                            @endif
                                             <td>
                                                 {{ $appointment->note }}
-
                                             </td>
                                             <td>
                                                 <a class="btn btn-sm btn-primary"
                                                     href="{{ route('booking.edit', $appointment->id) }}">Edit</a>
-                                                <form action="{{ route('booking.destroy', $appointment->id) }}" method="Post"
-                                                    style="display: inline-block; margin-left: 10px">
+                                                <form action="{{ route('booking.destroy', $appointment->id) }}"
+                                                    method="Post" style="display: inline-block; margin-left: 10px">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
@@ -87,13 +86,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
     </section>
 @endsection

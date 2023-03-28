@@ -18,7 +18,7 @@
                 :action="data.urlUpdate"
               >
                 <Field type="hidden" :value="csrfToken" name="_token" />
-
+                <Field type="hidden" value="PUT" name="_method" />
                 <div class="form-group">
                   <div class="form-row">
                     <div class="col-6">
@@ -68,7 +68,6 @@
                         class="form-control"
                         placeholder="Enter Start Time"
                       />
-
                       <ErrorMessage class="error" name="start_time" />
                     </div>
                     <div class="col-6">
@@ -82,7 +81,6 @@
                         class="form-control"
                         placeholder="Enter end time"
                       />
-
                       <ErrorMessage class="error" name="end_time" />
                     </div>
                   </div>
@@ -169,11 +167,9 @@ export default {
           },
           end_time: {
             required: "The end_time field is required.",
-           
           },
           start_time: {
             required: "The start_time field is required.",
-          
           },
         },
       },

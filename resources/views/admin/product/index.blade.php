@@ -56,7 +56,7 @@
 
                                             </td>
                                             <td>
-                                                {{ $product->category_id }}
+                                                {{ $product->categories_name }}
 
                                             </td>
                                             <td>

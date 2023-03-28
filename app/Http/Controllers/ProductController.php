@@ -22,8 +22,9 @@ class ProductController extends BaseController
     }
     public function index()
     {
-        $product = Product::get();
-
+        $product = $this->product->join('categories', 'categories.id', '=', 'products.category_id')
+        ->select('products.*', 'categories.category_name as categories_name')
+        ->get();
         return view('admin.product.index', [
             'products' => $product,
 
