@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PosController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,7 +44,9 @@ Route::middleware('user')->group(function () {
     Route::resource('customer', CustomerController::class);
     Route::resource('product', ProductController::class);
     Route::resource('pos', PosController::class);
+    Route::get('booking/calendar', [BookingController::class, 'calendar'])->name('booking.calendar');
     Route::resource('booking', BookingController::class);
+    Route::resource('stock', StockController::class);
 });
 
 Route::post('check-mail-register', [RegisterController::class, 'checkMailRegister'])->name('register.checkMail');

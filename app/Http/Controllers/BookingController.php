@@ -84,6 +84,7 @@ class BookingController extends BaseController
      */
     public function show($id)
     {
+        
     }
 
     /**
@@ -141,5 +142,12 @@ class BookingController extends BaseController
         $appointment = Appointment::find($id);
         $appointment->delete();
         return redirect()->back();
+    }
+    public function calendar()
+    {
+       
+        return view('admin.booking.calendar', [
+            'title' => 'Lịch',
+        ]);
     }
 }

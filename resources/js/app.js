@@ -27,6 +27,10 @@ import RegisterForm from './components/auth/register/index.vue';
 import BookingCreate from './components/booking/create.vue';
 import BookingEdit from './components/booking/edit.vue';
 
+import StockEdit from './components/stock/edit.vue';
+
+import CalendarShow from './components/booking/calendar.vue';
+
 
 
 const app = createApp({});
@@ -47,6 +51,10 @@ app.component("product-edit", ProductEdit);
 
 app.component("customer-create", CustomerCreate);
 app.component("customer-edit", CustomerEdit);
+
+app.component("stock-edit", StockEdit);
+
+app.component("calendar-show", CalendarShow);
 
 app.component("login-form", LoginForm);
 app.component("register-form", RegisterForm);

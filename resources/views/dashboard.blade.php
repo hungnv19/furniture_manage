@@ -160,92 +160,84 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12 mb-4">
-                                    <!-- Simple Tables -->
+                                <div class="col-12">
                                     <div class="card">
-                                        <div
-                                            class="
-                                        card-header
-                                        py-3
-                                        d-flex
-                                        flex-row
-                                        align-items-center
-                                        justify-content-between
-                                      ">
-                                            <h2 class="m-0 font-weight-bold text-primary">
-                                                title
-                                            </h2>
-                                            {{-- <router-link to="/store-product"
-                                                class="btn btn-primary btn-submit float-right"
-                                                style="margin-top: 6px; margin-right: 6px">
-                                                {{ $t('content.dashboard.stock_out_product.button.add_product') }}
-                                            </router-link> --}}
+                                        <div class="card-header">
+                                            <h3 class="card-title">All Stock</h3>
                                         </div>
-                                        <div class="table-responsive">
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
                                             <table class="table align-items-center table-flush">
                                                 <thead class="thead-light">
                                                     <tr>
-                                                        <th>
-                                                            product_name
-                                                        </th>
-                                                        <th>
-                                                            product_code
-                                                        </th>
-                                                        <th>
-                                                            image
-                                                        </th>
-                                                        <th>
-                                                            buying_price
-                                                        <th>
-                                                            status
-                                                        </th>
-                                                        <th>
-                                                            quantity
-                                                        </th>
-                                                        <th>
-                                                            action
-                                                        </th>
+                                                        <th>Product Name</th>
+                                                        <th>Product Code</th>
+                                                        <th>Root</th>
+                                                        <th>Category</th>
+                                                        <th>Buying Price</th>
+                                                        <th>Status</th>
+                                                        <th>Product Quantity</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {{-- <tr v-for="product in stockOutProducts" :key="product.id">
-                                                        <td>{{ product . product_name }}</td>
-                                                        <td>{{ product . product_code }}</td>
-                                                        <td><img :src="product.image" id="img_size" /></td>
-                                                        <td>{{ number_format(product . buying_price) }}</td>
-                                                        <td v-if="product.product_quantity >= 1">
-                                                            <span
-                                                                class="badge badge-success">{{ $t('content.dashboard.stock_out_product.table_cell.available') }}</span>
-                                                        </td>
-                                                        <td v-else>
-                                                            <span
-                                                                class="badge badge-danger">{{ $t('content.dashboard.stock_out_product.table_cell.stock_out') }}</span>
-                                                        </td>
-                                                        <td>{{ format_quantity(product . product_quantity) }}</td>
-                                                        <td>
-                                                            <router-link
-                                                                :to="{ name: 'editStock', params: { id: product.id } }"
-                                                                class="btn btn-sm btn-primary btn-submit">
-                                                                {{ $t('content.dashboard.stock_out_product.table_cell.edit_stock') }}
-                                                            </router-link>
-                                                        </td>
-                                                    </tr> --}}
+                                                    @foreach ($products as $product)
+                                                        <tr>
+                                                            <td>
+                                                                {{ $product->product_name }}
+
+                                                            </td>
+                                                            <td>
+                                                                {{ $product->product_code }}
+
+                                                            </td>
+                                                            <td>
+                                                                {{ $product->root }}
+
+                                                            </td>
+                                                            <td>
+                                                                {{ $product->categories_name }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $product->buying_price }}
+
+                                                            </td>
+                                                            @if ($product->product_quantity >= 1)
+                                                                <td class="text-success">
+                                                                    Available
+                                                                </td>
+                                                            @else
+                                                                <td class="text-danger">
+                                                                    Stock Out
+                                                                </td>
+                                                            @endif
+
+                                                            <td>
+                                                                {{ $product->product_quantity }}
+
+                                                            </td>
+                                                            <td>
+                                                                <a class="btn btn-sm btn-primary"
+                                                                    href="{{ route('stock.edit', $product->id) }}">Edit</a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="card-footer"></div>
+                                        <!-- /.card-body -->
                                     </div>
+                                    <!-- /.card -->
                                 </div>
+                                <!-- /.col -->
                             </div>
                         </section>
                     </div>
                 </div>
             </section>
         </div>
-        <footer class="main-footer">
-            <strong>By Van Hung</strong>
-        </footer>
-
+        
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
