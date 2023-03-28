@@ -7,6 +7,18 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Setup Project
+
+- Clone the repository with `git clone`
+- Run `composer install`
+- Run `php artisan key:generate`
+- Run `php artisan migrate --seed` (It has some seeded data for your testing)
+- Run `npm install && npm run watch`
+- That's it: launch the main URL and login with default credentials `admin@admin.com` - `12345678`
+
+
+
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
