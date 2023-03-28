@@ -15,7 +15,13 @@ class CreateGiftCardTable extends Migration
     {
         Schema::create('gift_card', function (Blueprint $table) {
             $table->id();
+            $table->string('code', 20);
+            $table->integer('type')->nullable();
+            $table->double('amount')->nullable();
+            $table->double('balance')->nullable();
+            $table->integer('status')->default('0');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

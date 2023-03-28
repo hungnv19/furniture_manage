@@ -15,7 +15,12 @@ class CreateCustomerGiftCardTable extends Migration
     {
         Schema::create('customer_gift_card', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('customer_id');
+            $table->unsignedInteger('gift_card_id');
+            $table->date('payment_date')->nullable();
+            $table->date('expiress_date')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

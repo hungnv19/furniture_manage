@@ -3,6 +3,7 @@
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\GiftCardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PosController;
@@ -47,6 +48,7 @@ Route::middleware('user')->group(function () {
     Route::get('booking/calendar', [BookingController::class, 'calendar'])->name('booking.calendar');
     Route::resource('booking', BookingController::class);
     Route::resource('stock', StockController::class);
+    Route::resource('gift-card', GiftCardController::class);
 });
 
 Route::post('check-mail-register', [RegisterController::class, 'checkMailRegister'])->name('register.checkMail');
