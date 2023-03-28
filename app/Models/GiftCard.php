@@ -35,4 +35,14 @@ class GiftCard extends Model
      * @var array
      */
     protected $fillable = ['code', 'type', 'amount', 'balance', 'status', 'created_at', 'updated_at', 'deleted_at'];
+
+    public function customerGiftCards()
+    {
+        return $this->hasMany(CustomerGift::class);
+    }
+
+    public function customers()
+    {
+        return $this->hasManyThrough(Customer::class, CustomerGiftCard::class, 'gift_card_id', 'id', 'id', 'customer_id');
+    }
 }

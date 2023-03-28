@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\GiftCard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class GiftCardController extends Controller
 {
@@ -28,7 +30,10 @@ class GiftCardController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.gift_card.create', [
+            'title' => 'Gift Card Create',
+            
+        ]);
     }
 
     /**
@@ -84,6 +89,15 @@ class GiftCardController extends Controller
      */
     public function destroy($id)
     {
+        if (GiftCard::destroy($id)) {
+            session()->flash('comment', 'Xóa  thành công!');
+            return redirect()->back();
+        }
+    }
+    public function generateCode($pre = null)
+    {
+        $str = substr(preg_replace('/[^0-9]/', '', Str::uuid()->getHex()), 0, 8);
+        return response()->json(DB::table('gift_card')->where('code', $pre . '_' . $str)->exists() ? $this->generateCode($pre) : $pre . '_' . $str);
         //
     }
 }

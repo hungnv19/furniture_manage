@@ -24748,6 +24748,156 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/gift-card/create.vue?vue&type=script&lang=js":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/gift-card/create.vue?vue&type=script&lang=js ***!
+  \**********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var _vee_validate_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @vee-validate/i18n */ "./node_modules/@vee-validate/i18n/dist/vee-validate-i18n.esm.js");
+/* harmony import */ var _vee_validate_rules__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vee-validate/rules */ "./node_modules/@vee-validate/rules/dist/vee-validate-rules.esm.js");
+/* harmony import */ var _enums_CardType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../enums/CardType */ "./resources/js/enums/CardType.js");
+/* harmony import */ var _enums_StatusGiftCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../enums/StatusGiftCard */ "./resources/js/enums/StatusGiftCard.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+
+
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  setup: function setup() {
+    Object.keys(_vee_validate_rules__WEBPACK_IMPORTED_MODULE_3__).forEach(function (rule) {
+      if (rule != "default") {
+        (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.defineRule)(rule, _vee_validate_rules__WEBPACK_IMPORTED_MODULE_3__[rule]);
+      }
+    });
+  },
+  components: {
+    VeeForm: vee_validate__WEBPACK_IMPORTED_MODULE_4__.Form,
+    Field: vee_validate__WEBPACK_IMPORTED_MODULE_4__.Field,
+    ErrorMessage: vee_validate__WEBPACK_IMPORTED_MODULE_4__.ErrorMessage
+  },
+  computed: {},
+  props: ["data"],
+  data: function data() {
+    return {
+      csrfToken: Laravel.csrfToken,
+      dataStatusGiftCard: "",
+      dataCardType: "",
+      showFieldType: false,
+      model: {
+        type: "",
+        other: "",
+        amount: "",
+        code: "",
+        balance: ""
+      },
+      categories: []
+    };
+  },
+  created: function created() {
+    var _this = this;
+    var messError = {
+      en: {
+        fields: {
+          name: {
+            required: "The name field is required.",
+            max: "The name may not be greater than 128."
+          },
+          email: {
+            required: "The email field is required.",
+            max: "The email may not be greater than 128.",
+            unique_email: "The email already exists",
+            email: "The Email must be a valid email address."
+          },
+          phone: {
+            required: "The phone field is required.",
+            max: "The phone may not be greater than 128."
+          },
+          address: {
+            required: "The address field is required.",
+            max: "The address may not be greater than 128."
+          }
+        }
+      }
+    };
+    (0,vee_validate__WEBPACK_IMPORTED_MODULE_4__.configure)({
+      generateMessage: (0,_vee_validate_i18n__WEBPACK_IMPORTED_MODULE_5__.localize)(messError)
+    });
+    var that = this;
+    axios.post(that.data.urlGetCode, {}).then(function (response) {
+      return response.data.valid;
+    })["catch"](function (error) {
+      _this.dataCardType = _enums_CardType__WEBPACK_IMPORTED_MODULE_0__.CardType;
+      _this.dataStatusGiftCard = _enums_StatusGiftCard__WEBPACK_IMPORTED_MODULE_1__.StatusGiftCard;
+    });
+    console.log(this.dataCardType);
+  },
+  methods: {
+    updateSelected: function updateSelected(e) {
+      var array = [];
+      e.map(function (x) {
+        array.push(x.value);
+      });
+      array = _toConsumableArray(new Set(array));
+      this.skill = array;
+    },
+    onInvalidSubmit: function onInvalidSubmit(_ref) {
+      var values = _ref.values,
+        errors = _ref.errors,
+        results = _ref.results;
+      var firstInputError = Object.entries(errors)[0][0];
+      this.$el.querySelector("input[name=" + firstInputError + "]").focus();
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("html, body").animate({
+        scrollTop: jquery__WEBPACK_IMPORTED_MODULE_2___default()("input[name=" + firstInputError + "]").offset().top - 150
+      }, 500);
+    },
+    onSubmit: function onSubmit() {
+      this.$refs.formData.submit();
+    },
+    handleSelectType: function handleSelectType(event) {
+      if (event.target.value == "4") {
+        this.showFieldType = true;
+        this.model.type = "4";
+      } else {
+        this.showFieldType = false;
+        this.model.type = event.target.value;
+        switch (event.target.value) {
+          case "1":
+            this.model.amount = _enums_CardType__WEBPACK_IMPORTED_MODULE_0__.CardTypeDetail.TYPE200;
+            this.model.balance = _enums_CardType__WEBPACK_IMPORTED_MODULE_0__.CardTypeDetail.TYPE200;
+            break;
+          case "2":
+            this.model.amount = _enums_CardType__WEBPACK_IMPORTED_MODULE_0__.CardTypeDetail.TYPE500;
+            this.model.balance = _enums_CardType__WEBPACK_IMPORTED_MODULE_0__.CardTypeDetail.TYPE500;
+            break;
+          case "3":
+            this.model.amount = _enums_CardType__WEBPACK_IMPORTED_MODULE_0__.CardTypeDetail.TYPE1TR;
+            this.model.balance = _enums_CardType__WEBPACK_IMPORTED_MODULE_0__.CardTypeDetail.TYPE1TR;
+            break;
+          default:
+        }
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/product/create.vue?vue&type=script&lang=js":
 /*!********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/product/create.vue?vue&type=script&lang=js ***!
@@ -26772,6 +26922,204 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/gift-card/create.vue?vue&type=template&id=7c45f709":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/gift-card/create.vue?vue&type=template&id=7c45f709 ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "container-fluid"
+};
+var _hoisted_2 = {
+  "class": "row"
+};
+var _hoisted_3 = {
+  "class": "col-12"
+};
+var _hoisted_4 = {
+  "class": "card"
+};
+var _hoisted_5 = {
+  "class": "card-body"
+};
+var _hoisted_6 = ["onSubmit", "action"];
+var _hoisted_7 = {
+  "class": "form-group"
+};
+var _hoisted_8 = {
+  "class": "form-row"
+};
+var _hoisted_9 = {
+  "class": "col-6"
+};
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "",
+  require: ""
+}, "Code", -1 /* HOISTED */);
+var _hoisted_11 = {
+  "class": "col-6"
+};
+var _hoisted_12 = {
+  "class": "form-group"
+};
+var _hoisted_13 = {
+  "class": "form-row"
+};
+var _hoisted_14 = {
+  "class": "col-md-6"
+};
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "exampleFormControlSelect1"
+}, " Type ", -1 /* HOISTED */);
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "",
+  hidden: "",
+  disabled: "",
+  selected: ""
+}, " Select Card Type ", -1 /* HOISTED */);
+var _hoisted_17 = ["value"];
+var _hoisted_18 = {
+  key: 0,
+  "class": "col-md-6"
+};
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "exampleFormControlSelect1"
+}, "Chose card type", -1 /* HOISTED */);
+var _hoisted_20 = {
+  "class": "form-group"
+};
+var _hoisted_21 = {
+  "class": "form-row"
+};
+var _hoisted_22 = {
+  "class": "col-md-6",
+  hidden: ""
+};
+var _hoisted_23 = {
+  "class": "col-md-12 text-center btn-box"
+};
+var _hoisted_24 = ["href"];
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  type: "submit",
+  "class": "btn btn-primary"
+}, "Submit", -1 /* HOISTED */);
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _this = this;
+  var _component_Field = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Field");
+  var _component_ErrorMessage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ErrorMessage");
+  var _component_VeeForm = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("VeeForm");
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_VeeForm, {
+    as: "div",
+    "class": "form-owner",
+    onInvalidSubmit: $options.onInvalidSubmit
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {
+      var handleSubmit = _ref.handleSubmit;
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+        method: "POST",
+        onSubmit: function onSubmit($event) {
+          return handleSubmit($event, $options.onSubmit);
+        },
+        ref: "formData",
+        enctype: "multipart/form-data",
+        action: $props.data.urlStore
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
+        type: "hidden",
+        value: _ctx.csrfToken,
+        name: "_token"
+      }, null, 8 /* PROPS */, ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
+        disabled: "",
+        name: "code",
+        type: "text",
+        id: "exampleFormControlSelect2",
+        modelValue: _ctx.model.code,
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+          return _ctx.model.code = $event;
+        }),
+        "class": "form-control"
+      }, null, 8 /* PROPS */, ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
+        hidden: "",
+        type: "text",
+        "class": "form-control",
+        name: "balance",
+        placeholder: "Enter Balance",
+        modelValue: _ctx.model.balance,
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+          return _ctx.model.balance = $event;
+        })
+      }, null, 8 /* PROPS */, ["modelValue"])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+        "class": "form-control",
+        id: "exampleFormControlSelect1",
+        onChange: _cache[2] || (_cache[2] = function ($event) {
+          return $options.handleSelectType($event);
+        })
+      }, [_hoisted_16, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_this.dataCardType, function (typeCard) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+          value: typeCard.value,
+          key: typeCard.value
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(typeCard.label), 9 /* TEXT, PROPS */, _hoisted_17);
+      }), 128 /* KEYED_FRAGMENT */))], 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
+        hidden: "",
+        "class": "form-control",
+        name: "type",
+        rules: "required",
+        modelValue: _ctx.model.type,
+        "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+          return _ctx.model.type = $event;
+        })
+      }, null, 8 /* PROPS */, ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
+        "class": "error",
+        name: "type"
+      })]), _ctx.showFieldType ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
+        type: "text",
+        "class": "form-control",
+        name: "other",
+        rules: "\r\n                          required|numeric|min_value:1|max_value:99999999999999\r\n                        ",
+        id: "exampleInputAddress",
+        placeholder: "Chose card type",
+        modelValue: _ctx.model.other,
+        "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+          return _ctx.model.other = $event;
+        })
+      }, null, 8 /* PROPS */, ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
+        "class": "error",
+        name: "other"
+      })])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
+        type: "text",
+        "class": "form-control",
+        name: "amount",
+        id: "exampleInputAddress",
+        placeholder: "Enter Amount",
+        modelValue: _ctx.model.amount,
+        "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+          return _ctx.model.amount = $event;
+        })
+      }, null, 8 /* PROPS */, ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
+        "class": "error",
+        name: "amount"
+      })])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        href: $props.data.urlBack,
+        "class": "btn btn-outline-secondary",
+        style: {
+          "margin-right": "10px"
+        }
+      }, " Back ", 8 /* PROPS */, _hoisted_24), _hoisted_25])], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_6)];
+    }),
+    _: 1 /* STABLE */
+  }, 8 /* PROPS */, ["onInvalidSubmit"])])])])])]);
+}
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/product/create.vue?vue&type=template&id=276a5b27":
 /*!************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/product/create.vue?vue&type=template&id=276a5b27 ***!
@@ -27708,9 +28056,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_auth_register_index_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/auth/register/index.vue */ "./resources/js/components/auth/register/index.vue");
 /* harmony import */ var _components_booking_create_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/booking/create.vue */ "./resources/js/components/booking/create.vue");
 /* harmony import */ var _components_booking_edit_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/booking/edit.vue */ "./resources/js/components/booking/edit.vue");
-/* harmony import */ var _components_stock_edit_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/stock/edit.vue */ "./resources/js/components/stock/edit.vue");
-/* harmony import */ var _components_booking_calendar_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/booking/calendar.vue */ "./resources/js/components/booking/calendar.vue");
+/* harmony import */ var _components_gift_card_create_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/gift-card/create.vue */ "./resources/js/components/gift-card/create.vue");
+/* harmony import */ var _components_gift_card_edit_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/gift-card/edit.vue */ "./resources/js/components/gift-card/edit.vue");
+/* harmony import */ var _components_gift_card_edit_vue__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_components_gift_card_edit_vue__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _components_stock_edit_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/stock/edit.vue */ "./resources/js/components/stock/edit.vue");
+/* harmony import */ var _components_booking_calendar_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/booking/calendar.vue */ "./resources/js/components/booking/calendar.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+
 
 
 
@@ -27733,6 +28086,8 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({});
 app.component("dash-broad", _components_DashBroad_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
 app.component("category-create", _components_category_create_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
 app.component("category-edit", _components_category_edit_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
+app.component("gift-card-create", _components_gift_card_create_vue__WEBPACK_IMPORTED_MODULE_15__["default"]);
+app.component("gift-card-edit", (_components_gift_card_edit_vue__WEBPACK_IMPORTED_MODULE_16___default()));
 app.component("booking-create", _components_booking_create_vue__WEBPACK_IMPORTED_MODULE_13__["default"]);
 app.component("booking-edit", _components_booking_edit_vue__WEBPACK_IMPORTED_MODULE_14__["default"]);
 app.component("user-create", _components_user_create_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
@@ -27741,8 +28096,8 @@ app.component("product-create", _components_product_create_vue__WEBPACK_IMPORTED
 app.component("product-edit", _components_product_edit_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
 app.component("customer-create", _components_customer_create_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
 app.component("customer-edit", _components_customer_edit_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
-app.component("stock-edit", _components_stock_edit_vue__WEBPACK_IMPORTED_MODULE_15__["default"]);
-app.component("calendar-show", _components_booking_calendar_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
+app.component("stock-edit", _components_stock_edit_vue__WEBPACK_IMPORTED_MODULE_17__["default"]);
+app.component("calendar-show", _components_booking_calendar_vue__WEBPACK_IMPORTED_MODULE_18__["default"]);
 app.component("login-form", _components_auth_login_index_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
 app.component("register-form", _components_auth_register_index_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
 app.mount("#app");
@@ -27782,6 +28137,66 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/enums/CardType.js":
+/*!****************************************!*\
+  !*** ./resources/js/enums/CardType.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CardType": () => (/* binding */ CardType),
+/* harmony export */   "CardTypeDetail": () => (/* binding */ CardTypeDetail)
+/* harmony export */ });
+var CardType = Object.freeze([{
+  value: '1',
+  label: '200.000'
+}, {
+  value: '2',
+  label: '500.000'
+}, {
+  value: '3',
+  label: '1.000.000'
+}, {
+  value: '4',
+  label: 'OTHER'
+}]);
+var CardTypeDetail = Object.freeze({
+  TYPE200: 200000,
+  TYPE500: 500000,
+  TYPE1TR: 1000000,
+  TYPE_OTHER: ''
+});
+
+/***/ }),
+
+/***/ "./resources/js/enums/StatusGiftCard.js":
+/*!**********************************************!*\
+  !*** ./resources/js/enums/StatusGiftCard.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "StatusGiftCard": () => (/* binding */ StatusGiftCard),
+/* harmony export */   "StatusGiftCardDetail": () => (/* binding */ StatusGiftCardDetail)
+/* harmony export */ });
+var StatusGiftCard = Object.freeze([{
+  value: 0,
+  label: 'ACTIVE'
+}, {
+  value: 1,
+  label: 'INACTIVE'
+}]);
+var StatusGiftCardDetail = Object.freeze({
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+});
 
 /***/ }),
 
@@ -59874,6 +60289,44 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/gift-card/create.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/gift-card/create.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _create_vue_vue_type_template_id_7c45f709__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create.vue?vue&type=template&id=7c45f709 */ "./resources/js/components/gift-card/create.vue?vue&type=template&id=7c45f709");
+/* harmony import */ var _create_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./create.vue?vue&type=script&lang=js */ "./resources/js/components/gift-card/create.vue?vue&type=script&lang=js");
+/* harmony import */ var C_xampp_htdocs_guide_to_laravel_and_vue_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,C_xampp_htdocs_guide_to_laravel_and_vue_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_create_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_create_vue_vue_type_template_id_7c45f709__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/gift-card/create.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
+/***/ "./resources/js/components/gift-card/edit.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/gift-card/edit.vue ***!
+  \****************************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/product/create.vue":
 /*!****************************************************!*\
   !*** ./resources/js/components/product/create.vue ***!
@@ -60174,6 +60627,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/gift-card/create.vue?vue&type=script&lang=js":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/gift-card/create.vue?vue&type=script&lang=js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_create_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_create_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./create.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/gift-card/create.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/components/product/create.vue?vue&type=script&lang=js":
 /*!****************************************************************************!*\
   !*** ./resources/js/components/product/create.vue?vue&type=script&lang=js ***!
@@ -60410,6 +60879,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_edit_vue_vue_type_template_id_547de040__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_edit_vue_vue_type_template_id_547de040__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./edit.vue?vue&type=template&id=547de040 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/customer/edit.vue?vue&type=template&id=547de040");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/gift-card/create.vue?vue&type=template&id=7c45f709":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/gift-card/create.vue?vue&type=template&id=7c45f709 ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_create_vue_vue_type_template_id_7c45f709__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_create_vue_vue_type_template_id_7c45f709__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./create.vue?vue&type=template&id=7c45f709 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/gift-card/create.vue?vue&type=template&id=7c45f709");
 
 
 /***/ }),

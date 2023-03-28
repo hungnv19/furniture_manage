@@ -49,6 +49,7 @@ Route::middleware('user')->group(function () {
     Route::resource('booking', BookingController::class);
     Route::resource('stock', StockController::class);
     Route::resource('gift-card', GiftCardController::class);
+    Route::get('gift-card/code/{pre}', [GiftCardController::class, 'generateCode'])->name('gift-card.code');
 });
 
 Route::post('check-mail-register', [RegisterController::class, 'checkMailRegister'])->name('register.checkMail');

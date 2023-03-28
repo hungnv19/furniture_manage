@@ -27,6 +27,9 @@ import RegisterForm from './components/auth/register/index.vue';
 import BookingCreate from './components/booking/create.vue';
 import BookingEdit from './components/booking/edit.vue';
 
+import GiftCardCreate from './components/gift-card/create.vue';
+import GiftCardEdit from './components/gift-card/edit.vue';
+
 import StockEdit from './components/stock/edit.vue';
 
 import CalendarShow from './components/booking/calendar.vue';
@@ -39,6 +42,9 @@ app.component("dash-broad", DashBroad);
 
 app.component("category-create", CategoryCreate);
 app.component("category-edit", CategoryEdit);
+
+app.component("gift-card-create", GiftCardCreate);
+app.component("gift-card-edit", GiftCardEdit);
 
 app.component("booking-create", BookingCreate);
 app.component("booking-edit", BookingEdit);

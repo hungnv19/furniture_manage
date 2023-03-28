@@ -33,4 +33,14 @@ class CustomerGiftCard extends Model
      * @var array
      */
     protected $fillable = ['customer_id', 'gift_card_id', 'payment_date', 'expiress_date', 'created_at', 'updated_at', 'deleted_at'];
+
+    public function giftCard()
+    {
+        return $this->belongsTo(GiftCard::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }
