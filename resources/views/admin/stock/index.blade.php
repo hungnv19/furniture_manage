@@ -61,8 +61,7 @@
                                                 {{ $product->categories_name }}
                                             </td>
                                             <td>
-                                                {{ $product->buying_price }}
-
+                                                {{ number_format($product->buying_price) . ' Đ' }}
                                             </td>
                                             @if ($product->product_quantity >= 1)
                                                 <td class="text-success">

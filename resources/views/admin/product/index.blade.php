@@ -72,12 +72,10 @@
 
                                             </td>
                                             <td>
-                                                {{ $product->buying_price }}
-
+                                                {{ number_format($product->buying_price) . ' Đ' }}
                                             </td>
                                             <td>
-                                                {{ $product->selling_price }}
-
+                                                {{ number_format($product->selling_price) . ' Đ' }}
                                             </td>
                                             <td>
                                                 {{ $product->buying_date }}

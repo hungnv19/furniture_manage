@@ -23,8 +23,8 @@
                   <div class="form-row">
                     <div class="col-6">
                       <label class="" require>Code</label>
-                      <Field
-                        disabled
+                      <input
+                        readonly
                         name="code"
                         type="text"
                         id="exampleFormControlSelect2"
@@ -33,7 +33,7 @@
                       />
                     </div>
                     <div class="col-6">
-                      <Field
+                      <input
                         hidden
                         type="text"
                         class="form-control"
@@ -82,9 +82,7 @@
                         type="text"
                         class="form-control"
                         name="other"
-                        rules="
-                          required|numeric|min_value:1|max_value:99999999999999
-                        "
+                        rules="required|numeric|min_value:1|max_value:99999999999999"
                         id="exampleInputAddress"
                         placeholder="Chose card type"
                         v-model="model.other"
@@ -96,15 +94,16 @@
                   <div class="form-group">
                     <div class="form-row">
                       <div class="col-md-6" hidden>
-                        <Field
+                        <input
                           type="text"
                           class="form-control"
                           name="amount"
+                         
                           id="exampleInputAddress"
                           placeholder="Enter Amount"
                           v-model="model.amount"
                         />
-                        <ErrorMessage class="error" name="amount" />
+                        
                       </div>
                     </div>
                   </div>
@@ -161,30 +160,12 @@ export default {
   },
   computed: {},
   props: ["data"],
-  data: function () {
-    return {
-      csrfToken: Laravel.csrfToken,
-      dataStatusGiftCard: "",
-      dataCardType: "",
-      showFieldType: false,
-      model: {
-        type: "",
-        other: "",
-        amount: "",
-        code: "",
-        balance: "",
-      },
-      categories: [],
-    };
-  },
+
   created() {
     let messError = {
       en: {
         fields: {
-          name: {
-            required: "The name field is required.",
-            max: "The name may not be greater than 128.",
-          },
+          
           email: {
             required: "The email field is required.",
             max: "The email may not be greater than 128.",
@@ -206,41 +187,33 @@ export default {
       generateMessage: localize(messError),
     });
     let that = this;
+
     axios
-      .post(that.data.urlGetCode, {})
-      .then(function (response) {
-        return response.data.valid;
-      })
-      .catch((error) => {
+      .get(this.data.urlGetCode)
+      .then((res) => {
+        this.model.code = res.data;
         this.dataCardType = CardType;
         this.dataStatusGiftCard = StatusGiftCard;
-      });
+      })
+      .catch((error) => {});
+  },
+  data: function () {
+    return {
+      csrfToken: Laravel.csrfToken,
+      dataStatusGiftCard: "",
+      dataCardType: "",
+      showFieldType: false,
 
-    console.log(this.dataCardType);
+      model: {
+        type: "",
+        other: "",
+        amount: "",
+        code: "",
+        balance: "",
+      },
+    };
   },
   methods: {
-    updateSelected(e) {
-      let array = [];
-      e.map((x) => {
-        array.push(x.value);
-      });
-      array = [...new Set(array)];
-      this.skill = array;
-    },
-    onInvalidSubmit({ values, errors, results }) {
-      let firstInputError = Object.entries(errors)[0][0];
-      this.$el.querySelector("input[name=" + firstInputError + "]").focus();
-      $("html, body").animate(
-        {
-          scrollTop:
-            $("input[name=" + firstInputError + "]").offset().top - 150,
-        },
-        500
-      );
-    },
-    onSubmit() {
-      this.$refs.formData.submit();
-    },
     handleSelectType(event) {
       if (event.target.value == "4") {
         this.showFieldType = true;
@@ -264,6 +237,28 @@ export default {
           default:
         }
       }
+    },
+    updateSelected(e) {
+      let array = [];
+      e.map((x) => {
+        array.push(x.value);
+      });
+      array = [...new Set(array)];
+      this.skill = array;
+    },
+    onInvalidSubmit({ values, errors, results }) {
+      let firstInputError = Object.entries(errors)[0][0];
+      this.$el.querySelector("input[name=" + firstInputError + "]").focus();
+      $("html, body").animate(
+        {
+          scrollTop:
+            $("input[name=" + firstInputError + "]").offset().top - 150,
+        },
+        500
+      );
+    },
+    onSubmit() {
+      this.$refs.formData.submit();
     },
   },
 };

@@ -23,7 +23,6 @@
     <section class="content">
         <gift-card-create
             :data="{{ json_encode([
-               
                 'urlStore' => route('gift-card.store'),
                 'urlGetCode' => route('gift-card.code'),
                 'urlBack' => route('gift-card.index'),

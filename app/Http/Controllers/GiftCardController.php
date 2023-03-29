@@ -6,14 +6,19 @@ use App\Models\GiftCard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
-
-class GiftCardController extends Controller
+use App\Http\Controllers\BaseController;
+class GiftCardController extends BaseController
 {
+    public GiftCard $giftCard;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(GiftCard $giftCard)
+    {
+        $this->giftCard = $giftCard;
+    }
     public function index()
     {
         $giftCard = GiftCard::get();
@@ -32,7 +37,6 @@ class GiftCardController extends Controller
     {
         return view('admin.gift_card.create', [
             'title' => 'Gift Card Create',
-            
         ]);
     }
 
@@ -44,7 +48,18 @@ class GiftCardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $giftCard = new GiftCard;
+        $giftCard->type = $request->type;
+        $giftCard->amount = $request->type == '4' ? $request->other : $request->amount;
+        $giftCard->balance = $request->type == '4' ? $request->other : $request->balance;
+        $giftCard->code = $request->code;
+        $giftCard->save();
+        if ($giftCard) {
+            $this->setFlash(__('Thêm thẻ thành công'));
+            return redirect()->route('gift-card.index');
+        }
+        $this->setFlash(__('Thêm thẻ thất bại'));
+        return redirect()->route('gift-card.index');
     }
 
     /**
@@ -66,7 +81,11 @@ class GiftCardController extends Controller
      */
     public function edit($id)
     {
-        //
+        $giftCard = GiftCard::where('id', $id)->first();
+        return view('admin.gift_card.edit', [
+            'title' => 'Gift Card Edit',
+            'giftCard' => $giftCard,
+        ]);
     }
 
     /**
@@ -78,7 +97,22 @@ class GiftCardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        try {
+            $giftCard =  $this->giftCard->where('id', $id)->first();
+            $giftCard->type = $request->type;
+            $giftCard->amount = $request->type == '4' ? $request->other : $request->amount;
+            $giftCard->balance = $request->type == '4' ? $request->other : $request->balance;
+            $giftCard->code = $request->code;
+
+            $giftCard->save();
+            $this->setFlash(__('Cập nhật  thành công'));
+            return redirect()->route('gift-card.index');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            $this->setFlash(__('Đã có một lỗi không mong muốn xảy ra'), 'error');
+            return redirect()->route('gift-card.index');
+        }
     }
 
     /**
@@ -97,7 +131,6 @@ class GiftCardController extends Controller
     public function generateCode($pre = null)
     {
         $str = substr(preg_replace('/[^0-9]/', '', Str::uuid()->getHex()), 0, 8);
-        return response()->json(DB::table('gift_card')->where('code', $pre . '_' . $str)->exists() ? $this->generateCode($pre) : $pre . '_' . $str);
-        //
+        return response()->json(DB::table('gift_card')->where('code', $pre . '_' . $str)->exists() ? $this->generateCode($pre) : $pre . 'GC' . '_' . $str);
     }
 }

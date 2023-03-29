@@ -53,7 +53,7 @@
 
                                             </td>
                                             <td>
-                                                {{ $giftCard->balance }}
+                                                {{ number_format($giftCard->balance) . ' Đ' }}
 
                                             </td>
                                             @if ($giftCard->status == 0)
