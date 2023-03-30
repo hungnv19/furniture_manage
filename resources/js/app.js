@@ -32,6 +32,8 @@ import GiftCardEdit from './components/gift-card/edit.vue';
 
 import StockEdit from './components/stock/edit.vue';
 
+import PosList from './components/pos/index.vue';
+
 import CalendarShow from './components/booking/calendar.vue';
 
 
@@ -59,6 +61,8 @@ app.component("customer-create", CustomerCreate);
 app.component("customer-edit", CustomerEdit);
 
 app.component("stock-edit", StockEdit);
+
+app.component("pos-list", PosList);
 
 app.component("calendar-show", CalendarShow);
 

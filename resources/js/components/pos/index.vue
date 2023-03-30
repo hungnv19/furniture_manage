@@ -1,56 +1,23 @@
 <template>
   <div>
-    <!-- <div class="container-fluid" id="container-wrapper"> -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h1 class="h3 mb-0 text-gray-800">
-        {{ $t("content.dashboard.title") }}
-      </h1>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="./">{{ $t("content.dashboard.breadcrumb.home") }}</a>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">
-          {{ $t("content.dashboard.title") }}
-        </li>
-      </ol>
-    </div>
-
     <div class="row mb-3">
       <!-- Area Chart -->
       <div class="col-xl-4 col-lg-5">
         <div class="card mb-4">
-          <div
-            class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-          >
-            <h5 class="m-0 font-weight-bold text-primary">
-              {{ $t("content.pos.expense_insert") }}
-            </h5>
-            <router-link
-              to="/store-customer"
-              class="btn btn-primary btn-sm text-color"
-              >{{
-                $t("common.action.add", {
-                  category: $t("common.category.customer"),
-                })
-              }}</router-link
-            >
-          </div>
           <div class="card-body">
             <div class="table-responsive" style="font-size: 12px">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th>{{ $t("common.table_column.name") }}</th>
-                    <th style="text-align: center">
-                      {{ $t("content.order_detail.list.qty") }}
-                    </th>
-                    <th>{{ $t("content.order_detail.list.unit") }}</th>
-                    <th>{{ $t("content.order_detail.list.total") }}</th>
-                    <th>{{ $t("common.table_column.action") }}</th>
+                    <th>Name</th>
+                    <th style="text-align: center">Quantity</th>
+                    <th>Unit</th>
+                    <th>Total</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="pro in cartProduct" :key="pro.id">
+                  <!-- <tr v-for="pro in cartProduct" :key="pro.id">
                     <td>{{ pro.product_name }}</td>
                     <td>
                       <div
@@ -107,12 +74,12 @@
                         >X</a
                       >
                     </td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
             </div>
           </div>
-          <input
+          <!-- <input
             type="hidden"
             name="qty"
             v-validate="'required|numeric|min_value:1'"
@@ -120,7 +87,7 @@
           />
           <div class="px-4">
             <small class="text-danger">{{ errors.first("qty") }}</small>
-          </div>
+          </div> -->
           <div class="card-footer">
             <div class="order-md-2 mb-4">
               <ul class="list-group mb-3">
@@ -128,42 +95,34 @@
                   class="list-group-item d-flex justify-content-between lh-condensed"
                 >
                   <div>
-                    <h6 class="my-0">
-                      {{ $t("content.order_detail.list.total_quantity") }}
-                    </h6>
+                    <h6 class="my-0">Total Quantity</h6>
                   </div>
-                  <span class="text-muted">{{ qty }}</span>
+                  <!-- <span class="text-muted">{{ qty }}</span> -->
                 </li>
                 <li
                   class="list-group-item d-flex justify-content-between lh-condensed"
                 >
                   <div>
-                    <h6 class="my-0">
-                      {{ $t("content.order_detail.list.sub_total") }}
-                    </h6>
+                    <h6 class="my-0">Sub Total</h6>
                   </div>
-                  <span class="text-muted">{{ number_format(sub_total) }}</span>
+                  <!-- <span class="text-muted">{{ number_format(sub_total) }}</span> -->
                 </li>
 
                 <li
                   class="list-group-item d-flex justify-content-between lh-condensed"
                 >
                   <div>
-                    <h6 class="my-0">
-                      {{ $t("content.order_detail.list.vat") }}
-                    </h6>
+                    <h6 class="my-0">Vat</h6>
                   </div>
-                  <span class="text-muted">{{ this.vat }}%</span>
+                  <!-- <span class="text-muted">{{ this.vat }}%</span> -->
                 </li>
                 <li
                   class="list-group-item d-flex justify-content-between bg-light"
                 >
                   <div class="text-success">
-                    <h6 class="my-0">
-                      {{ $t("content.order_detail.list.total") }}
-                    </h6>
+                    <h6 class="my-0">Total</h6>
                   </div>
-                  <span class="text-success">{{ number_format(total) }}</span>
+                  <!-- <span class="text-success">{{ number_format(total) }}</span> -->
                 </li>
                 <li
                   v-if="giftCardId"
@@ -172,18 +131,14 @@
                   <div>
                     <h6 class="my-0">Gift Card</h6>
                   </div>
-                  <span class="text-muted"> - {{ number_format(total) }}</span>
+                  <!-- <span class="text-muted"> - {{ number_format(total) }}</span> -->
                 </li>
               </ul>
 
               <form @submit.prevent="orderDone">
                 <div class="form-group">
-                  <label for="exampleFormControlSelect1">{{
-                    $t("common.label.select", {
-                      category: $t("common.category.customer"),
-                    })
-                  }}</label>
-                  <Select2
+                  <label for="exampleFormControlSelect1">Customer</label>
+                  <!-- <Select2
                     @select="selectCustomerId($event)"
                     :options="myOptions"
                     :placeholder="
@@ -200,12 +155,10 @@
                   />
                   <small class="text-danger">{{
                     errors.first("customer_id")
-                  }}</small>
+                  }}</small> -->
                 </div>
                 <div class="form-group">
-                  <label for="exampleFormControlSelect2">{{
-                    $t("content.orders.list.pay_by")
-                  }}</label>
+                  <label for="exampleFormControlSelect2">Pay By</label>
                   <select
                     class="form-control"
                     id="exampleFormControlSelect2"
@@ -213,17 +166,13 @@
                     v-model="payBy"
                     v-validate="'required'"
                   >
-                    <option value="handCash">
-                      {{ $t("content.orders.method.hand_cash") }}
-                    </option>
-                    <option value="giftCard">
-                      {{ $t("content.orders.method.gift_card") }}
-                    </option>
+                    <option value="handCash">Hand Cash</option>
+                    <option value="giftCard">Gift Card</option>
                   </select>
-                  <small class="text-danger">{{ errors.first("payBy") }}</small>
+                  <!-- <small class="text-danger">{{ errors.first("payBy") }}</small> -->
                 </div>
 
-                <div v-if="payBy === 'giftCard'" class="form-group">
+                <!-- <div v-if="payBy === 'giftCard'" class="form-group">
                   <label for="exampleFormControlSelect2">{{
                     $t("content.orders.method.gift_card")
                   }}</label>
@@ -245,8 +194,8 @@
                   <small class="text-danger">{{
                     errors.first("gift_card_id")
                   }}</small>
-                </div>
-                <div v-if="payBy === 'handCash'">
+                </div> -->
+                <!-- <div v-if="payBy === 'handCash'">
                   <div class="form-group">
                     <label for="exampleFormControlInput1">{{
                       $t("content.orders.list.pay")
@@ -283,11 +232,9 @@
                       id="exampleFormControlInput2"
                     />
                   </div>
-                </div>
+                </div> -->
 
-                <button class="btn btn-success" type="submit">
-                  {{ $t("common.button.submit") }}
-                </button>
+                <button class="btn btn-success" type="submit">submit</button>
               </form>
             </div>
           </div>
@@ -300,17 +247,7 @@
           <div
             class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
           >
-            <h5 class="m-0 font-weight-bold text-primary">
-              {{ $t("content.pos.products") }}
-            </h5>
-
-            <input
-              type="text"
-              :placeholder="$t('common.search')"
-              v-model="searchTerm"
-              class="form-control"
-              style="width: 300px"
-            />
+            <h5 class="m-0 font-weight-bold text-primary">products</h5>
           </div>
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -322,11 +259,11 @@
                 role="tab"
                 aria-controls="home"
                 aria-selected="true"
-                >{{ $t("content.pos.home") }}</a
+                >home</a
               >
             </li>
 
-            <li
+            <!-- <li
               class="nav-item"
               role="presentation"
               v-for="category in categories"
@@ -343,7 +280,7 @@
                 @click="categoryProduct(category.id)"
                 >{{ category.category_name }}</a
               >
-            </li>
+            </li> -->
           </ul>
           <div class="tab-content" id="myTabContent">
             <div
@@ -389,16 +326,14 @@
                           </h5>
                           <td v-if="item.product_quantity >= 1">
                             <span class="badge badge-success"
-                              >{{ $t("common.status_label.available") }}
+                              >available
                               <span class="badge badge-light">{{
                                 item.product_quantity
                               }}</span></span
                             >
                           </td>
                           <td v-else>
-                            <span class="badge badge-danger">{{
-                              $t("common.status_label.stock_out")
-                            }}</span>
+                            <span class="badge badge-danger">stock_out</span>
                           </td>
                         </div>
                       </button>
@@ -445,16 +380,14 @@
                           </h5>
                           <td v-if="catProduct.product_quantity >= 1">
                             <span class="badge badge-success"
-                              >{{ $t("common.status_label.available") }}
+                              >available
                               <span class="badge badge-light">{{
                                 catProduct.product_quantity
                               }}</span></span
                             >
                           </td>
                           <td v-else>
-                            <span class="badge badge-danger">{{
-                              $t("common.status_label.stock_out")
-                            }}</span>
+                            <span class="badge badge-danger">stock_out</span>
                           </td>
                         </div>
                       </button>
@@ -467,11 +400,382 @@
         </div>
       </div>
     </div>
-
-    <page-loading v-if="isLoading"></page-loading>
   </div>
 </template>
 
+<script>
+export default {
+  created() {
+    let messError = {
+      custom: {
+        qty: {
+          required: "Please select at least 1 product.",
+          min_value: "Please select at least 1 product.",
+        },
+        customer_id: {
+          required: "The customer field is required.",
+        },
+        pay: {
+          required: "The pay field is required.",
+          numeric: "Please enter a number.",
+          min_value: "Please enter a number greater than Total.",
+        },
+        due: {
+          numeric: "Please enter a number.",
+          min_value: "Please enter a number greater than 0.",
+        },
+        payBy: {
+          required: "The pay by field is required.",
+        },
+        gift_card_id: {
+          required: "Please select a gift card for payment.",
+          valid_card: "Card balance is not enough.",
+        },
+      },
+    };
+
+    let that = this;
+    // this.$validator.extend(
+    //   "valid_card",
+    //   {
+    //     validate(value, args) {
+    //       if (that.cardBalance >= that.total) {
+    //         return true;
+    //       }
+    //       return false;
+    //     },
+    //   },
+    //   {
+    //     hasTarget: true,
+    //   }
+    // );
+  },
+  components: {},
+
+  mounted() {
+    this.allProduct();
+    this.allCategory();
+    this.allCustomers();
+    this.cartProducts();
+    Reload.$on("afterAddToCart", () => {
+      this.cartProducts();
+    });
+  },
+
+  data() {
+    return {
+      products: [],
+      categories: [],
+      categoryProducts: [],
+      customers: [],
+      cartProduct: [],
+      searchTerm: "",
+      vat: Laravel.VAT,
+      product: {},
+      // Form
+      customer_id: "",
+      pay: "",
+      due: "",
+      payBy: "",
+
+      disableButton: false,
+      amount: 0,
+      myOptions: [],
+      nameButton: {},
+
+      giftCardId: "",
+      giftCardOptions: [],
+      listGiftCard: [],
+      cardSelected: "",
+      cardBalance: "",
+    };
+  },
+
+  computed: {
+    qty() {
+      let sum = 0;
+      for (let i = 0; i < this.cartProduct.length; i++) {
+        sum += parseFloat(this.cartProduct[i].product_quantity);
+      }
+
+      return sum;
+    },
+    sub_total() {
+      let sum = 0;
+      for (let i = 0; i < this.cartProduct.length; i++) {
+        sum += parseFloat(this.cartProduct[i].sub_total);
+      }
+
+      return sum;
+    },
+
+    total() {
+      return parseFloat(
+        this.number_format(
+          Math.round(
+            ((this.sub_total * this.vat) / 100 + this.sub_total) * 100
+          ) / 100
+        )
+          .replace(/\./g, "")
+          .replace("₫", "")
+      );
+    },
+  },
+
+  methods: {
+    allProduct() {
+      axios
+        .get("/product")
+        .then(({ data }) => (this.products = data))
+        .catch();
+    },
+    allCategory() {
+      axios
+        .get("/category")
+        .then(({ data }) => (this.categories = data))
+        .catch();
+    },
+    categoryProduct(id) {
+      axios
+        .get("/category/product/" + id)
+        .then(({ data }) => (this.categoryProducts = data))
+        .catch();
+    },
+    allCustomers() {
+      axios
+        .get("/customer")
+        .then(({ data }) => {
+          this.customers = data;
+          this.customers.map((e) => {
+            this.myOptions.push({ id: e.id, text: e.name });
+          });
+        })
+        .catch();
+    },
+
+    // Cart
+    async addToCart(id, product_quantity) {
+      if (product_quantity <= 0) {
+        return;
+      } else {
+        this.disableButton = true;
+        if (this.cartProduct.length == 0) {
+          this.addItemToCard(id);
+        } else {
+          for (const item of this.cartProduct) {
+            if (item.product_id === id) {
+              await axios
+                .get("/product/" + id)
+                .then(async (res) => {
+                  let product = res.data;
+                  if (product.product_quantity > item.product_quantity) {
+                    await this.addItemToCard(id);
+                  } else {
+                    this.disableButton = false;
+                  }
+                })
+                .catch();
+            } else {
+              let flag = this.cartProduct
+                .map((e) => {
+                  return e.product_id;
+                })
+                .indexOf(id);
+              if (flag == -1) {
+                this.addItemToCard(id);
+                return;
+              }
+            }
+          }
+        }
+      }
+    },
+    addItemToCard(id) {
+      axios
+        .get("/addToCart/" + id)
+        .then(() => {
+          Reload.$emit("afterAddToCart");
+          Notification.cart_success(this.$t("common.message.add_cart_success"));
+
+          this.sleep(100).then(() => {
+            this.disableButton = false;
+          });
+        })
+        .catch();
+    },
+    cartProducts() {
+      axios
+        .get("/cart-products")
+        .then(({ data }) => (this.cartProduct = data))
+        .catch();
+    },
+    deleteItem(id) {
+      axios
+        .get("/cart/delete/" + id)
+        .then(() => {
+          Reload.$emit("afterAddToCart");
+          Notification.cart_delete(this.$t("common.message.cart_deleted"));
+        })
+        .catch();
+    },
+    async increment(id, product_id, product_quantity) {
+      this.nameButton[id] = true;
+      this.nameButton = JSON.parse(JSON.stringify(this.nameButton));
+
+      await axios
+        .get("/product/" + product_id)
+        .then(async (res) => {
+          let product = res.data;
+          if (product.product_quantity > product_quantity) {
+            await axios
+              .get("/cart/increment/" + id)
+              .then(() => {
+                Reload.$emit("afterAddToCart");
+                Notification.success(this.$t("common.message.success"));
+                this.sleep(100).then(() => {
+                  this.nameButton[id] = false;
+                  this.nameButton = JSON.parse(JSON.stringify(this.nameButton));
+                });
+              })
+              .catch();
+          }
+        })
+        .catch();
+    },
+    async decrement(id) {
+      this.nameButton[id] = true;
+      this.nameButton = JSON.parse(JSON.stringify(this.nameButton));
+
+      await axios
+        .get("/cart/decrement/" + id)
+        .then(() => {
+          Reload.$emit("afterAddToCart");
+          Notification.success(this.$t("common.message.success"));
+          this.sleep(100).then(() => {
+            this.nameButton[id] = false;
+            this.nameButton = JSON.parse(JSON.stringify(this.nameButton));
+          });
+        })
+        .catch();
+    },
+
+    orderDone() {
+      this.$validator.validateAll().then((valid) => {
+        if (valid) {
+          this.isLoading = true;
+          var data = {
+            qty: this.qty,
+            sub_total: this.sub_total,
+            customer_id: this.customer_id,
+            pay: this.pay,
+            due: this.due,
+            payBy: this.payBy,
+            vat: this.vat,
+            total: this.total,
+            gift_card_id: this.giftCardId,
+          };
+
+          axios
+            .post("/order", data)
+            .then((res) => {
+              if (res && res.data.result == true) {
+                this.isLoading = false;
+                this.$router.push({ name: "home" });
+                Notification.success(this.$t("common.message.success"));
+              } else {
+                Notification.error(this.$t("common.message.error"));
+              }
+            })
+            .catch((error) => {
+              this.isLoading = false;
+              Notification.error(this.$t("common.message.error"));
+            });
+        } else {
+          this.isLoading = false;
+          this.$el
+            .querySelector(
+              "input[name=" + Object.keys(this.errors.collect())[0] + "]"
+            )
+            .focus();
+          $("html, body").animate(
+            {
+              scrollTop:
+                $(
+                  "input[name=" + Object.keys(this.errors.collect())[0] + "]"
+                ).offset().top - 104,
+            },
+            500
+          );
+        }
+      });
+    },
+    number(string) {
+      return string;
+    },
+    selectCustomerId(e) {
+      this.customer_id = e.id;
+      this.giftCardOptions = [];
+      this.listGiftCard = [];
+      this.giftCardId = "";
+      this.cardSelected = "";
+      axios
+        .get("/customer/" + this.customer_id)
+        .then((res) => {
+          if (res) {
+            res.data.gift_cards.map((e) => {
+              if (e.balance !== 0) {
+                this.listGiftCard.push(e);
+                this.giftCardOptions.push({
+                  id: e.id,
+                  text: e.code + " - " + this.number_format(e.balance),
+                });
+              }
+            });
+          }
+        })
+        .catch((err) => {
+          Notification.error(this.$t("common.message.error"));
+        });
+    },
+
+    selectGiftCard(e) {
+      this.giftCardId = e.id;
+      this.cardSelected = this.listGiftCard.filter((el) => {
+        return el.id == e.id;
+      })[0];
+      this.cardBalance = this.cardSelected.balance;
+    },
+    sleep(time) {
+      return new Promise((resolve) => setTimeout(resolve, time));
+    },
+    number_format(value) {
+      return new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      }).format(value);
+    },
+    calculatorDue() {
+      let pay = this.pay;
+      if (pay >= this.total) {
+        this.due = parseFloat(
+          this.number_format(pay - this.total)
+            .replace(/\./g, "")
+            .replace("₫", "")
+        );
+      }
+    },
+  },
+  watch: {
+    payBy(v) {
+      this.giftCardId = "";
+      this.cardSelected = "";
+    },
+    total() {
+      this.calculatorDue();
+    },
+  },
+};
+</script>
 
 <style lang="css" scoped>
 img#image_size {

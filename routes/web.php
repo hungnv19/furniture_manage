@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\GiftCardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PosController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProductController;
@@ -50,6 +52,29 @@ Route::middleware('user')->group(function () {
     Route::resource('stock', StockController::class);
     Route::resource('gift-card', GiftCardController::class);
     Route::get('gift-card/code/GC', [GiftCardController::class, 'generateCode'])->name('gift-card.code');
+
+    //order
+    Route::post('/order', [PosController::class, 'order']);
+    Route::get('/today-order', [OrderController::class, 'todayOrder']);
+    Route::get('/orders/{id}', [OrderController::class, 'orders']);
+    Route::get('/order/details/{id}', [OrderController::class, 'orderDetails']);
+
+
+    //Customer Gift Card Routes
+    // Route::post('/add-customer-gift-card/{id}', 'Api\CustomerGiftCardController@addGiftCardId');
+    // Route::get('list-card-gift/{id}', 'Api\CustomerGiftCardController@getListCustomerGift');
+
+    //Cart Routes
+
+    Route::get('/addToCart/{id}', [CartController::class, 'addToCart']);
+    Route::get('/cart-products', [CartController::class, 'cartProducts']);
+    Route::get('/cart/delete/{id}', [CartController::class, 'cartDelete']);
+    Route::get('/cart/increment/{id}', [CartController::class, 'increment']);
+    Route::get('/cart/decrement/{id}', [CartController::class, 'decrement']);
+
+    Route::get('/vat', 'Api\CartController@vat');
+    //pos
+
 });
 
 Route::post('check-mail-register', [RegisterController::class, 'checkMailRegister'])->name('register.checkMail');

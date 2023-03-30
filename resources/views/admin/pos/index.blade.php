@@ -20,41 +20,13 @@
     <!-- Main content -->
 
     <section class="content">
-        <div class="container-fluid">
+        <pos-list></pos-list>
+        {{-- <div class="container-fluid">
             <div class="row">
-                {{-- <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">All Product</h3>
-                            <a class="btn btn-sm btn-primary" href="{{ route('product.create') }}"
-                                style="float: right;">Create</a>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <table class="table align-items-center table-flush">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Category Id</th>
-                                        <th>Name</th>
-                                        <th>Code</th>
-                                        <th>Root</th>
-                                        <th>buying_price</th>
-                                        <th>selling_price</th>
-                                        <th>buying_date</th>
-                                        <th>image</th>
-                                        <th>product_quantity</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                              
-                            </table>
-                        </div>
-                    </div>
-                </div> --}}
+
                 <div class="col-12">
                     <div class="row mb-3">
-                        <!-- Area Chart -->
+                        
                         <div class="col-xl-4 col-lg-5">
                             <div class="card mb-4">
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -157,15 +129,12 @@
                             </div>
                         </div>
 
-                        <!-- Pie Chart -->
                         <div class="col-xl-8 col-lg-7">
                             <div class="card mb-4">
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h5 class="m-0 font-weight-bold text-primary">
-                                        products
+                                        Products
                                     </h5>
-
-                                    <input type="text" class="form-control" style="width: 300px" />
                                 </div>
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item" role="presentation">
@@ -188,40 +157,40 @@
                                                     :key="item.id">
                                                     <div class="card" style="align-items: center; margin-bottom: 10px">
                                                         <button class="btn btn-sm"
-                                                            :class="disableButton ? 'pointer-events-none' : ''" >
-                                                                <div class="img-container">
-                                                                    <img :src="item.image ?
-                                                                        item.image :
-                                                                        '/backend/img/none-img.jpg'"
-                                                                        class="card-img-top" id="image_size" alt="..." />
-                                                                </div>
-                                                                <div class="card-body">
-                                                                    <h5 class="card-title text-center">
-                                                                        product_name -
-                                                                        selling_price
-                                                                    </h5>
-                                                                    <td>
-                                                                        <span class="badge badge-success">available
-                                                                            <span class="badge badge-light">
-                                                                                product_quantity
-                                                                            </span></span>
-                                                                    </td>
+                                                            :class="disableButton ? 'pointer-events-none' : ''">
+                                                            <div class="img-container">
+                                                                <img :src="item.image ?
+                                                                    item.image :
+                                                                    '/backend/img/none-img.jpg'"
+                                                                    class="card-img-top" id="image_size" alt="..." />
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <h5 class="card-title text-center">
+                                                                    product_name -
+                                                                    selling_price
+                                                                </h5>
+                                                                <td>
+                                                                    <span class="badge badge-success">available
+                                                                        <span class="badge badge-light">
+                                                                            product_quantity
+                                                                        </span></span>
+                                                                </td>
 
-                                                                </div>
-                                                            </button>
-                                                        </div>
+                                                            </div>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
+
             </div>
-        </section>
+        </div> --}}
+    </section>
 @endsection
