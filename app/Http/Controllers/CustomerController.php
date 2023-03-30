@@ -51,12 +51,16 @@ class CustomerController extends BaseController
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $customer = new Customer();
         $customer->name = $request->name;
         $customer->email = $request->email;
         $customer->phone = $request->phone;
 
         $customer->address = $request->address;
+        if ($request->hasFile('photo')) {
+            $customer->photo = $request->photo->storeAs('public/images', $request->photo->hashName());
+        }
 
         $customer->save();
         if ($customer) {
@@ -88,6 +92,7 @@ class CustomerController extends BaseController
     {
 
         $customer = Customer::where('id', $id)->first();
+       
         return view('admin.customer.edit', [
             'customer' => $customer,
             'title' => 'Sua danh mục'
@@ -104,6 +109,7 @@ class CustomerController extends BaseController
     public function update(Request $request, $id)
     {
         try {
+           
             $customer =  $this->customer->where('id', $id)->first();
             $customer->name = $request->name;
             $customer->email = $request->email;

@@ -20,177 +20,178 @@
     <!-- Main content -->
 
     <section class="content">
-        <pos-list></pos-list>
-        {{-- <div class="container-fluid">
-            <div class="row">
 
-                <div class="col-12">
-                    <div class="row mb-3">
-                        
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card mb-4">
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h5 class="m-0 font-weight-bold text-primary">
-                                        expense_insert
-                                    </h5>
+        {{-- <div>
+            <div class="row mb-3">
+                <div class="col-xl-4 col-lg-5">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive" style="font-size: 12px">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th style="text-align: center">Quantity</th>
+                                            <th>Unit</th>
+                                            <th>Total</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive" style="font-size: 12px">
-                                        <table class="table align-items-center table-flush">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th>name</th>
-                                                    <th style="text-align: center">
-                                                        qty
-                                                    </th>
-                                                    <th>unit</th>
-                                                    <th>total</th>
-                                                    <th>action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>.product_name</td>
-                                                    <td>
-                                                        <div
-                                                            class="d-flex justify-content-center bootstrap-touchspin bootstrap-touchspin-injected">
-                                                            <span class="input-group-btn input-group-prepend">
-
-                                                            </span>
-                                                            <span class="d-flex justify-content-center" style="width: 30px">
-                                                                <div>product_quantity</div>
-                                                            </span>
-
-                                                        </div>
-                                                    </td>
-                                                    <td>product_price</td>
-                                                    <td>sub_total</td>
-                                                    <td>
-                                                        <a class="btn btn-sm btn-danger action" style="color: white">X</a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <div class="px-4">
-
-                                </div>
-                                <div class="card-footer">
-                                    <div class="order-md-2 mb-4">
-                                        <ul class="list-group mb-3">
-                                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                                <div>
-                                                    <h6 class="my-0">
-                                                        total_quantity
-                                                    </h6>
-                                                </div>
-                                                <span class="text-muted"> qty </span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                                <div>
-                                                    <h6 class="my-0">
-                                                        sub_total
-                                                    </h6>
-                                                </div>
-                                                <span class="text-muted">sub_total</span>
-                                            </li>
-
-                                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                                <div>
-                                                    <h6 class="my-0">
-                                                        vat
-                                                    </h6>
-                                                </div>
-                                                <span class="text-muted">vat %</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between bg-light">
-                                                <div class="text-success">
-                                                    <h6 class="my-0">
-                                                        total
-                                                    </h6>
-                                                </div>
-                                                <span class="text-success">total</span>
-                                            </li>
-                                            <li v-if="giftCardId"
-                                                class="list-group-item d-flex justify-content-between lh-condensed">
-                                                <div>
-                                                    <h6 class="my-0">Gift Card</h6>
-                                                </div>
-                                                <span class="text-muted"> - total</span>
-                                            </li>
-                                        </ul>
-
-
-                                    </div>
-                                </div>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card mb-4">
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h5 class="m-0 font-weight-bold text-primary">
-                                        Products
-                                    </h5>
-                                </div>
-                                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
-                                            role="tab" aria-controls="home" aria-selected="true">home</a>
+                        <div class="card-footer">
+                            <div class="order-md-2 mb-4">
+                                <ul class="list-group mb-3">
+                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                        <div>
+                                            <h6 class="my-0">Total Quantity</h6>
+                                        </div>
+
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                        <div>
+                                            <h6 class="my-0">Sub Total</h6>
+                                        </div>
+
                                     </li>
 
-                                    <li class="nav-item" role="presentation" v-for="category in categories"
-                                        :key="category.id">
-                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
-                                            role="tab" aria-controls="profile" aria-selected="false">category_name </a>
+                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                        <div>
+                                            <h6 class="my-0">Vat</h6>
+                                        </div>
+
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between bg-light">
+                                        <div class="text-success">
+                                            <h6 class="my-0">Total</h6>
+                                        </div>
+
+                                    </li>
+                                    <li v-if="giftCardId"
+                                        class="list-group-item d-flex justify-content-between lh-condensed">
+                                        <div>
+                                            <h6 class="my-0">Gift Card</h6>
+                                        </div>
+
                                     </li>
                                 </ul>
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="home" role="tabpanel"
-                                        aria-labelledby="home-tab">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-lg-3 col-md-3 col-sm-6 col-6" v-for="item in filtersearch"
-                                                    :key="item.id">
-                                                    <div class="card" style="align-items: center; margin-bottom: 10px">
-                                                        <button class="btn btn-sm"
-                                                            :class="disableButton ? 'pointer-events-none' : ''">
-                                                            <div class="img-container">
-                                                                <img :src="item.image ?
-                                                                    item.image :
-                                                                    '/backend/img/none-img.jpg'"
-                                                                    class="card-img-top" id="image_size" alt="..." />
-                                                            </div>
-                                                            <div class="card-body">
-                                                                <h5 class="card-title text-center">
-                                                                    product_name -
-                                                                    selling_price
-                                                                </h5>
-                                                                <td>
-                                                                    <span class="badge badge-success">available
-                                                                        <span class="badge badge-light">
-                                                                            product_quantity
-                                                                        </span></span>
-                                                                </td>
-
-                                                            </div>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <div class="col-xl-8 col-lg-7">
+                    <div class="card mb-4">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h5 class="m-0 font-weight-bold text-primary">products</h5>
+                        </div>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                    aria-controls="home" aria-selected="true">home</a>
+                            </li>
+
+
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel"
+                                aria-labelledby="home-tab">
+                                <div class="card-body">
+                                    <div class="row">
+                                        @foreach ($products as $product)
+                                            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <div class="card" style="align-items: center; margin-bottom: 10px">
+                                                    <button class="btn btn-sm"
+                                                        :class="disableButton ? 'pointer-events-none' : ''">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title text-center">
+                                                                {{ $product->product_name }} -
+                                                                {{ number_format($product->selling_price) }}
+                                                            </h5>
+                                                            @if ($product->product_quantity >= 1)
+                                                                <td class="text-success">
+                                                                    Available
+                                                                </td>
+                                                            @else
+                                                                <td class="text-danger">
+                                                                    Stock Out
+                                                                </td>
+                                                            @endif
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="card-body">
+                                    <div class="row">
+
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+
+                                            <div class="card" style="align-items: center; margin-bottom: 10px">
+
+                                                @foreach ($products as $product)
+                                                    <div class="card-body">
+                                                        <h5 class="card-title text-center">
+                                                            {{ $product->product_name }} -
+                                                            {{ number_format($product->selling_price) }}
+                                                        </h5>
+                                                        @if ($product->product_quantity >= 1)
+                                                            <td class="text-success">
+                                                                Available
+                                                            </td>
+                                                        @else
+                                                            <td class="text-danger">
+                                                                Stock Out
+                                                            </td>
+                                                        @endif
+
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div> --}}
+        <section class="section-products">
+            <div class="container">
+                <div class="row">
+                    <!-- Single Product -->
+                    @foreach ($products as $product)
+                        <div class="col-md-6 col-lg-4 col-xl-3">
+                            <div id="product-1" class="single-product">
+
+                                <div class="part-1">
+                                    <img src=" {{ Storage::url($product->image) }}" style="width: 300px; height: 300px; object-fit: cover" />
+                                    <ul>
+                                        <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                                        <li><a href="#"><i class="fas fa-heart"></i></a></li>
+                                       
+                                    </ul>
+                                </div>
+                                <div class="part-2">
+                                    <h3 class="product-title">{{ $product->product_name }}</h3>
+                                    <h4 class="product-price">{{ $product->selling_price }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+            </div>
+        </section>
     </section>
 @endsection

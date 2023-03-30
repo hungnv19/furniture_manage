@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Intervention\Image\Facades\Image;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
@@ -23,8 +24,8 @@ class ProductController extends BaseController
     public function index()
     {
         $product = $this->product->join('categories', 'categories.id', '=', 'products.category_id')
-        ->select('products.*', 'categories.category_name as categories_name')
-        ->get();
+            ->select('products.*', 'categories.category_name as categories_name')
+            ->get();
         return view('admin.product.index', [
             'products' => $product,
 
@@ -40,7 +41,7 @@ class ProductController extends BaseController
     public function create()
     {
         $category = Category::select('id', 'category_name as label')->get();
-       
+
         return view('admin.product.create', [
             'categories' => $category,
             'title' => 'Thêm san pham'
@@ -55,18 +56,21 @@ class ProductController extends BaseController
      */
     public function store(Request $request)
     {
-        $product = new Product();
+
+        $product = new Product;
         $product->category_id = $request->category_id;
         $product->product_name = $request->product_name;
         $product->product_code = $request->product_code;
         $product->root = $request->root;
-        $product->buying_price = $request->buying_price;
-        $product->selling_price = $request->selling_price;
         $product->buying_date = $request->buying_date;
-        $product->product_quantity = $request->product_quantity;
-      
-
+        $product->buying_price = strval(intval($request->buying_price));
+        $product->selling_price = strval(intval($request->selling_price));
+        $product->product_quantity = strval(intval($request->product_quantity));
+        if ($request->hasFile('image')) {
+            $product->image = $request->image->storeAs('public/images', $request->image->hashName());
+        }
         $product->save();
+
         if ($product) {
             $this->setFlash(__('Thêm san pham thành công'));
             return redirect()->route('product.index');

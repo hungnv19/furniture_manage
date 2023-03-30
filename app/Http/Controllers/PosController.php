@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Models\GiftCard;
+use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -17,9 +18,12 @@ class PosController extends BaseController
      */
     public function index()
     {
+        
+        $products = Product::get();
+        // dd($products);
         return view('admin.pos.index', [
 
-
+            'products' => $products,
             'title' => 'Pos'
         ]);
     }

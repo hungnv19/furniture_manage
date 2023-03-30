@@ -293,7 +293,7 @@
                 <div class="row">
                   <div
                     class="col-lg-3 col-md-3 col-sm-6 col-6"
-                    v-for="item in filtersearch"
+                    v-for="item in filterSearch"
                     :key="item.id"
                   >
                     <div
@@ -350,11 +350,12 @@
             >
               <div class="card-body">
                 <div class="row">
+                  
                   <div
                     class="col-lg-3 col-md-3 col-sm-6 col-6"
-                    v-for="catProduct in filterCatSearch"
-                    :key="catProduct.id"
                   >
+                    <!-- v-for="catProduct in filterCatSearch"
+                    :key="catProduct.id" -->
                     <div
                       class="card"
                       style="align-items: center; margin-bottom: 10px"
@@ -365,24 +366,25 @@
                           addToCart(catProduct.id, catProduct.product_quantity)
                         "
                       >
-                        <div class="img-container">
+                        <!-- <div class="img-container">
                           <img
                             :src="catProduct.image"
                             class="card-img-top"
                             id="image_size"
                             alt="..."
                           />
-                        </div>
+                        </div> -->
+                        
                         <div class="card-body">
                           <h5 class="card-title text-center">
-                            {{ catProduct.product_name }} -
-                            {{ number_format(catProduct.selling_price) }}
+                            {{ product.product_name }} -
+                            {{ number_format(product.selling_price) }}
                           </h5>
-                          <td v-if="catProduct.product_quantity >= 1">
+                          <td v-if="product.product_quantity >= 1">
                             <span class="badge badge-success"
                               >available
                               <span class="badge badge-light">{{
-                                catProduct.product_quantity
+                                product.product_quantity
                               }}</span></span
                             >
                           </td>
@@ -435,33 +437,59 @@ export default {
     };
 
     let that = this;
-    // this.$validator.extend(
-    //   "valid_card",
-    //   {
-    //     validate(value, args) {
-    //       if (that.cardBalance >= that.total) {
-    //         return true;
-    //       }
-    //       return false;
-    //     },
-    //   },
-    //   {
-    //     hasTarget: true,
-    //   }
-    // );
+
   },
   components: {},
 
   mounted() {
     this.allProduct();
-    this.allCategory();
-    this.allCustomers();
+    this.allCategory(); 
+    // this.allCustomers();
     this.cartProducts();
-    Reload.$on("afterAddToCart", () => {
-      this.cartProducts();
-    });
+    // Reload.$on("afterAddToCart", () => {
+    //   this.cartProducts();
+    // });
   },
+  // computed: {
+  //   filterSearch() {
+  //     return this.products.filter((product) => {
+  //       return product.product_name.match(new RegExp(this.searchTerm, "i"));
+  //     });
+  //   },
+  //   filterCatSearch() {
+  //     return this.categoryProducts.filter((catProduct) => {
+  //       return catProduct.product_name.match(new RegExp(this.searchTerm, "i"));
+  //     });
+  //   },
+  //   qty() {
+  //     let sum = 0;
+  //     for (let i = 0; i < this.cartProduct.length; i++) {
+  //       sum += parseFloat(this.cartProduct[i].product_quantity);
+  //     }
 
+  //     return sum;
+  //   },
+  //   sub_total() {
+  //     let sum = 0;
+  //     for (let i = 0; i < this.cartProduct.length; i++) {
+  //       sum += parseFloat(this.cartProduct[i].sub_total);
+  //     }
+
+  //     return sum;
+  //   },
+
+  //   total() {
+  //     return parseFloat(
+  //       this.number_format(
+  //         Math.round(
+  //           ((this.sub_total * this.vat) / 100 + this.sub_total) * 100
+  //         ) / 100
+  //       )
+  //         .replace(/\./g, "")
+  //         .replace("₫", "")
+  //     );
+  //   },
+  // },
   data() {
     return {
       products: [],
@@ -541,17 +569,17 @@ export default {
         .then(({ data }) => (this.categoryProducts = data))
         .catch();
     },
-    allCustomers() {
-      axios
-        .get("/customer")
-        .then(({ data }) => {
-          this.customers = data;
-          this.customers.map((e) => {
-            this.myOptions.push({ id: e.id, text: e.name });
-          });
-        })
-        .catch();
-    },
+    // allCustomers() {
+    //   axios
+    //     .get("/customer")
+    //     .then(({ data }) => {
+    //       this.customers = data;
+    //       this.customers.map((e) => {
+    //         this.myOptions.push({ id: e.id, text: e.name });
+    //       });
+    //     })
+    //     .catch();
+    // },
 
     // Cart
     async addToCart(id, product_quantity) {

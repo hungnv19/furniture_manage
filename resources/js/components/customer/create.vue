@@ -75,7 +75,62 @@
 
                   <ErrorMessage class="error" name="address" />
                 </div>
-
+                <div class="form-group">
+                  <label class="form-label" for="image">Image</label>
+                  <div>
+                    <div
+                      class="display-image"
+                      id="img-preview"
+                      @click="chooseImage()"
+                      role="button"
+                      @dragover.prevent
+                      @drop="(e) => onDrop(e)"
+                    >
+                      <div class="align-center-text" v-if="!filePreview">
+                        <span v-if="!filePreview"
+                          >Đăng ký bằng cách click hoặc kéo thả</span
+                        >
+                      </div>
+                      <div style="display: none">
+                        <input
+                          :type="typeFile"
+                          @change="onChange"
+                          ref="fileInput"
+                          accept="image/*"
+                          name="photo"
+                          id="photo"
+                        />
+                      </div>
+                      <div class="d-flex justify-content-center">
+                        <img
+                          v-if="filePreview"
+                          :src="filePreview"
+                          class="img"
+                          style="width: 300px"
+                        />
+                        <span
+                          @click="deleteImage"
+                          class="icon_delete"
+                          v-if="filePreview"
+                          ><i class="fa fa-trash"></i
+                        ></span>
+                      </div>
+                      <div class="text-center mt-3">
+                        <button
+                          class="rounded"
+                          @click="chooseImage()"
+                          type="button"
+                          style="display: none"
+                        >
+                          アップロード
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <span class="error" v-if="hasErrImg == true">{{
+                    errMsgImage
+                  }}</span>
+                </div>
                 <div class="col-md-12 text-center btn-box">
                   <a
                     :href="data.urlBack"
@@ -132,6 +187,11 @@ export default {
         phone: "",
         address: "",
       },
+      filePreview: "",
+      typeFile: "file",
+      errMsgImage: "",
+      hasErrImg: false,
+
       categories: [],
     };
   },
@@ -176,6 +236,45 @@ export default {
     });
   },
   methods: {
+    chooseImage() {
+      if (this.typeFile == "hidden") {
+        this.typeFile = "file";
+      }
+      this.$refs["fileInput"].click();
+    },
+    onChange(e) {
+      let Image = e.target.files[0];
+      if (
+        Image.type.includes("image/jpeg") ||
+        Image.type.includes("image/png") ||
+        Image.type.includes("image/jpg")
+      ) {
+        this.errMsgImage = "";
+        this.hasErrImg = false;
+      } else {
+        this.errMsgImage = "Định dạng hình ảnh không chính xác.";
+        this.hasErrImg = true;
+        return;
+      }
+      if (Image.size >= 20971520) {
+        this.errMsgImage = "Ảnh quá lớn.";
+        this.hasErrImg = true;
+      } else {
+        this.hasErrImg = false;
+      }
+
+      this.model.photo = e.target.files[0];
+      let fileInput = this.$refs.fileInput;
+      let imgFile = fileInput.files;
+
+      if (imgFile && imgFile[0]) {
+        let reader = new FileReader();
+        reader.onload = (e) => {
+          this.filePreview = e.target.result;
+        };
+        reader.readAsDataURL(imgFile[0]);
+      }
+    },
     updateSelected(e) {
       let array = [];
       e.map((x) => {

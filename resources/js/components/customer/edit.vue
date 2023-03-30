@@ -163,7 +163,7 @@ export default {
       return axios
         .post(that.data.urlCheckEmail, {
           value: value,
-          id: that.data.user.id,
+          id: that.data.customer.id,
         })
         .then(function (response) {
           return response.data.valid;

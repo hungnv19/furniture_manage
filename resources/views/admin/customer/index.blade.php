@@ -69,8 +69,7 @@
 
                                             </td>
                                             <td>
-                                                {{ $customer->photo }}
-
+                                                <img src=" {{ Storage::url($customer->photo) }}" style="width: 50px;"/>
                                             </td>
                                             <td>
                                                 <a class="btn btn-sm btn-primary"
