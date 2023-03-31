@@ -41,6 +41,7 @@
         ) !!};
     </script>
     <style>
+    
         body {
             font-family: "Poppins", sans-serif;
             color: #444444;
@@ -100,23 +101,23 @@
         }
 
         .section-products #product-1 .part-1::before {
-           
+
             background-size: cover;
             transition: all 0.3s;
         }
 
         .section-products #product-2 .part-1::before {
-           
+
             background-size: cover;
         }
 
         .section-products #product-3 .part-1::before {
-           
+
             background-size: cover;
         }
 
         .section-products #product-4 .part-1::before {
-           
+
             background-size: cover;
         }
 

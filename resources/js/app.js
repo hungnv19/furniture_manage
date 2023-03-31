@@ -34,6 +34,8 @@ import StockEdit from './components/stock/edit.vue';
 
 import PosList from './components/pos/index.vue';
 
+import CartList from './components/cart/index.vue';
+
 import CalendarShow from './components/booking/calendar.vue';
 
 
@@ -63,6 +65,8 @@ app.component("customer-edit", CustomerEdit);
 app.component("stock-edit", StockEdit);
 
 app.component("pos-list", PosList);
+
+app.component("cart-list", CartList);
 
 app.component("calendar-show", CalendarShow);
 

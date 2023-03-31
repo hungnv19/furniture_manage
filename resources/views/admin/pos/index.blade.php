@@ -177,7 +177,7 @@
                                 <div class="part-1">
                                     <img src=" {{ Storage::url($product->image) }}" style="width: 300px; height: 300px; object-fit: cover" />
                                     <ul>
-                                        <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                                        <li><a href="{{ route('cart.addToCart', $product->id) }}"><i class="fas fa-shopping-cart"></i></a></li>
                                         <li><a href="#"><i class="fas fa-heart"></i></a></li>
                                        
                                     </ul>

@@ -67,10 +67,10 @@ Route::middleware('user')->group(function () {
     //Cart Routes
 
     Route::resource('cart', CartController::class);
+    Route::get('cart/addToCart/{id}', [CartController::class, 'addToCart'])->name('cart.addToCart');
 
-    // Route::get('/addToCart/{id}', [CartController::class, 'addToCart']);
     // Route::get('/cart-products', [CartController::class, 'cartProducts']);
-    // Route::get('/cart/delete/{id}', [CartController::class, 'cartDelete']);
+    
     // Route::get('/cart/increment/{id}', [CartController::class, 'increment']);
     // Route::get('/cart/decrement/{id}', [CartController::class, 'decrement']);
 
