@@ -21,11 +21,9 @@ class CategoryController extends BaseController
     }
     public function index()
     {
-
-
-        $category = Category::get();
+        $categories = Category::get();
         return view('admin.category.index', [
-            'categories' => $category,
+            'categories' => $categories,
             'title' => 'Danh mục'
         ]);
     }

@@ -21,6 +21,9 @@ import ProductEdit from './components/product/edit.vue';
 import CustomerCreate from './components/customer/create.vue';
 import CustomerEdit from './components/customer/edit.vue';
 
+import CustomerGiftCard from './components/customer-gift-card/index.vue';
+import UpdateGiftCard from './components/customer-gift-card/updateGiftCard.vue';
+
 import LoginForm from './components/auth/login/index.vue';
 import RegisterForm from './components/auth/register/index.vue';
 
@@ -61,6 +64,9 @@ app.component("product-edit", ProductEdit);
 
 app.component("customer-create", CustomerCreate);
 app.component("customer-edit", CustomerEdit);
+
+app.component("customer-gift-card", CustomerGiftCard);
+app.component("update-gift-card", UpdateGiftCard);
 
 app.component("stock-edit", StockEdit);
 

@@ -133,4 +133,13 @@ class GiftCardController extends BaseController
         $str = substr(preg_replace('/[^0-9]/', '', Str::uuid()->getHex()), 0, 8);
         return response()->json(DB::table('gift_card')->where('code', $pre . '_' . $str)->exists() ? $this->generateCode($pre) : $pre . 'GC' . '_' . $str);
     }
+    public function getGiftCardList()
+    {
+        $IdGiftCardUsed = DB::table('gift_card')
+            ->join('customer_gift_card', 'gift_card.id', '=', 'customer_gift_card.gift_card_id')
+            ->select('gift_card.*', 'customer_gift_card.gift_card_id as gift_id')
+            ->pluck('gift_id');
+        $listGiftCardAvailable = GiftCard::whereNotIn('id', $IdGiftCardUsed)->get();
+        return response()->json($listGiftCardAvailable);
+    }
 }

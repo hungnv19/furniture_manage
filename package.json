@@ -29,6 +29,7 @@
         "jquery": "^3.6.4",
         "sass": "^1.59.3",
         "vee-validate": "^4.8.3",
-        "vue-form": "^4.10.3"
+        "vue-form": "^4.10.3",
+        "vue3-select2-component": "^0.1.7"
     }
 }

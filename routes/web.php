@@ -4,6 +4,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CustomerGiftCardController;
 use App\Http\Controllers\GiftCardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -45,6 +46,7 @@ Route::middleware('user')->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('customer', CustomerController::class);
+    Route::resource('customer-gift-card', CustomerGiftCardController::class);
     Route::resource('product', ProductController::class);
     Route::resource('pos', PosController::class);
     Route::get('booking/calendar', [BookingController::class, 'calendar'])->name('booking.calendar');
@@ -59,10 +61,11 @@ Route::middleware('user')->group(function () {
     Route::get('/orders/{id}', [OrderController::class, 'orders']);
     Route::get('/order/details/{id}', [OrderController::class, 'orderDetails']);
 
+    Route::get('/gift-card-list', [GiftCardController::class,'getGiftCardList']);
 
     //Customer Gift Card Routes
-    // Route::post('/add-customer-gift-card/{id}', 'Api\CustomerGiftCardController@addGiftCardId');
-    // Route::get('list-card-gift/{id}', 'Api\CustomerGiftCardController@getListCustomerGift');
+    Route::post('/add-customer-gift-card/{id}', [CustomerGiftCardController::class, 'addGiftCardId'])->name('add-customer-gift-card');
+    Route::get('list-card-gift/{id}', [CustomerGiftCardController::class,'getListCustomerGift']);
 
     //Cart Routes
 
