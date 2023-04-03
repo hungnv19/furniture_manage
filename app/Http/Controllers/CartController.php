@@ -17,13 +17,14 @@ class CartController extends BaseController
 				'pos.*'
 			])->get();
 
-		$vat = DB::table('extra')->first();
-		$customers = Customer::get();
+		$extra = DB::table('extra')->first();
+
+		$customers = Customer::select('id', 'name as label')->get();
 		return view('admin.cart.index', [
 			'title' => 'Cart',
 			'pos' => $pos,
 			'customers' => $customers,
-			'vat' => $vat,
+			'extra' => $extra,
 		]);
 	}
 
@@ -89,7 +90,11 @@ class CartController extends BaseController
 		DB::table('pos')->where('id', $id)->delete();
 		return redirect()->route('cart.index');
 	}
-
+	public function cartDelete($id)
+	{
+		DB::table('pos')->where('id', $id)->delete();
+		return redirect()->route('cart.index');
+	}
 	public function addToCart($id)
 	{
 		$exist_product = DB::table('pos')->where('product_id', $id)->first();

@@ -56,10 +56,10 @@ Route::middleware('user')->group(function () {
     Route::get('gift-card/code/GC', [GiftCardController::class, 'generateCode'])->name('gift-card.code');
 
     //order
-    Route::post('/order', [PosController::class, 'order']);
-    Route::get('/today-order', [OrderController::class, 'todayOrder']);
-    Route::get('/orders/{id}', [OrderController::class, 'orders']);
-    Route::get('/order/details/{id}', [OrderController::class, 'orderDetails']);
+    Route::resource('order', OrderController::class);
+    // Route::get('/today-order', [OrderController::class, 'todayOrder']);
+    // Route::get('/orders/{id}', [OrderController::class, 'orders']);
+    // Route::get('/order/details/{id}', [OrderController::class, 'orderDetails']);
 
     Route::get('/gift-card-list', [GiftCardController::class,'getGiftCardList']);
 
@@ -70,6 +70,7 @@ Route::middleware('user')->group(function () {
     //Cart Routes
 
     Route::resource('cart', CartController::class);
+    Route::get('/cart/delete/{id}', [CartController::class,'cartDelete']);
     Route::get('cart/addToCart/{id}', [CartController::class, 'addToCart'])->name('cart.addToCart');
 
     // Route::get('/cart-products', [CartController::class, 'cartProducts']);
@@ -77,8 +78,6 @@ Route::middleware('user')->group(function () {
     // Route::get('/cart/increment/{id}', [CartController::class, 'increment']);
     // Route::get('/cart/decrement/{id}', [CartController::class, 'decrement']);
 
-    // Route::get('/vat', 'Api\CartController@vat');
-    //pos
 
 });
 

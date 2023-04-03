@@ -24348,23 +24348,121 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var _vee_validate_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vee-validate/i18n */ "./node_modules/@vee-validate/i18n/dist/vee-validate-i18n.esm.js");
+/* harmony import */ var _vee_validate_rules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vee-validate/rules */ "./node_modules/@vee-validate/rules/dist/vee-validate-rules.esm.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  setup: function setup() {
+    Object.keys(_vee_validate_rules__WEBPACK_IMPORTED_MODULE_1__).forEach(function (rule) {
+      if (rule != "default") {
+        (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.defineRule)(rule, _vee_validate_rules__WEBPACK_IMPORTED_MODULE_1__[rule]);
+      }
+    });
+  },
+  components: {
+    VeeForm: vee_validate__WEBPACK_IMPORTED_MODULE_2__.Form,
+    Field: vee_validate__WEBPACK_IMPORTED_MODULE_2__.Field,
+    ErrorMessage: vee_validate__WEBPACK_IMPORTED_MODULE_2__.ErrorMessage
+  },
   created: function created() {
-    console.log(this.item);
+    var messError = {
+      en: {
+        fields: {
+          qty: {
+            required: "Please select at least 1 product.",
+            min_value: "Please select at least 1 product."
+          },
+          customer_id: {
+            required: "The customer field is required."
+          },
+          pay: {
+            required: "The pay field is required.",
+            numeric: "Please enter a number.",
+            min_value: "Please enter a number greater than Total."
+          },
+          due: {
+            numeric: "Please enter a number.",
+            min_value: "Please enter a number greater than 0."
+          },
+          payBy: {
+            required: "The pay by field is required."
+          },
+          gift_card_id: {
+            required: "Please select a gift card for payment.",
+            valid_card: "Card balance is not enough."
+          }
+        }
+      }
+    };
+    (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.configure)({
+      generateMessage: (0,_vee_validate_i18n__WEBPACK_IMPORTED_MODULE_3__.localize)(messError)
+    });
+    console.log(this.data.sub_total);
   },
   props: ["data"],
   mounted: function mounted() {},
   data: function data() {
     return {
-      pos: []
+      pos: [],
+      customers: [],
+      customer_id: "",
+      pay: "",
+      due: "",
+      payBy: "",
+      gift_card_id: ""
     };
   },
-  computed: {},
+  computed: {
+    qty: function qty() {
+      var sum = 0;
+      for (var i = 0; i < this.pos.length; i++) {
+        sum += parseFloat(this.pos[i].product_quantity);
+      }
+      return sum;
+    },
+    sub_total: function sub_total() {
+      var sum = 0;
+      for (var i = 0; i < this.pos.length; i++) {
+        sum += parseFloat(this.pos[i].sub_total);
+      }
+      return sum;
+    },
+    total: function total() {
+      return parseFloat(this.number_format(Math.round((this.sub_total * this.data.extra.vat / 100 + this.sub_total) * 100) / 100).replace(/\./g, "").replace("₫", ""));
+    }
+  },
   methods: {
+    calculatorDue: function calculatorDue() {
+      var pay = this.pay;
+      if (pay >= this.total) {
+        this.due = parseFloat(this.number_format(pay - this.total).replace(/\./g, "").replace("₫", ""));
+      }
+    },
+    number: function number(string) {
+      return string;
+    },
+    deleteItem: function deleteItem(id) {
+      axios.get("/cart/delete/" + id).then(function () {
+        location.reload();
+        alert("Xoa thanh cong");
+      })["catch"]();
+    },
+    number_format: function number_format(value) {
+      return new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND"
+      }).format(value);
+    },
     decrement: function decrement(id) {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -24374,7 +24472,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _this.nameButton[id] = true;
               _this.nameButton = JSON.parse(JSON.stringify(_this.nameButton));
               _context.next = 4;
-              return axios.get("/api/cart/decrement/" + id).then(function () {
+              return axios.get("/cart/decrement/" + id).then(function () {
                 Reload.$emit("afterAddToCart");
                 Notification.success(_this.$t("common.message.success"));
                 _this.sleep(1000).then(function () {
@@ -24388,6 +24486,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    }
+  },
+  watch: {
+    payBy: function payBy(v) {
+      this.giftCardId = "";
+      this.cardSelected = "";
+    },
+    total: function total() {
+      this.calculatorDue();
     }
   }
 });
@@ -27383,7 +27490,7 @@ var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
     "class": "col"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Shopping Cart")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "col align-self-center text-right text-muted"
-  }, " 3 items ")])], -1 /* HOISTED */);
+  })])], -1 /* HOISTED */);
 });
 var _hoisted_6 = {
   "class": "table-responsive",
@@ -27407,60 +27514,230 @@ var _hoisted_9 = {
   "class": "d-flex justify-content-center bootstrap-touchspin bootstrap-touchspin-injected"
 };
 var _hoisted_10 = {
-  "class": "input-group-btn input-group-prepend"
-};
-var _hoisted_11 = ["onClick", "disabled"];
-var _hoisted_12 = {
   "class": "d-flex justify-content-center",
   style: {
     "width": "30px"
   }
 };
-var _hoisted_13 = {
-  "class": "input-group-btn input-group-append"
+var _hoisted_11 = ["onClick"];
+var _hoisted_12 = {
+  "class": "col-md-4 summary"
 };
-var _hoisted_14 = ["disabled", "onClick"];
-var _hoisted_15 = ["onClick"];
-var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "back-to-shop"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "#"
-  }, "←"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "text-muted"
-  }, "Back to shop")], -1 /* HOISTED */);
+var _hoisted_13 = {
+  "class": "card-footer"
+};
+var _hoisted_14 = {
+  "class": "order-md-2 mb-4"
+};
+var _hoisted_15 = {
+  "class": "list-group mb-3"
+};
+var _hoisted_16 = {
+  "class": "list-group-item d-flex justify-content-between lh-condensed"
+};
+var _hoisted_17 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
+    "class": "my-0"
+  }, "total_quantity")], -1 /* HOISTED */);
 });
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-md-4 summary\" data-v-0ddc282e><div data-v-0ddc282e><h5 data-v-0ddc282e><b data-v-0ddc282e>Summary</b></h5></div><hr data-v-0ddc282e><div class=\"row\" data-v-0ddc282e><div class=\"col\" style=\"padding-left:0;\" data-v-0ddc282e>ITEMS 3</div><div class=\"col text-right\" data-v-0ddc282e>€ 132.00</div></div><form data-v-0ddc282e><p data-v-0ddc282e>SHIPPING</p><select data-v-0ddc282e><option class=\"text-muted\" data-v-0ddc282e>Standard-Delivery- €5.00</option></select><p data-v-0ddc282e>GIVE CODE</p><input id=\"code\" placeholder=\"Enter your code\" data-v-0ddc282e></form><div class=\"row\" style=\"border-top:1px solid rgba(0, 0, 0, 0.1);padding:2vh 0;\" data-v-0ddc282e><div class=\"col\" data-v-0ddc282e>TOTAL PRICE</div><div class=\"col text-right\" data-v-0ddc282e>€ 137.00</div></div><button class=\"btn\" data-v-0ddc282e>CHECKOUT</button></div>", 1);
+var _hoisted_18 = {
+  "class": "text-muted"
+};
+var _hoisted_19 = {
+  "class": "list-group-item d-flex justify-content-between lh-condensed"
+};
+var _hoisted_20 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
+    "class": "my-0"
+  }, "sub_total")], -1 /* HOISTED */);
+});
+var _hoisted_21 = {
+  "class": "text-muted"
+};
+var _hoisted_22 = {
+  "class": "list-group-item d-flex justify-content-between lh-condensed"
+};
+var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
+    "class": "my-0"
+  }, "Vat")], -1 /* HOISTED */);
+});
+var _hoisted_24 = {
+  "class": "text-muted"
+};
+var _hoisted_25 = {
+  "class": "list-group-item d-flex justify-content-between bg-light"
+};
+var _hoisted_26 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "text-success"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
+    "class": "my-0"
+  }, "total")], -1 /* HOISTED */);
+});
+var _hoisted_27 = {
+  "class": "text-success"
+};
+var _hoisted_28 = {
+  key: 0,
+  "class": "list-group-item d-flex justify-content-between lh-condensed"
+};
+var _hoisted_29 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
+    "class": "my-0"
+  }, "Gift Card")], -1 /* HOISTED */);
+});
+var _hoisted_30 = {
+  "class": "text-muted"
+};
+var _hoisted_31 = {
+  "class": "form-group"
+};
+var _hoisted_32 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+    "class": "",
+    require: ""
+  }, "Customer", -1 /* HOISTED */);
+});
+var _hoisted_33 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+    value: "",
+    disabled: "",
+    selected: ""
+  }, "Chose Customers", -1 /* HOISTED */);
+});
+var _hoisted_34 = ["value"];
+var _hoisted_35 = {
+  "class": "form-group"
+};
+var _hoisted_36 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+    "for": "exampleFormControlSelect2"
+  }, "Pay By", -1 /* HOISTED */);
+});
+var _hoisted_37 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+    value: "handCash"
+  }, "Hand Cash", -1 /* HOISTED */);
+});
+var _hoisted_38 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+    value: "giftCard"
+  }, "Gift Card", -1 /* HOISTED */);
+});
+var _hoisted_39 = [_hoisted_37, _hoisted_38];
+var _hoisted_40 = {
+  key: 0,
+  "class": "form-group"
+};
+var _hoisted_41 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+    "for": "exampleFormControlSelect2"
+  }, "Gift Card", -1 /* HOISTED */);
+});
+var _hoisted_42 = {
+  key: 1
+};
+var _hoisted_43 = {
+  "class": "form-group"
+};
+var _hoisted_44 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+    "for": "exampleFormControlInput1"
+  }, "Pay", -1 /* HOISTED */);
+});
+var _hoisted_45 = {
+  "class": "form-group"
+};
+var _hoisted_46 = {
+  "class": "d-flex justify-content-between"
+};
+var _hoisted_47 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+    "for": "exampleFormControlInput2"
+  }, "Due", -1 /* HOISTED */);
+});
+var _hoisted_48 = {
+  "for": ""
+};
+var _hoisted_49 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "btn btn-success",
+    type: "submit"
+  }, "submit", -1 /* HOISTED */);
+});
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.pos, function (item) {
+  var _component_Select2 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Select2");
+  var _directive_validate = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDirective)("validate");
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.data.pos, function (po) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
-      key: item.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.product_name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-      onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return $options.decrement(item.id);
-      }, ["prevent"]),
-      "class": "btn btn-primary btn-sm bootstrap-touchspin-down text-color action",
-      type: "button",
-      disabled: item.product_quantity <= 1 || _ctx.nameButton[item.id]
-    }, " - ", 8 /* PROPS */, _hoisted_11)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.product_quantity), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-      disabled: item.product_quantity >= _ctx.products.find(function (x) {
-        return x.id == item.product_id;
-      }).product_quantity || _ctx.nameButton[item.id],
-      onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return _ctx.increment(item.id, item.product_id, item.product_quantity);
-      }, ["prevent"]),
-      "class": "btn btn-primary btn-sm bootstrap-touchspin-up text-color action",
-      type: "button"
-    }, " + ", 8 /* PROPS */, _hoisted_14)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.number_format(item.product_price)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.number_format(item.sub_total)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      key: po.id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(po.product_name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(po.product_quantity), 1 /* TEXT */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.number_format(po.product_price)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.number_format(po.sub_total)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       onClick: function onClick($event) {
-        return _ctx.deleteItem(item.id);
+        return $options.deleteItem(po.id);
       },
       "class": "btn btn-sm btn-danger action",
       style: {
         "color": "white"
       }
-    }, "X", 8 /* PROPS */, _hoisted_15)])]);
-  }), 128 /* KEYED_FRAGMENT */))])])]), _hoisted_16]), _hoisted_17])])]);
+    }, "X", 8 /* PROPS */, _hoisted_11)])]);
+  }), 128 /* KEYED_FRAGMENT */))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.qty), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.number_format($options.sub_total)), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.data.extra.vat) + "%", 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_25, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.number_format($options.total)), 1 /* TEXT */)]), _ctx.giftCardId ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_28, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_30, " - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.number_format($options.total)), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+    onSubmit: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return _ctx.orderDone && _ctx.orderDone.apply(_ctx, arguments);
+    }, ["prevent"]))
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [_hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "class": "form-select",
+    name: "customer_id",
+    "aria-label": "Default select example",
+    rules: "required",
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $data.customer_id = $event;
+    })
+  }, [_hoisted_33, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.data.customers, function (item) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+      key: item.id,
+      value: item.id
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.label), 9 /* TEXT, PROPS */, _hoisted_34);
+  }), 128 /* KEYED_FRAGMENT */))], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.customer_id]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [_hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("select", {
+    "class": "form-control",
+    id: "exampleFormControlSelect2",
+    name: "payBy",
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.payBy = $event;
+    })
+  }, _hoisted_39)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.payBy], [_directive_validate, 'required']]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <small class=\"text-danger\">{{ errors.first(\"payBy\") }}</small> ")]), $data.payBy === 'giftCard' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Select2, {
+    onSelect: _cache[2] || (_cache[2] = function ($event) {
+      return _ctx.selectGiftCard($event);
+    }),
+    options: _ctx.giftCardOptions,
+    placeholder: "select_card"
+  }, null, 8 /* PROPS */, ["options"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "hidden",
+    name: "gift_card_id",
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return _ctx.giftCardId = $event;
+    })
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.giftCardId], [_directive_validate, $data.payBy === 'giftCard' ? 'required|valid_card' : 'valid_card']])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.payBy === 'handCash' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [_hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
+    "class": "form-control",
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+      return $data.pay = $event;
+    }),
+    name: "pay",
+    id: "exampleFormControlInput1",
+    onKeyup: _cache[5] || (_cache[5] = function () {
+      return $options.calculatorDue && $options.calculatorDue.apply($options, arguments);
+    })
+  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.pay], [_directive_validate, $data.payBy === 'handCash' ? 'required|numeric|min_value:' + $options.total : 'numeric|min_value:0']]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <small class=\"text-danger\">{{ errors.first(\"pay\") }}</small> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [_hoisted_47, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_48, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.number_format($data.pay - this.total)), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "hidden",
+    "class": "form-control",
+    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+      return $data.due = $event;
+    }),
+    name: "due",
+    id: "exampleFormControlInput2"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.due]])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_49], 32 /* HYDRATE_EVENTS */)])])])])])]);
 }
 
 /***/ }),
@@ -30042,7 +30319,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nbody[data-v-0ddc282e] {\r\n  background: #ddd;\r\n  min-height: 100vh;\r\n  vertical-align: middle;\r\n  display: flex;\r\n  font-family: sans-serif;\r\n  font-size: 0.8rem;\r\n  font-weight: bold;\n}\n.title[data-v-0ddc282e] {\r\n  margin-bottom: 5vh;\n}\n.card[data-v-0ddc282e] {\r\n  margin: auto;\r\n  max-width: 100%;\r\n  width: 100%;\r\n  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);\r\n  border-radius: 1rem;\r\n  border: transparent;\n}\n@media (max-width: 767px) {\n.card[data-v-0ddc282e] {\r\n    margin: 3vh auto;\n}\n}\n.cart[data-v-0ddc282e] {\r\n  background-color: #fff;\r\n  padding: 4vh 5vh;\r\n  border-bottom-left-radius: 1rem;\r\n  border-top-left-radius: 1rem;\n}\n@media (max-width: 767px) {\n.cart[data-v-0ddc282e] {\r\n    padding: 4vh;\r\n    border-bottom-left-radius: unset;\r\n    border-top-right-radius: 1rem;\n}\n}\n.summary[data-v-0ddc282e] {\r\n  background-color: #ddd;\r\n  border-top-right-radius: 1rem;\r\n  border-bottom-right-radius: 1rem;\r\n  padding: 4vh;\r\n  color: rgb(65, 65, 65);\n}\n@media (max-width: 767px) {\n.summary[data-v-0ddc282e] {\r\n    border-top-right-radius: unset;\r\n    border-bottom-left-radius: 1rem;\n}\n}\n.summary .col-2[data-v-0ddc282e] {\r\n  padding: 0;\n}\n.summary .col-10[data-v-0ddc282e] {\r\n  padding: 0;\n}\n.row[data-v-0ddc282e] {\r\n  margin: 0;\n}\n.title b[data-v-0ddc282e] {\r\n  font-size: 1.5rem;\n}\n.main[data-v-0ddc282e] {\r\n  margin: 0;\r\n  padding: 2vh 0;\r\n  width: 100%;\n}\n.col-2[data-v-0ddc282e],\r\n.col[data-v-0ddc282e] {\r\n  padding: 0 1vh;\n}\na[data-v-0ddc282e] {\r\n  padding: 0 1vh;\n}\n.close[data-v-0ddc282e] {\r\n  margin-left: auto;\r\n  font-size: 0.7rem;\n}\nimg[data-v-0ddc282e] {\r\n  width: 3.5rem;\n}\n.back-to-shop[data-v-0ddc282e] {\r\n  margin-top: 4.5rem;\n}\nh5[data-v-0ddc282e] {\r\n  margin-top: 4vh;\n}\nhr[data-v-0ddc282e] {\r\n  margin-top: 1.25rem;\n}\nform[data-v-0ddc282e] {\r\n  padding: 2vh 0;\n}\nselect[data-v-0ddc282e] {\r\n  border: 1px solid rgba(0, 0, 0, 0.137);\r\n  padding: 1.5vh 1vh;\r\n  margin-bottom: 4vh;\r\n  outline: none;\r\n  width: 100%;\r\n  background-color: rgb(247, 247, 247);\n}\ninput[data-v-0ddc282e] {\r\n  border: 1px solid rgba(0, 0, 0, 0.137);\r\n  padding: 1vh;\r\n  margin-bottom: 4vh;\r\n  outline: none;\r\n  width: 100%;\r\n  background-color: rgb(247, 247, 247);\n}\ninput[data-v-0ddc282e]:focus::-webkit-input-placeholder {\r\n  color: transparent;\n}\n.btn[data-v-0ddc282e] {\r\n  background-color: #000;\r\n  border-color: #000;\r\n  color: white;\r\n  width: 100%;\r\n  font-size: 0.7rem;\r\n  margin-top: 4vh;\r\n  padding: 1vh;\r\n  border-radius: 0;\n}\n.btn[data-v-0ddc282e]:focus {\r\n  box-shadow: none;\r\n  outline: none;\r\n  box-shadow: none;\r\n  color: white;\r\n  -webkit-box-shadow: none;\r\n  -webkit-user-select: none;\r\n  transition: none;\n}\n.btn[data-v-0ddc282e]:hover {\r\n  color: white;\n}\na[data-v-0ddc282e] {\r\n  color: black;\n}\na[data-v-0ddc282e]:hover {\r\n  color: black;\r\n  text-decoration: none;\n}\n#code[data-v-0ddc282e] {\r\n  background-image: linear-gradient(\r\n      to left,\r\n      rgba(255, 255, 255, 0.253),\r\n      rgba(255, 255, 255, 0.185)\r\n    ),\r\n    url(\"https://img.icons8.com/small/16/000000/long-arrow-right.png\");\r\n  background-repeat: no-repeat;\r\n  background-position-x: 95%;\r\n  background-position-y: center;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nbody[data-v-0ddc282e] {\r\n  background: #ddd;\r\n  min-height: 100vh;\r\n  vertical-align: middle;\r\n  display: flex;\r\n  font-family: sans-serif;\r\n  font-size: 0.8rem;\r\n  font-weight: bold;\n}\n.title[data-v-0ddc282e] {\r\n  margin-bottom: 5vh;\n}\n.card[data-v-0ddc282e] {\r\n  margin: auto;\r\n  max-width: 100%;\r\n  width: 100%;\r\n  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);\r\n  border-radius: 1rem;\r\n  border: transparent;\n}\n@media (max-width: 767px) {\n.card[data-v-0ddc282e] {\r\n    margin: 3vh auto;\n}\n}\n.cart[data-v-0ddc282e] {\r\n  background-color: #fff;\r\n  padding: 4vh 5vh;\r\n  border-bottom-left-radius: 1rem;\r\n  border-top-left-radius: 1rem;\n}\n@media (max-width: 767px) {\n.cart[data-v-0ddc282e] {\r\n    padding: 4vh;\r\n    border-bottom-left-radius: unset;\r\n    border-top-right-radius: 1rem;\n}\n}\n.summary[data-v-0ddc282e] {\r\n  background-color: #ddd;\r\n  border-top-right-radius: 1rem;\r\n  border-bottom-right-radius: 1rem;\r\n  padding: 4vh;\r\n  color: rgb(65, 65, 65);\n}\n@media (max-width: 767px) {\n.summary[data-v-0ddc282e] {\r\n    border-top-right-radius: unset;\r\n    border-bottom-left-radius: 1rem;\n}\n}\n.summary .col-2[data-v-0ddc282e] {\r\n  padding: 0;\n}\n.summary .col-10[data-v-0ddc282e] {\r\n  padding: 0;\n}\n.row[data-v-0ddc282e] {\r\n  margin: 0;\n}\n.title b[data-v-0ddc282e] {\r\n  font-size: 1.5rem;\n}\n.main[data-v-0ddc282e] {\r\n  margin: 0;\r\n  padding: 2vh 0;\r\n  width: 100%;\n}\n.col-2[data-v-0ddc282e],\r\n.col[data-v-0ddc282e] {\r\n  padding: 0 1vh;\n}\na[data-v-0ddc282e] {\r\n  padding: 0 1vh;\n}\n.close[data-v-0ddc282e] {\r\n  margin-left: auto;\r\n  font-size: 0.7rem;\n}\nimg[data-v-0ddc282e] {\r\n  width: 3.5rem;\n}\n.back-to-shop[data-v-0ddc282e] {\r\n  margin-top: 4.5rem;\n}\nh5[data-v-0ddc282e] {\r\n  margin-top: 4vh;\n}\nhr[data-v-0ddc282e] {\r\n  margin-top: 1.25rem;\n}\nform[data-v-0ddc282e] {\r\n  padding: 2vh 0;\n}\nselect[data-v-0ddc282e] {\r\n  border: 1px solid rgba(0, 0, 0, 0.137);\r\n  padding: 1.5vh 1vh;\r\n  margin-bottom: 4vh;\r\n  outline: none;\r\n  width: 100%;\r\n  background-color: rgb(247, 247, 247);\n}\ninput[data-v-0ddc282e] {\r\n  border: 1px solid rgba(0, 0, 0, 0.137);\r\n  padding: 1vh;\r\n  margin-bottom: 4vh;\r\n  outline: none;\r\n  width: 100%;\r\n  background-color: rgb(247, 247, 247);\n}\ninput[data-v-0ddc282e]:focus::-webkit-input-placeholder {\r\n  color: transparent;\n}\n#code[data-v-0ddc282e] {\r\n  background-image: linear-gradient(\r\n      to left,\r\n      rgba(255, 255, 255, 0.253),\r\n      rgba(255, 255, 255, 0.185)\r\n    ),\r\n    url(\"https://img.icons8.com/small/16/000000/long-arrow-right.png\");\r\n  background-repeat: no-repeat;\r\n  background-position-x: 95%;\r\n  background-position-y: center;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

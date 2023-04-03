@@ -21,11 +21,14 @@
 
     <section class="content">
 
-        {{-- <cart-list :data="{{ json_encode([
+        <cart-list :data="{{ json_encode([
             'pos' => $pos,
+            'extra' => $extra,
+          
+            'customers' => $customers,
         ]) }}">
-        </cart-list> --}}
-        <div class="container-fluid">
+        </cart-list>
+        {{-- <div class="container-fluid">
             <div class="row row mb-3">
                 <div class="col-xl-8 col-lg-7">
                     <div class="card">
@@ -165,6 +168,6 @@
 
 
             </div>
-        </div>
+        </div> --}}
     </section>
 @endsection
