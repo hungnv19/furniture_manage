@@ -16,12 +16,14 @@ class CartController extends BaseController
 			->select([
 				'pos.*'
 			])->get();
-		
+
+		$vat = DB::table('extra')->first();
 		$customers = Customer::get();
 		return view('admin.cart.index', [
 			'title' => 'Cart',
 			'pos' => $pos,
 			'customers' => $customers,
+			'vat' => $vat,
 		]);
 	}
 
@@ -114,18 +116,6 @@ class CartController extends BaseController
 		return redirect()->route('cart.index');
 	}
 
-	// public function cartProducts()
-	// {
-	// 	$products = DB::table('pos')
-	// 		->join('products', 'products.id', '=', 'pos.product_id')
-	// 		->select([
-	// 			'pos.*'
-	// 		])
-	// 		->get();
-	// 	return response()->json($products);
-	// }
-
-	
 
 	public function increment($id)
 	{

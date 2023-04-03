@@ -41,6 +41,8 @@ import CartList from './components/cart/index.vue';
 
 import CalendarShow from './components/booking/calendar.vue';
 
+import DataEmpty from './components/common/dataEmpty.vue';
+
 
 
 const app = createApp({});
@@ -75,6 +77,8 @@ app.component("pos-list", PosList);
 app.component("cart-list", CartList);
 
 app.component("calendar-show", CalendarShow);
+
+app.component("data-empty", DataEmpty);
 
 app.component("login-form", LoginForm);
 app.component("register-form", RegisterForm);

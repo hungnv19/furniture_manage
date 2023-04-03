@@ -20,7 +20,7 @@
     <!-- Main content -->
 
     <section class="content">
-        
+
         {{-- <cart-list :data="{{ json_encode([
             'pos' => $pos,
         ]) }}">
@@ -101,6 +101,7 @@
                                         <div>
                                             <h6 class="my-0">Vat</h6>
                                         </div>
+                                        <span class="text-muted">{{ $vat }}%</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between bg-light">
                                         <div class="text-success">
