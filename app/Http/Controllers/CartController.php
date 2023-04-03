@@ -16,6 +16,7 @@ class CartController extends BaseController
 			->select([
 				'pos.*'
 			])->get();
+		
 		$customers = Customer::get();
 		return view('admin.cart.index', [
 			'title' => 'Cart',

@@ -20,6 +20,11 @@
     <!-- Main content -->
 
     <section class="content">
+        
+        {{-- <cart-list :data="{{ json_encode([
+            'pos' => $pos,
+        ]) }}">
+        </cart-list> --}}
         <div class="container-fluid">
             <div class="row row mb-3">
                 <div class="col-xl-8 col-lg-7">
@@ -85,33 +90,28 @@
                                         <div>
                                             <h6 class="my-0">Total Quantity</h6>
                                         </div>
-                                        {{-- <span class="text-muted">{{ $item->product_quantity }}</span> --}}
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                                         <div>
                                             <h6 class="my-0">Sub Total</h6>
                                         </div>
-                                        {{-- <span class="text-muted">{{ number_format($item->product_quantity) }}</span> --}}
                                     </li>
 
                                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                                         <div>
                                             <h6 class="my-0">Vat</h6>
                                         </div>
-                                        <!-- <span class="text-muted" this . vat }}%</span> -->
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between bg-light">
                                         <div class="text-success">
                                             <h6 class="my-0">Total</h6>
                                         </div>
-                                        <!-- <span class="text-success"> number_format(total) }}</span> -->
                                     </li>
                                     <li v-if="giftCardId"
                                         class="list-group-item d-flex justify-content-between lh-condensed">
                                         <div>
                                             <h6 class="my-0">Gift Card</h6>
                                         </div>
-                                        <!-- <span class="text-muted"> -  number_format(total) }}</span> -->
                                     </li>
                                 </ul>
 
@@ -133,7 +133,6 @@
                                             <option value="handCash">Hand Cash</option>
                                             <option value="giftCard">Gift Card</option>
                                         </select>
-                                        <!-- <small class="text-danger"> errors . first('payBy') }}</small> -->
                                     </div>
                                     <button class="btn btn-success" type="submit">submit</button>
                                 </form>

@@ -127,7 +127,7 @@
 <script>
 export default {
   created() {
-    console.log(this.pos);
+    console.log(this.item);
   },
   props: ["data"],
   mounted() {},
