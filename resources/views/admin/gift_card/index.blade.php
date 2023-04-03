@@ -31,52 +31,70 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table class="table align-items-center table-flush">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th>Code</th>
-                                        <th>Type</th>
-                                        <th>Balance</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($giftCards as $giftCard)
+                            @if ($giftCards->count() > 0)
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
                                         <tr>
-                                            <td>
-                                                {{ $giftCard->code }}
-
-                                            </td>
-                                            <td>
-                                                {{ $giftCard->type }}
-
-                                            </td>
-                                            <td>
-                                                {{ number_format($giftCard->balance) . ' Đ' }}
-
-                                            </td>
-                                            @if ($giftCard->status == 0)
-                                                <td class="text-success">Active</td>
-                                            @else
-                                                <td class="text-danger">Inactive</td>
-                                            @endif
-
-                                            <td>
-                                                <a class="btn btn-sm btn-primary"
-                                                    href="{{ route('gift-card.edit', $giftCard->id) }}">Edit</a>
-                                                <form action="{{ route('gift-card.destroy', $giftCard->id) }}"
-                                                    method="Post" style="display: inline-block; margin-left: 10px">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                                </form>
-                                            </td>
+                                            <th>Code</th>
+                                            <th>Type</th>
+                                            <th>Balance</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
-                                    @endforeach
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($giftCards as $giftCard)
+                                            <tr>
+                                                <td>
+                                                    {{ $giftCard->code }}
 
-                                </tbody>
-                            </table>
+                                                </td>
+                                                <td>
+                                                    {{ $giftCard->type }}
+
+                                                </td>
+                                                <td>
+                                                    {{ number_format($giftCard->balance) . ' Đ' }}
+
+                                                </td>
+                                                @if ($giftCard->status == 0)
+                                                    <td class="text-success">Active</td>
+                                                @else
+                                                    <td class="text-danger">Inactive</td>
+                                                @endif
+
+                                                <td>
+                                                    <a class="btn btn-sm btn-primary"
+                                                        href="{{ route('gift-card.edit', $giftCard->id) }}">Edit</a>
+                                                    <form action="{{ route('gift-card.destroy', $giftCard->id) }}"
+                                                        method="Post" style="display: inline-block; margin-left: 10px">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
+                                    </tbody>
+                                </table>
+                            @else
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Code</th>
+                                            <th>Type</th>
+                                            <th>Balance</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                   
+                                </table>
+                                <br>
+                                <data-empty></data-empty>
+                            @endif
+
                         </div>
                         <!-- /.card-body -->
                     </div>

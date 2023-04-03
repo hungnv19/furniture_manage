@@ -35,48 +35,69 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <div class="table-responsive-sm">
-                                <table class="table  align-items-center table-flush">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Quantity</th>
-                                            <th>Unit</th>
-                                            <th>Total</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($pos as $item)
+                            @if ($pos->count() > 0)
+                                <div class="table-responsive-sm">
+                                    <table class="table  align-items-center table-flush">
+                                        <thead class="thead-light">
                                             <tr>
-                                                <td>
-                                                    {{ $item->product_name }}
-                                                </td>
-                                                <td>
-
-                                                    {{ $item->product_quantity }}
-                                                </td>
-                                                <td>
-                                                    {{ $item->product_price }}
-
-                                                </td>
-                                                <td>
-                                                    {{ $item->sub_total }}
-
-                                                </td>
-                                                <td>
-                                                    <form action="{{ route('cart.destroy', $item->id) }}" method="Post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                                    </form>
-                                                </td>
+                                                <th>Name</th>
+                                                <th>Quantity</th>
+                                                <th>Unit</th>
+                                                <th>Total</th>
+                                                <th>Action</th>
                                             </tr>
-                                        @endforeach
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($pos as $item)
+                                                <tr>
+                                                    <td>
+                                                        {{ $item->product_name }}
+                                                    </td>
+                                                    <td>
 
-                                    </tbody>
-                                </table>
-                            </div>
+                                                        {{ $item->product_quantity }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->product_price }}
+
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->sub_total }}
+
+                                                    </td>
+                                                    <td>
+                                                        <form action="{{ route('cart.destroy', $item->id) }}"
+                                                            method="Post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="btn btn-sm btn-danger">Delete</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <div class="table-responsive-sm">
+                                    <table class="table  align-items-center table-flush">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Quantity</th>
+                                                <th>Unit</th>
+                                                <th>Total</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                       
+                                    </table>
+                                </div>
+                                <data-empty></data-empty>
+                            @endif
+
 
                         </div>
                     </div>
@@ -101,7 +122,7 @@
                                         <div>
                                             <h6 class="my-0">Vat</h6>
                                         </div>
-                                        <span class="text-muted">{{ $vat }}%</span>
+                                        <span class="text-muted">{{ $vat->vat }}%</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between bg-light">
                                         <div class="text-success">

@@ -31,60 +31,79 @@
                         </div>
 
                         <div class="card-body">
-                            <table class="table align-items-center table-flush">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Start</th>
-                                        <th>End</th>
-                                        <th>Customer</th>
-                                        <th>Status</th>
-                                        <th>Note</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($appointments as $appointment)
+                            @if ($appointments->count() > 0)
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
                                         <tr>
-                                            <td>
-                                                {{ $appointment->date }}
-                                            </td>
-                                            <td>
-                                                {{ $appointment->start_time }}
-                                            </td>
-                                            <td>
-                                                {{ $appointment->end_time }}
-                                            </td>
-                                            <td>
-                                                {{ $appointment->customer_name }}
-                                            </td>
-                                            @if ($appointment->status != 0)
-                                                <td class="text-success">
-                                                    Processed
-                                                </td>
-                                            @else
-                                                <td class="text-danger">
-                                                    No process
-                                                </td>
-                                            @endif
-                                            <td>
-                                                {{ $appointment->note }}
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-sm btn-primary"
-                                                    href="{{ route('booking.edit', $appointment->id) }}">Edit</a>
-                                                <form action="{{ route('booking.destroy', $appointment->id) }}"
-                                                    method="Post" style="display: inline-block; margin-left: 10px">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                                </form>
-                                            </td>
+                                            <th>Date</th>
+                                            <th>Start</th>
+                                            <th>End</th>
+                                            <th>Customer</th>
+                                            <th>Status</th>
+                                            <th>Note</th>
+                                            <th>Action</th>
                                         </tr>
-                                    @endforeach
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($appointments as $appointment)
+                                            <tr>
+                                                <td>
+                                                    {{ $appointment->date }}
+                                                </td>
+                                                <td>
+                                                    {{ $appointment->start_time }}
+                                                </td>
+                                                <td>
+                                                    {{ $appointment->end_time }}
+                                                </td>
+                                                <td>
+                                                    {{ $appointment->customer_name }}
+                                                </td>
+                                                @if ($appointment->status != 0)
+                                                    <td class="text-success">
+                                                        Processed
+                                                    </td>
+                                                @else
+                                                    <td class="text-danger">
+                                                        No process
+                                                    </td>
+                                                @endif
+                                                <td>
+                                                    {{ $appointment->note }}
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-sm btn-primary"
+                                                        href="{{ route('booking.edit', $appointment->id) }}">Edit</a>
+                                                    <form action="{{ route('booking.destroy', $appointment->id) }}"
+                                                        method="Post" style="display: inline-block; margin-left: 10px">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            @else
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Start</th>
+                                            <th>End</th>
+                                            <th>Customer</th>
+                                            <th>Status</th>
+                                            <th>Note</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <br>
+                                <data-empty></data-empty>
+                            @endif
+
                         </div>
                     </div>
                 </div>

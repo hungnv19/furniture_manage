@@ -31,42 +31,58 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table class="table align-items-center table-flush">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($categories as $category)
+                            @if ($categories->count() > 0)
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
                                         <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
 
-                                            <td>
-                                                {{ $category->id }}
-
-                                            </td>
-                                            <td>
-                                                {{ $category->category_name }}
-
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-sm btn-primary"
-                                                    href="{{ route('category.edit', $category->id) }}">Edit</a>
-                                                <form action="{{ route('category.destroy', $category->id) }}" method="Post"
-                                                    style="display: inline-block; margin-left: 10px">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                                </form>
-                                            </td>
+                                            <th>Action</th>
                                         </tr>
-                                    @endforeach
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($categories as $category)
+                                            <tr>
 
-                                </tbody>
-                            </table>
+                                                <td>
+                                                    {{ $category->id }}
+
+                                                </td>
+                                                <td>
+                                                    {{ $category->category_name }}
+
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-sm btn-primary"
+                                                        href="{{ route('category.edit', $category->id) }}">Edit</a>
+                                                    <form action="{{ route('category.destroy', $category->id) }}"
+                                                        method="Post" style="display: inline-block; margin-left: 10px">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
+                                    </tbody>
+                                </table>
+                            @else
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <br>
+                                <data-empty></data-empty>
+                            @endif
+
                         </div>
                         <!-- /.card-body -->
                     </div>

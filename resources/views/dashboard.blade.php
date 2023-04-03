@@ -167,77 +167,94 @@
                                         </div>
                                         <!-- /.card-header -->
                                         <div class="card-body">
-                                            <table class="table align-items-center table-flush">
-                                                <thead class="thead-light">
-                                                    <tr>
-                                                        <th>Product Name</th>
-                                                        <th>Product Code</th>
-                                                        <th>Root</th>
-                                                        <th>Category</th>
-                                                        <th>Buying Price</th>
-                                                        <th>Status</th>
-                                                        <th>Product Quantity</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach ($products as $product)
+                                            @if ($products->count() > 0)
+                                                <table class="table align-items-center table-flush">
+                                                    <thead class="thead-light">
                                                         <tr>
-                                                            <td>
-                                                                {{ $product->product_name }}
-
-                                                            </td>
-                                                            <td>
-                                                                {{ $product->product_code }}
-
-                                                            </td>
-                                                            <td>
-                                                                {{ $product->root }}
-
-                                                            </td>
-                                                            <td>
-                                                                {{ $product->categories_name }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $product->buying_price }}
-
-                                                            </td>
-                                                            @if ($product->product_quantity >= 1)
-                                                                <td class="text-success">
-                                                                    Available
-                                                                </td>
-                                                            @else
-                                                                <td class="text-danger">
-                                                                    Stock Out
-                                                                </td>
-                                                            @endif
-
-                                                            <td>
-                                                                {{ $product->product_quantity }}
-
-                                                            </td>
-                                                            <td>
-                                                                <a class="btn btn-sm btn-primary"
-                                                                    href="{{ route('stock.edit', $product->id) }}">Edit</a>
-                                                            </td>
+                                                            <th>Product Name</th>
+                                                            <th>Product Code</th>
+                                                            <th>Root</th>
+                                                            <th>Category</th>
+                                                            <th>Buying Price</th>
+                                                            <th>Status</th>
+                                                            <th>Product Quantity</th>
+                                                            <th>Action</th>
                                                         </tr>
-                                                    @endforeach
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach ($products as $product)
+                                                            <tr>
+                                                                <td>
+                                                                    {{ $product->product_name }}
 
-                                                </tbody>
-                                            </table>
+                                                                </td>
+                                                                <td>
+                                                                    {{ $product->product_code }}
+
+                                                                </td>
+                                                                <td>
+                                                                    {{ $product->root }}
+
+                                                                </td>
+                                                                <td>
+                                                                    {{ $product->categories_name }}
+                                                                </td>
+                                                                <td>
+                                                                    {{ number_format($product->buying_price) . ' Đ' }}
+                                                                </td>
+                                                                @if ($product->product_quantity >= 1)
+                                                                    <td class="text-success">
+                                                                        Available
+                                                                    </td>
+                                                                @else
+                                                                    <td class="text-danger">
+                                                                        Stock Out
+                                                                    </td>
+                                                                @endif
+
+                                                                <td>
+                                                                    {{ $product->product_quantity }}
+
+                                                                </td>
+                                                                <td>
+                                                                    <a class="btn btn-sm btn-primary"
+                                                                        href="{{ route('stock.edit', $product->id) }}">Edit</a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+
+                                                    </tbody>
+                                                </table>
+                                            @else
+                                                <table class="table align-items-center table-flush">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th>Product Name</th>
+                                                            <th>Product Code</th>
+                                                            <th>Root</th>
+                                                            <th>Category</th>
+                                                            <th>Buying Price</th>
+                                                            <th>Status</th>
+                                                            <th>Product Quantity</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                                <br>
+                                                <data-empty></data-empty>
+                                            @endif
+                                            <!-- /.card-body -->
                                         </div>
-                                        <!-- /.card-body -->
+                                        <!-- /.card -->
                                     </div>
-                                    <!-- /.card -->
+                                    <!-- /.col -->
                                 </div>
-                                <!-- /.col -->
-                            </div>
                         </section>
                     </div>
                 </div>
             </section>
         </div>
-        
+
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->

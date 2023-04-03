@@ -31,81 +31,108 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <div class="table-responsive-sm">
-                                <table class="table  align-items-center table-flush">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Category</th>
-                                            <th>Name</th>
-                                            <th>Code</th>
-                                            <th>Root</th>
-                                            <th>Buying Price</th>
-                                            <th>Selling Price</th>
-                                            <th>Buying Date</th>
-                                            <th>Image</th>
-                                            <th>Quantity</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($products as $product)
+                            @if ($products->count() > 0)
+                                <div class="table-responsive-sm">
+                                    <table class="table  align-items-center table-flush">
+                                        <thead class="thead-light">
                                             <tr>
-
-                                                <td>
-                                                    {{ $product->id }}
-
-                                                </td>
-                                                <td>
-                                                    {{ $product->categories_name }}
-
-                                                </td>
-                                                <td>
-                                                    {{ $product->product_name }}
-
-                                                </td>
-                                                <td>
-                                                    {{ $product->product_code }}
-
-                                                </td>
-                                                <td>
-                                                    {{ $product->root }}
-
-                                                </td>
-                                                <td>
-                                                    {{ number_format($product->buying_price) . ' Đ' }}
-                                                </td>
-                                                <td>
-                                                    {{ number_format($product->selling_price) . ' Đ' }}
-                                                </td>
-                                                <td>
-                                                    {{ $product->buying_date }}
-
-                                                </td>
-                                                <td>
-                                                    <img src=" {{ Storage::url($product->image) }}" style="width: 50px;"/>
-                                                   
-                                                </td>
-                                                <td>
-                                                    {{ $product->product_quantity }}
-
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-sm btn-primary"
-                                                        href="{{ route('product.edit', $product->id) }}">Edit</a>
-                                                    <form action="{{ route('product.destroy', $product->id) }}"
-                                                        method="Post" style="display: inline-block; margin-left: 10px">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                                    </form>
-                                                </td>
+                                                <th>ID</th>
+                                                <th>Category</th>
+                                                <th>Name</th>
+                                                <th>Code</th>
+                                                <th>Root</th>
+                                                <th>Buying Price</th>
+                                                <th>Selling Price</th>
+                                                <th>Buying Date</th>
+                                                <th>Image</th>
+                                                <th>Quantity</th>
+                                                <th>Action</th>
                                             </tr>
-                                        @endforeach
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($products as $product)
+                                                <tr>
 
-                                    </tbody>
-                                </table>
-                            </div>
+                                                    <td>
+                                                        {{ $product->id }}
+
+                                                    </td>
+                                                    <td>
+                                                        {{ $product->categories_name }}
+
+                                                    </td>
+                                                    <td>
+                                                        {{ $product->product_name }}
+
+                                                    </td>
+                                                    <td>
+                                                        {{ $product->product_code }}
+
+                                                    </td>
+                                                    <td>
+                                                        {{ $product->root }}
+
+                                                    </td>
+                                                    <td>
+                                                        {{ number_format($product->buying_price) . ' Đ' }}
+                                                    </td>
+                                                    <td>
+                                                        {{ number_format($product->selling_price) . ' Đ' }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $product->buying_date }}
+
+                                                    </td>
+                                                    <td>
+                                                        <img src=" {{ Storage::url($product->image) }}"
+                                                            style="width: 50px;" />
+
+                                                    </td>
+                                                    <td>
+                                                        {{ $product->product_quantity }}
+
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-sm btn-primary"
+                                                            href="{{ route('product.edit', $product->id) }}">Edit</a>
+                                                        <form action="{{ route('product.destroy', $product->id) }}"
+                                                            method="Post" style="display: inline-block; margin-left: 10px">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="btn btn-sm btn-danger">Delete</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <div class="table-responsive-sm">
+                                    <table class="table  align-items-center table-flush">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Category</th>
+                                                <th>Name</th>
+                                                <th>Code</th>
+                                                <th>Root</th>
+                                                <th>Buying Price</th>
+                                                <th>Selling Price</th>
+                                                <th>Buying Date</th>
+                                                <th>Image</th>
+                                                <th>Quantity</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                       
+                                    </table>
+                                </div>
+                                <data-empty></data-empty>
+                            @endif
+
 
                         </div>
                         <!-- /.card-body -->
