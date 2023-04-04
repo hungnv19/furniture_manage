@@ -16,10 +16,9 @@ class CustomerGiftCardController extends BaseController
      */
     public function index()
     {
-
-        $customerGiftCards = CustomerGiftCard::get();
+        $giftCards = GiftCard::select('id', 'code as label')->get();
         return view('admin.customer-gift-card.index', [
-            'customerGiftCards' => $customerGiftCards,
+            'giftCards' => $giftCards,
             'title' => 'Customer Gift Card'
         ]);
     }
@@ -101,13 +100,6 @@ class CustomerGiftCardController extends BaseController
         $customerGiftCard->save();
     }   
 
-    public function customerGiftCardList($id){
-        $customerGiftCard = CustomerGiftCard::find($id);
-        return view('admin.customer-gift-card.updateGiftCard', [
-            'customerGiftCard' => $customerGiftCard,
-            
-        ]);
-    }
 
     public function getListCustomerGift(Request $request, $id)
     {

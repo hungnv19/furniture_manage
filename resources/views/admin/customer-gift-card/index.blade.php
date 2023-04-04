@@ -20,7 +20,10 @@
     <!-- Main content -->
 
     <section class="content">
-        <customer-gift-card>
+        <customer-gift-card
+            :data="{{ json_encode([
+                'giftCards' => $giftCards,
+            ]) }}">
         </customer-gift-card>
     </section>
 @endsection

@@ -5,6 +5,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
+            
             <VeeForm
               as="div"
               v-slot="{ handleSubmit }"
@@ -16,17 +17,29 @@
                 @submit="handleSubmit($event, onSubmit)"
                 ref="formData"
                 enctype="multipart/form-data"
-                :action="data.urlStore"
               >
                 <Field type="hidden" :value="csrfToken" name="_token" />
 
                 <div class="form-group">
-                  <Select2
-                    @select="selectGiftCard($event)"
-                    :options="myOptions"
-                    v-model="model.id"
-                  />
-                  <Field hidden name="id" rules="required" v-model="form.id" />
+                  <label class="" require>Gift Card</label>
+                  <Field
+                    class="form-select"
+                    name="gift_card_id"
+                    as="select"
+                    aria-label="Default select example"
+                    rules="required"
+                    v-model="gift_card_id"
+                  >
+                    <option value selected>Chose Gift Card</option>
+                    <option
+                      v-for="item in giftCards"
+                      :key="item.id"
+                      :value="item.id"
+                    >
+                      {{ item.label }}
+                    </option>
+                  </Field>
+                  <ErrorMessage class="error" name="gift_card_id" />
                 </div>
                 <div class="form-group">
                   <button
@@ -73,23 +86,19 @@ export default {
     ErrorMessage,
   },
   computed: {},
-  props: ["data", "idCustomerGiftCard"],
+  props: ["idCustomerGiftCard", "giftCards"],
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-
-      model: {
-        id: "",
-      },
+      gift_card_id: "",
     };
   },
   created() {
     let messError = {
       en: {
         fields: {
-          id: {
-            required: "The id field is required.",
-            
+          gift_card_id: {
+            required: "The gift card field is required.",
           },
         },
       },
@@ -99,27 +108,6 @@ export default {
     });
   },
   methods: {
-     selectGiftCard(e) {
-      this.form.id = e.id;
-    },
-    getGiftCardList() {
-      axios
-        .get("/gift-card-list")
-        .then((res) => {
-          res.data.map((e) => {
-            this.myOptions.push({ id: e.id, text: e.code });
-          });
-        })
-        .catch();
-    },
-    updateSelected(e) {
-      let array = [];
-      e.map((x) => {
-        array.push(x.value);
-      });
-      array = [...new Set(array)];
-      this.skill = array;
-    },
     onInvalidSubmit({ values, errors, results }) {
       let firstInputError = Object.entries(errors)[0][0];
       this.$el.querySelector("input[name=" + firstInputError + "]").focus();
@@ -132,6 +120,16 @@ export default {
       );
     },
     onSubmit() {
+      let that = this;
+      let id = this.$route.params.id;
+      axios
+        .post("/add-customer-gift-card/" + id ,{})
+        .then(() => {
+         
+           alert("Them thanh cong");
+          location.reload();
+        })
+        .catch();
       this.$refs.formData.submit();
     },
   },

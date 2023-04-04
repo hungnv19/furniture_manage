@@ -1,10 +1,10 @@
 <template>
   <div class="container-fluid">
     <div class="row justify-content-center">
-      <!-- <UpdateGiftCard
-        
+      <UpdateGiftCard
         :idCustomerGiftCard="this.idCustomerGiftCard"
-      ></UpdateGiftCard> -->
+        :giftCards="this.data.giftCards"
+      ></UpdateGiftCard>
       <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="row">
           <div class="col-lg-12 mb-4">
@@ -14,14 +14,7 @@
                 class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
               >
                 <h2 class="m-0 font-weight-bold text-primary">title</h2>
-                <!-- <div>
-                <router-link
-                  to="/store-gift-card"
-                  class="btn btn-primary float-right"
-                  style="margin-top: 6px; margin-right: 6px"
-                  >{{ $t("content.gift_card.index_gift_card.create_gift_card") }}</router-link
-                >
-              </div> -->
+               
               </div>
               <div class="table-responsive">
                 <table class="table align-items-center table-flush">
@@ -78,23 +71,23 @@ import {
 } from "../../enums/StatusGiftCard";
 import UpdateGiftCard from "./updateGiftCard.vue";
 export default {
-  created() {},
+  created() {
+  },
   components: {
     UpdateGiftCard,
   },
+   props: [ "data", "giftCards"],
   data() {
     return {
       customerGiftCard: [],
       searchTerm: "",
       StatusGiftCardDetail: StatusGiftCardDetail,
       idCustomerGiftCard: "",
+      giftCards: [],
     };
   },
   computed: {
     filtersearch() {
-      // return this.appointments.filter((appointment) => {
-      //   return appointment.product_name.match(this.searchTerm);
-      // });
       return this.customerGiftCard;
     },
   },
@@ -106,9 +99,8 @@ export default {
       }).format(value);
     },
     allCustomerGiftCard() {
-      //   let id = this.$route.params.id;
       axios
-        .get("/list-card-gift/${id}", {})
+        .get("/list-card-gift/"+ id)
         .then(({ data }) => {
           console.log(data);
           this.customerGiftCard = data;
@@ -128,7 +120,7 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .delete("/api/customer-gift/" + id)
+            .delete("/customer-gift/" + id)
             .then(() => {
               this.customerGiftCard = this.customerGiftCard.filter(
                 (customerGiftCard) => {

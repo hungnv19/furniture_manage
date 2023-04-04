@@ -33,10 +33,10 @@ Route::get('/', function () {
 
 
 
-Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
+Route::get('register', [RegisterController::class, 'create'])->name('register.create');
 Route::post('register', [RegisterController::class, 'store'])->name('register.store');
 
-Route::get('/login', [LoginController::class, 'create'])->name('login.create');
+Route::get('login', [LoginController::class, 'create'])->name('login.create');
 Route::post('login', [LoginController::class, 'store'])->name('login.store');
 
 Route::get('/logout', [LoginController::class, 'destroy']);
@@ -61,19 +61,19 @@ Route::middleware('user')->group(function () {
     // Route::get('/orders/{id}', [OrderController::class, 'orders']);
     // Route::get('/order/details/{id}', [OrderController::class, 'orderDetails']);
 
-    Route::get('/gift-card-list', [GiftCardController::class,'getGiftCardList']);
+    
 
     //Customer Gift Card Routes
     Route::post('/add-customer-gift-card/{id}', [CustomerGiftCardController::class, 'addGiftCardId'])->name('add-customer-gift-card');
-    Route::get('list-card-gift/{id}', [CustomerGiftCardController::class,'getListCustomerGift']);
+    // Route::get('list-card-gift/{id}', [CustomerGiftCardController::class,'getListCustomerGift']);
+    
 
     //Cart Routes
-
+    Route::get('/gift-card-list', [GiftCardController::class,'getGiftCardList']);
     Route::resource('cart', CartController::class);
     Route::get('/cart/delete/{id}', [CartController::class,'cartDelete']);
     Route::get('cart/addToCart/{id}', [CartController::class, 'addToCart'])->name('cart.addToCart');
 
-    // Route::get('/cart-products', [CartController::class, 'cartProducts']);
     
     // Route::get('/cart/increment/{id}', [CartController::class, 'increment']);
     // Route::get('/cart/decrement/{id}', [CartController::class, 'decrement']);

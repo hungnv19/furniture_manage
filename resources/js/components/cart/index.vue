@@ -101,96 +101,113 @@
                 </li>
               </ul>
 
-              <form @submit.prevent="orderDone">
-                <div class="form-group">
-                  <label class="" require>Customer</label>
-                  <select
-                    class="form-select"
-                    name="customer_id"
-                    aria-label="Default select example"
-                    rules="required"
-                    v-model="customer_id"
-                  >
-                    <option value disabled selected>Chose Customers</option>
-                    <option
-                      v-for="item in data.customers"
-                      :key="item.id"
-                      :value="item.id"
+              <VeeForm
+                as="div"
+                v-slot="{ handleSubmit }"
+                class="form-owner"
+                @invalid-submit="onInvalidSubmit"
+              >
+                <form
+                  method="POST"
+                  @submit="handleSubmit($event, onSubmit)"
+                  ref="formData"
+                  enctype="multipart/form-data"
+                >
+                  <Field type="hidden" :value="csrfToken" name="_token" />
+
+                  <div class="form-group">
+                    <label class="" require>Customer</label>
+                    <Field
+                      class="form-select"
+                      name="customer_id"
+                      as="select"
+                      aria-label="Default select example"
+                      rules="required"
+                      v-model="customer_id"
                     >
-                      {{ item.label }}
-                    </option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlSelect2">Pay By</label>
-                  <select
-                    class="form-control"
-                    id="exampleFormControlSelect2"
-                    name="payBy"
-                    v-model="payBy"
-                    v-validate="'required'"
-                  >
-                    <option value="handCash">Hand Cash</option>
-                    <option value="giftCard">Gift Card</option>
-                  </select>
-                  <!-- <small class="text-danger">{{ errors.first("payBy") }}</small> -->
-                </div>
-
-                <div v-if="payBy === 'giftCard'" class="form-group">
-                  <label for="exampleFormControlSelect2">Gift Card</label>
-                  <Select2
-                    @select="selectGiftCard($event)"
-                    :options="giftCardOptions"
-                    placeholder="select_card"
-                  />
-                  <input
-                    type="hidden"
-                    name="gift_card_id"
-                    v-model="giftCardId"
-                    v-validate="
-                      payBy === 'giftCard'
-                        ? 'required|valid_card'
-                        : 'valid_card'
-                    "
-                  />
-                </div>
-                <div v-if="payBy === 'handCash'">
-                  <div class="form-group">
-                    <label for="exampleFormControlInput1">Pay</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      v-model="pay"
-                      v-validate="
-                        payBy === 'handCash'
-                          ? 'required|numeric|min_value:' + total
-                          : 'numeric|min_value:0'
-                      "
-                      name="pay"
-                      id="exampleFormControlInput1"
-                      @keyup="calculatorDue"
-                    />
-                    <!-- <small class="text-danger">{{ errors.first("pay") }}</small> -->
+                      <option value disabled selected>Chose Customers</option>
+                      <option
+                        v-for="item in data.customers"
+                        :key="item.id"
+                        :value="item.id"
+                      >
+                        {{ item.label }}
+                      </option>
+                    </Field>
+                    <ErrorMessage class="error" name="customer_id" />
                   </div>
                   <div class="form-group">
-                    <div class="d-flex justify-content-between">
-                      <label for="exampleFormControlInput2">Due</label>
-                      <label for="">{{
-                        this.number_format(pay - this.total)
-                      }}</label>
-                    </div>
-                    <input
+                    <label for="exampleFormControlSelect2">Pay By</label>
+                    <Field
+                      class="form-select"
+                      id="exampleFormControlSelect2"
+                      name="payBy"
+                      as="select"
+                      v-model="payBy"
+                      rules="required"
+                    >
+                      <option value disabled selected>Chose Pay By</option>
+                      <option value="handCash">Hand Cash</option>
+                      <option value="giftCard">Gift Card</option>
+                    </Field>
+
+                    <ErrorMessage class="error" name="payBy" />
+                  </div>
+
+                  <div v-if="payBy === 'giftCard'" class="form-group">
+                    <label for="exampleFormControlSelect2">Gift Card</label>
+                    <Select2
+                      @select="selectGiftCard($event)"
+                      :options="giftCardOptions"
+                      placeholder="select_card"
+                    />
+                    <Field
                       type="hidden"
-                      class="form-control"
-                      v-model="due"
-                      name="due"
-                      id="exampleFormControlInput2"
+                      name="gift_card_id"
+                      v-model="giftCardId"
+                      rules="required"
                     />
+                    <ErrorMessage class="error" name="gift_card_id" />
                   </div>
-                </div>
+                  <div v-if="payBy === 'handCash'">
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Pay</label>
+                      <Field
+                        type="text"
+                        class="form-control"
+                        v-model="pay"
+                        rules="required|numeric"
+                        name="pay"
+                        id="exampleFormControlInput1"
+                        @keyup="calculatorDue"
+                      />
 
-                <button class="btn btn-success" type="submit">submit</button>
-              </form>
+                      <ErrorMessage class="error" name="pay" />
+                    </div>
+                    <div class="form-group">
+                      <div class="d-flex justify-content-between">
+                        <label for="exampleFormControlInput2">Due</label>
+                        <label for="">{{
+                          this.number_format(pay - this.total)
+                        }}</label>
+                      </div>
+                      <input
+                        type="hidden"
+                        class="form-control"
+                        v-model="due"
+                        name="due"
+                        id="exampleFormControlInput2"
+                      />
+                    </div>
+                  </div>
+
+                  <button class="btn btn-success" type="submit">submit</button>
+                </form>
+              </VeeForm>
+
+              <!-- <form @submit.prevent="orderDone">
+                
+              </form> -->
             </div>
           </div>
         </div>
@@ -237,7 +254,6 @@ export default {
           pay: {
             required: "The pay field is required.",
             numeric: "Please enter a number.",
-            min_value: "Please enter a number greater than Total.",
           },
           due: {
             numeric: "Please enter a number.",
@@ -306,6 +322,20 @@ export default {
   },
 
   methods: {
+    onInvalidSubmit({ values, errors, results }) {
+      let firstInputError = Object.entries(errors)[0][0];
+      this.$el.querySelector("input[name=" + firstInputError + "]").focus();
+      $("html, body").animate(
+        {
+          scrollTop:
+            $("input[name=" + firstInputError + "]").offset().top - 150,
+        },
+        500
+      );
+    },
+    onSubmit() {
+      // this.$refs.formData.submit();
+    },
     calculatorDue() {
       let pay = this.pay;
       if (pay >= this.total) {
@@ -334,22 +364,22 @@ export default {
         currency: "VND",
       }).format(value);
     },
-    async decrement(id) {
-      this.nameButton[id] = true;
-      this.nameButton = JSON.parse(JSON.stringify(this.nameButton));
+    // async decrement(id) {
+    //   this.nameButton[id] = true;
+    //   this.nameButton = JSON.parse(JSON.stringify(this.nameButton));
 
-      await axios
-        .get("/cart/decrement/" + id)
-        .then(() => {
-          Reload.$emit("afterAddToCart");
-          Notification.success(this.$t("common.message.success"));
-          this.sleep(1000).then(() => {
-            this.nameButton[id] = false;
-            this.nameButton = JSON.parse(JSON.stringify(this.nameButton));
-          });
-        })
-        .catch();
-    },
+    //   await axios
+    //     .get("/cart/decrement/" + id)
+    //     .then(() => {
+    //       Reload.$emit("afterAddToCart");
+    //       Notification.success(this.$t("common.message.success"));
+    //       this.sleep(1000).then(() => {
+    //         this.nameButton[id] = false;
+    //         this.nameButton = JSON.parse(JSON.stringify(this.nameButton));
+    //       });
+    //     })
+    //     .catch();
+    // },
   },
   watch: {
     payBy(v) {
