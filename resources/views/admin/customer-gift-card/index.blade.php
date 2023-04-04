@@ -23,6 +23,7 @@
         <customer-gift-card
             :data="{{ json_encode([
                 'giftCards' => $giftCards,
+                'listGiftCardAvailable' => $listGiftCardAvailable,
             ]) }}">
         </customer-gift-card>
     </section>

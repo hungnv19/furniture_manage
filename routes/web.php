@@ -54,14 +54,18 @@ Route::middleware('user')->group(function () {
     Route::resource('stock', StockController::class);
     Route::resource('gift-card', GiftCardController::class);
     Route::get('gift-card/code/GC', [GiftCardController::class, 'generateCode'])->name('gift-card.code');
+    Route::resource('order', OrderController::class);
+
 
     //order
-    Route::resource('order', OrderController::class);
+
     // Route::get('/today-order', [OrderController::class, 'todayOrder']);
     // Route::get('/orders/{id}', [OrderController::class, 'orders']);
     // Route::get('/order/details/{id}', [OrderController::class, 'orderDetails']);
 
-    
+
+    //gift card
+    Route::get('customer-gift-card-list', [GiftCardController::class, 'getGiftCardList'])->name('customer-gift-card-list');
 
     //Customer Gift Card Routes
     Route::post('/add-customer-gift-card/{id}', [CustomerGiftCardController::class, 'addGiftCardId'])->name('add-customer-gift-card');

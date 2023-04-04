@@ -24709,7 +24709,8 @@ __webpack_require__.r(__webpack_exports__);
       searchTerm: "",
       StatusGiftCardDetail: _enums_StatusGiftCard__WEBPACK_IMPORTED_MODULE_1__.StatusGiftCardDetail,
       idCustomerGiftCard: "",
-      giftCards: []
+      giftCards: [],
+      listGiftCardAvailable: []
     };
   },
   computed: {
@@ -24724,16 +24725,17 @@ __webpack_require__.r(__webpack_exports__);
         currency: "VND"
       }).format(value);
     },
-    allCustomerGiftCard: function allCustomerGiftCard() {
-      var _this = this;
-      axios.get("/list-card-gift/" + id).then(function (_ref) {
-        var data = _ref.data;
-        console.log(data);
-        _this.customerGiftCard = data;
-      })["catch"]();
-    },
+    // allCustomerGiftCard() {
+    //   axios
+    //     .get("/list-card-gift/"+ id)
+    //     .then(({ data }) => {
+    //       console.log(data);
+    //       this.customerGiftCard = data;
+    //     })
+    //     .catch();
+    // },
     deleteGiftCard: function deleteGiftCard(id) {
-      var _this2 = this;
+      var _this = this;
       Swal.fire({
         title: this.$t("common.message.delete.confirm"),
         text: this.$t("common.message.delete.warning"),
@@ -24746,18 +24748,18 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.isConfirmed) {
           axios["delete"]("/customer-gift/" + id).then(function () {
-            _this2.customerGiftCard = _this2.customerGiftCard.filter(function (customerGiftCard) {
+            _this.customerGiftCard = _this.customerGiftCard.filter(function (customerGiftCard) {
               return customerGiftCard.id != id;
             });
             location.reload();
           })["catch"](function () {
-            _this2.$router.push({
+            _this.$router.push({
               name: "customerGiftCard"
             });
           });
-          Swal.fire(_this2.$t("common.message.delete.deleted"), _this2.$t("common.message.delete.success", {
-            category: _this2.$t("side_bar.nav_items.gift_card.name")
-          }), _this2.$t("common.message.success"));
+          Swal.fire(_this.$t("common.message.delete.deleted"), _this.$t("common.message.delete.success", {
+            category: _this.$t("side_bar.nav_items.gift_card.name")
+          }), _this.$t("common.message.success"));
         }
       });
     },
@@ -24766,7 +24768,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.allCustomerGiftCard();
+    // this.allCustomerGiftCard();
   }
 });
 
@@ -24809,7 +24811,7 @@ __webpack_require__.r(__webpack_exports__);
     ErrorMessage: vee_validate__WEBPACK_IMPORTED_MODULE_3__.ErrorMessage
   },
   computed: {},
-  props: ["idCustomerGiftCard", "giftCards"],
+  props: ["idCustomerGiftCard", "giftCards", "listGiftCardAvailable"],
   data: function data() {
     return {
       csrfToken: Laravel.csrfToken,
@@ -24829,7 +24831,9 @@ __webpack_require__.r(__webpack_exports__);
     (0,vee_validate__WEBPACK_IMPORTED_MODULE_3__.configure)({
       generateMessage: (0,_vee_validate_i18n__WEBPACK_IMPORTED_MODULE_4__.localize)(messError)
     });
+    // console.log(this.listGiftCardAvailable);
   },
+
   methods: {
     onInvalidSubmit: function onInvalidSubmit(_ref) {
       var values = _ref.values,
@@ -24843,9 +24847,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     onSubmit: function onSubmit() {
       var that = this;
-      var id = this.$route.params.id;
-      axios.post("/add-customer-gift-card/" + id, {}).then(function () {
-        alert("Them thanh cong");
+      var id = this.gift_card_id;
+      axios.post("/add-customer-gift-card/" + id).then(function () {
+        //  alert("Them thanh cong");
         location.reload();
       })["catch"]();
       this.$refs.formData.submit();
@@ -28042,8 +28046,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_UpdateGiftCard, {
     idCustomerGiftCard: this.idCustomerGiftCard,
-    giftCards: this.data.giftCards
-  }, null, 8 /* PROPS */, ["idCustomerGiftCard", "giftCards"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Simple Tables "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.filtersearch, function (customerGiftCard) {
+    giftCards: this.data.giftCards,
+    listGiftCardAvailable: this.data.listGiftCardAvailable
+  }, null, 8 /* PROPS */, ["idCustomerGiftCard", "giftCards", "listGiftCardAvailable"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Simple Tables "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.filtersearch, function (customerGiftCard) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: customerGiftCard.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(customerGiftCard.code), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(customerGiftCard.type), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.number_format(customerGiftCard.balance)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
@@ -28155,11 +28160,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_9, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.giftCards, function (item) {
+          return [_hoisted_9, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.listGiftCardAvailable, function (item) {
             return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
               key: item.id,
               value: item.id
-            }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.label), 9 /* TEXT, PROPS */, _hoisted_10);
+            }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.code), 9 /* TEXT, PROPS */, _hoisted_10);
           }), 128 /* KEYED_FRAGMENT */))];
         }),
 

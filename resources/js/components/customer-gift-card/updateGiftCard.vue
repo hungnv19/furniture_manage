@@ -5,7 +5,6 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            
             <VeeForm
               as="div"
               v-slot="{ handleSubmit }"
@@ -32,11 +31,11 @@
                   >
                     <option value selected>Chose Gift Card</option>
                     <option
-                      v-for="item in giftCards"
+                      v-for="item in listGiftCardAvailable"
                       :key="item.id"
                       :value="item.id"
                     >
-                      {{ item.label }}
+                      {{ item.code }}
                     </option>
                   </Field>
                   <ErrorMessage class="error" name="gift_card_id" />
@@ -86,11 +85,12 @@ export default {
     ErrorMessage,
   },
   computed: {},
-  props: ["idCustomerGiftCard", "giftCards"],
+  props: ["idCustomerGiftCard", "giftCards", "listGiftCardAvailable"],
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
       gift_card_id: "",
+      
     };
   },
   created() {
@@ -106,8 +106,11 @@ export default {
     configure({
       generateMessage: localize(messError),
     });
+    // console.log(this.listGiftCardAvailable);
   },
+ 
   methods: {
+  
     onInvalidSubmit({ values, errors, results }) {
       let firstInputError = Object.entries(errors)[0][0];
       this.$el.querySelector("input[name=" + firstInputError + "]").focus();
@@ -121,12 +124,11 @@ export default {
     },
     onSubmit() {
       let that = this;
-      let id = this.$route.params.id;
+      let id = this.gift_card_id;
       axios
-        .post("/add-customer-gift-card/" + id ,{})
+        .post("/add-customer-gift-card/" + id)
         .then(() => {
-         
-           alert("Them thanh cong");
+          //  alert("Them thanh cong");
           location.reload();
         })
         .catch();

@@ -6,6 +6,7 @@ use App\Http\Controllers\BaseController;
 use App\Models\CustomerGiftCard;
 use App\Models\GiftCard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CustomerGiftCardController extends BaseController
 {
@@ -16,9 +17,18 @@ class CustomerGiftCardController extends BaseController
      */
     public function index()
     {
+        $IdGiftCardUsed = DB::table('gift_card')
+            ->join('customer_gift_card', 'gift_card.id', '=', 'customer_gift_card.gift_card_id')
+            ->select('gift_card.*', 'customer_gift_card.gift_card_id as gift_id')
+            ->pluck('gift_id');
+        //   dd($IdGiftCardUsed->distinct()); 
+
+        $listGiftCardAvailable = GiftCard::whereIn('id', $IdGiftCardUsed)->get();
+        // dd($listGiftCardAvailable);
         $giftCards = GiftCard::select('id', 'code as label')->get();
         return view('admin.customer-gift-card.index', [
             'giftCards' => $giftCards,
+            'listGiftCardAvailable' => $listGiftCardAvailable,
             'title' => 'Customer Gift Card'
         ]);
     }

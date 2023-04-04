@@ -4,6 +4,7 @@
       <UpdateGiftCard
         :idCustomerGiftCard="this.idCustomerGiftCard"
         :giftCards="this.data.giftCards"
+        :listGiftCardAvailable="this.data.listGiftCardAvailable"
       ></UpdateGiftCard>
       <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="row">
@@ -84,6 +85,7 @@ export default {
       StatusGiftCardDetail: StatusGiftCardDetail,
       idCustomerGiftCard: "",
       giftCards: [],
+      listGiftCardAvailable: [],
     };
   },
   computed: {
@@ -98,15 +100,15 @@ export default {
         currency: "VND",
       }).format(value);
     },
-    allCustomerGiftCard() {
-      axios
-        .get("/list-card-gift/"+ id)
-        .then(({ data }) => {
-          console.log(data);
-          this.customerGiftCard = data;
-        })
-        .catch();
-    },
+    // allCustomerGiftCard() {
+    //   axios
+    //     .get("/list-card-gift/"+ id)
+    //     .then(({ data }) => {
+    //       console.log(data);
+    //       this.customerGiftCard = data;
+    //     })
+    //     .catch();
+    // },
     deleteGiftCard(id) {
       Swal.fire({
         title: this.$t("common.message.delete.confirm"),
@@ -148,7 +150,7 @@ export default {
     },
   },
   mounted() {
-    this.allCustomerGiftCard();
+    // this.allCustomerGiftCard();
   },
 };
 </script>
