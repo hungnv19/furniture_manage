@@ -2,6 +2,20 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-4">
+              <a
+                :href="data.urlCustomerGift"
+                class="btn btn-primary"
+                style="margin-right: 10px"
+              >
+                Customer Gift Card
+              </a>
+            </div>
+          </div>
+        </div>
+        <br />
         <div class="card">
           <div class="card-body">
             <VeeForm

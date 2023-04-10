@@ -100,15 +100,15 @@ export default {
         currency: "VND",
       }).format(value);
     },
-    // allCustomerGiftCard() {
-    //   axios
-    //     .get("/list-card-gift/"+ id)
-    //     .then(({ data }) => {
-    //       console.log(data);
-    //       this.customerGiftCard = data;
-    //     })
-    //     .catch();
-    // },
+    allCustomerGiftCard() {
+      axios
+        .get("/list-card-gift/"+ id)
+        .then(({ data }) => {
+          console.log(data);
+          this.customerGiftCard = data;
+        })
+        .catch();
+    },
     deleteGiftCard(id) {
       Swal.fire({
         title: this.$t("common.message.delete.confirm"),

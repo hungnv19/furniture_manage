@@ -24,6 +24,7 @@
         <customer-edit
             :data="{{ json_encode([
                 'urlCheckEmail' => route('register.checkMail'),
+                'urlCustomerGift' => route('customer-gift-card.index'),
                 'urlUpdate' => route('customer.update', $customer->id),
                 'urlBack' => route('customer.index'),
                 'customer' => $customer,
