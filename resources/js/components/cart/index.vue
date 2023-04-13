@@ -52,6 +52,9 @@
               </tbody>
             </table>
           </div>
+          <div v-show="(data.pos.length == 0)">
+            <data-empty></data-empty>
+          </div>
         </div>
         <div class="col-md-4 summary">
           <div class="card-footer">
@@ -362,7 +365,7 @@ export default {
         .get("/cart/delete/" + id)
         .then(() => {
           location.reload();
-          alert("Xoa thanh cong");
+          this.$toaster.success("Successfully done! ");
         })
         .catch();
     },
