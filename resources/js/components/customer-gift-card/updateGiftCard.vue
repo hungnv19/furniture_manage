@@ -123,7 +123,6 @@ export default {
       );
     },
     onSubmit() {
-      let that = this;
       let id = this.gift_card_id;
       axios
         .post("/add-customer-gift-card/" + id)

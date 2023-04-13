@@ -61,7 +61,7 @@
                   class="list-group-item d-flex justify-content-between lh-condensed"
                 >
                   <div>
-                    <h6 class="my-0">total_quantity</h6>
+                    <h6 class="my-0">Total Quantity</h6>
                   </div>
                   <span class="text-muted">{{ qty }}</span>
                 </li>
@@ -69,7 +69,7 @@
                   class="list-group-item d-flex justify-content-between lh-condensed"
                 >
                   <div>
-                    <h6 class="my-0">sub_total</h6>
+                    <h6 class="my-0">Sub Total</h6>
                   </div>
                   <span class="text-muted">{{ number_format(sub_total) }}</span>
                 </li>
@@ -86,7 +86,7 @@
                   class="list-group-item d-flex justify-content-between bg-light"
                 >
                   <div class="text-success">
-                    <h6 class="my-0">total</h6>
+                    <h6 class="my-0">Total</h6>
                   </div>
                   <span class="text-success">{{ number_format(total) }}</span>
                 </li>
@@ -272,14 +272,16 @@ export default {
     configure({
       generateMessage: localize(messError),
     });
-    console.log(this.data.sub_total);
   },
   props: ["data"],
-  mounted() {},
+  mounted() {
+    this.cartProducts();
+  },
 
   data() {
     return {
       pos: [],
+      cartProduct: [],
       customers: [],
       customer_id: "",
       pay: "",
@@ -292,16 +294,16 @@ export default {
   computed: {
     qty() {
       let sum = 0;
-      for (let i = 0; i < this.pos.length; i++) {
-        sum += parseFloat(this.pos[i].product_quantity);
+      for (let i = 0; i < this.cartProduct.length; i++) {
+        sum += parseFloat(this.cartProduct[i].product_quantity);
       }
 
       return sum;
     },
     sub_total() {
       let sum = 0;
-      for (let i = 0; i < this.pos.length; i++) {
-        sum += parseFloat(this.pos[i].sub_total);
+      for (let i = 0; i < this.cartProduct.length; i++) {
+        sum += parseFloat(this.cartProduct[i].sub_total);
       }
 
       return sum;
@@ -322,6 +324,12 @@ export default {
   },
 
   methods: {
+    cartProducts() {
+      axios
+        .get("/cart-products")
+        .then(({ data }) => (this.cartProduct = data))
+        .catch();
+    },
     onInvalidSubmit({ values, errors, results }) {
       let firstInputError = Object.entries(errors)[0][0];
       this.$el.querySelector("input[name=" + firstInputError + "]").focus();
@@ -364,22 +372,6 @@ export default {
         currency: "VND",
       }).format(value);
     },
-    // async decrement(id) {
-    //   this.nameButton[id] = true;
-    //   this.nameButton = JSON.parse(JSON.stringify(this.nameButton));
-
-    //   await axios
-    //     .get("/cart/decrement/" + id)
-    //     .then(() => {
-    //       Reload.$emit("afterAddToCart");
-    //       Notification.success(this.$t("common.message.success"));
-    //       this.sleep(1000).then(() => {
-    //         this.nameButton[id] = false;
-    //         this.nameButton = JSON.parse(JSON.stringify(this.nameButton));
-    //       });
-    //     })
-    //     .catch();
-    // },
   },
   watch: {
     payBy(v) {

@@ -153,7 +153,7 @@
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="image">Image</label>
-                  <Field  type="hidden" v-model="image" name="image_old" />
+                  <Field type="hidden" v-model="image" name="image_old" />
                   <div>
                     <div
                       class="display-image"
@@ -268,6 +268,7 @@ export default {
     };
   },
   created() {
+    
     let messError = {
       en: {
         fields: {

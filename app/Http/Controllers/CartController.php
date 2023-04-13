@@ -145,4 +145,14 @@ class CartController extends BaseController
 		$vat = DB::table('extra')->first();
 		return response()->json($vat);
 	}
+	public function cartProducts()
+	{
+		$products = DB::table('pos')
+			->join('products', 'products.id', '=', 'pos.product_id')
+			->select([
+				'pos.*'
+			])
+			->get();
+		return response()->json($products);
+	}
 }

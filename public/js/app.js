@@ -24402,13 +24402,15 @@ __webpack_require__.r(__webpack_exports__);
     (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.configure)({
       generateMessage: (0,_vee_validate_i18n__WEBPACK_IMPORTED_MODULE_3__.localize)(messError)
     });
-    console.log(this.data.sub_total);
   },
   props: ["data"],
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.cartProducts();
+  },
   data: function data() {
     return {
       pos: [],
+      cartProduct: [],
       customers: [],
       customer_id: "",
       pay: "",
@@ -24420,15 +24422,15 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     qty: function qty() {
       var sum = 0;
-      for (var i = 0; i < this.pos.length; i++) {
-        sum += parseFloat(this.pos[i].product_quantity);
+      for (var i = 0; i < this.cartProduct.length; i++) {
+        sum += parseFloat(this.cartProduct[i].product_quantity);
       }
       return sum;
     },
     sub_total: function sub_total() {
       var sum = 0;
-      for (var i = 0; i < this.pos.length; i++) {
-        sum += parseFloat(this.pos[i].sub_total);
+      for (var i = 0; i < this.cartProduct.length; i++) {
+        sum += parseFloat(this.cartProduct[i].sub_total);
       }
       return sum;
     },
@@ -24437,10 +24439,17 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    onInvalidSubmit: function onInvalidSubmit(_ref) {
-      var values = _ref.values,
-        errors = _ref.errors,
-        results = _ref.results;
+    cartProducts: function cartProducts() {
+      var _this = this;
+      axios.get("/cart-products").then(function (_ref) {
+        var data = _ref.data;
+        return _this.cartProduct = data;
+      })["catch"]();
+    },
+    onInvalidSubmit: function onInvalidSubmit(_ref2) {
+      var values = _ref2.values,
+        errors = _ref2.errors,
+        results = _ref2.results;
       var firstInputError = Object.entries(errors)[0][0];
       this.$el.querySelector("input[name=" + firstInputError + "]").focus();
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("html, body").animate({
@@ -24470,21 +24479,7 @@ __webpack_require__.r(__webpack_exports__);
         style: "currency",
         currency: "VND"
       }).format(value);
-    } // async decrement(id) {
-    //   this.nameButton[id] = true;
-    //   this.nameButton = JSON.parse(JSON.stringify(this.nameButton));
-    //   await axios
-    //     .get("/cart/decrement/" + id)
-    //     .then(() => {
-    //       Reload.$emit("afterAddToCart");
-    //       Notification.success(this.$t("common.message.success"));
-    //       this.sleep(1000).then(() => {
-    //         this.nameButton[id] = false;
-    //         this.nameButton = JSON.parse(JSON.stringify(this.nameButton));
-    //       });
-    //     })
-    //     .catch();
-    // },
+    }
   },
   watch: {
     payBy: function payBy(v) {
@@ -24845,7 +24840,6 @@ __webpack_require__.r(__webpack_exports__);
       }, 500);
     },
     onSubmit: function onSubmit() {
-      var that = this;
       var id = this.gift_card_id;
       axios.post("/add-customer-gift-card/" + id).then(function () {
         //  alert("Them thanh cong");
@@ -27566,7 +27560,7 @@ var _hoisted_16 = {
 var _hoisted_17 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
     "class": "my-0"
-  }, "total_quantity")], -1 /* HOISTED */);
+  }, "Total Quantity")], -1 /* HOISTED */);
 });
 var _hoisted_18 = {
   "class": "text-muted"
@@ -27577,7 +27571,7 @@ var _hoisted_19 = {
 var _hoisted_20 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
     "class": "my-0"
-  }, "sub_total")], -1 /* HOISTED */);
+  }, "Sub Total")], -1 /* HOISTED */);
 });
 var _hoisted_21 = {
   "class": "text-muted"
@@ -27601,7 +27595,7 @@ var _hoisted_26 = /*#__PURE__*/_withScopeId(function () {
     "class": "text-success"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
     "class": "my-0"
-  }, "total")], -1 /* HOISTED */);
+  }, "Total")], -1 /* HOISTED */);
 });
 var _hoisted_27 = {
   "class": "text-success"

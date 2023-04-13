@@ -23,14 +23,14 @@ class HomeController extends Controller
         $this->category = $category;
     }
     public function index()
-    {   
-        $product = $this->product->where('id')->count();
+    {
+        $product = Product::count();
         $products = $this->product->join('categories', 'categories.id', '=', 'products.category_id')
-        ->select('products.*', 'categories.category_name as categories_name')
-        ->get();
-        $user = $this->user->where('id')->count();
-        $category = $this->category->where('id')->count();
-        $customer = $this->customer->where('id')->count();
+            ->select('products.*', 'categories.category_name as categories_name')
+            ->get();
+        $user = User::count();
+        $category = Category::count();
+        $customer = Customer::count();
         return view('dashboard', [
             'title' => 'Trang quản trị',
             'customer' => $customer,

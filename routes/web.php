@@ -76,6 +76,7 @@ Route::middleware('user')->group(function () {
     Route::get('/gift-card-list', [GiftCardController::class,'getGiftCardList']);
     Route::resource('cart', CartController::class);
     Route::get('/cart/delete/{id}', [CartController::class,'cartDelete']);
+    Route::get('/cart-products', [CartController::class,'cartProducts']);
     Route::get('cart/addToCart/{id}', [CartController::class, 'addToCart'])->name('cart.addToCart');
 
     
