@@ -182,7 +182,7 @@
                           v-if="filePreview"
                           :src="filePreview"
                           class="img"
-                          style="width: 300px;"
+                          style="width: 300px"
                         />
                         <span
                           @click="deleteImage"
@@ -300,6 +300,13 @@ export default {
     });
   },
   methods: {
+    deleteImage() {
+      this.typeFile = "hidden";
+      this.filePreview = "";
+      this.media = null;
+      this.ImageNotUser = 1;
+      this.hasErrImg = false;
+    },
     chooseImage() {
       if (this.typeFile == "hidden") {
         this.typeFile = "file";

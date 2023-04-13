@@ -49,6 +49,7 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
+        // $user = Auth::guard('foo')->attempt(['id' => $request->email, 'password' => $request->password], $request->remember);
         if (!auth()->attempt(request(['email', 'password']))) {
             return abort('403');
         }

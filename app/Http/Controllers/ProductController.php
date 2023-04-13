@@ -56,7 +56,7 @@ class ProductController extends BaseController
      */
     public function store(Request $request)
     {
-
+       
         $product = new Product;
         $product->category_id = $request->category_id;
         $product->product_name = $request->product_name;
@@ -117,6 +117,7 @@ class ProductController extends BaseController
     public function update(Request $request, $id)
     {
         try {
+           
             $product =  $this->product->where('id', $id)->first();
             $product->category_id = $request->category_id;
             $product->product_name = $request->product_name;
@@ -126,6 +127,9 @@ class ProductController extends BaseController
             $product->selling_price = $request->selling_price;
             $product->buying_date = $request->buying_date;
             $product->product_quantity = $request->product_quantity;
+            if ($request->hasFile('image')) {
+                $product->image = $request->image->storeAs('public/images', $request->image->hashName());
+            }
 
             $product->save();
             $this->setFlash(__('Cập nhật  thành công'));
