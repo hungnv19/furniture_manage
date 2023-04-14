@@ -24,7 +24,7 @@
         <cart-list :data="{{ json_encode([
             'pos' => $pos,
             'extra' => $extra,
-          
+            'urlStore' => route('cart.orders'),
             'customers' => $customers,
         ]) }}">
         </cart-list>

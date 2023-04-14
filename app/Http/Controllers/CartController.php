@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Models\Customer;
+use App\Models\GiftCard;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class CartController extends BaseController
@@ -45,6 +47,7 @@ class CartController extends BaseController
 	 */
 	public function store(Request $request)
 	{
+		
 	}
 
 	/**
@@ -155,4 +158,73 @@ class CartController extends BaseController
 			->get();
 		return response()->json($products);
 	}
+	public function order(Request $request)
+    {
+        
+        try {
+            DB::beginTransaction();
+            if ($request->gift_card_id) {
+                $giftCard = GiftCard::find($request->gift_card_id);
+                if (!$giftCard) {
+                    return response()->json(
+                        [
+                            'result' => false
+                        ],
+                        200
+                    );
+                }
+                $giftBalance = $giftCard->balance;
+                $giftCard->balance = $giftBalance >= $request->total ? $giftBalance - $request->total : 0;
+                $giftCard->save();
+            }
+            $data = [];
+            $data['customer_id'] = $request->customer_id;
+            $data['qty'] = $request->qty;
+            $data['sub_total'] = $request->sub_total;
+            $data['vat'] = $request->vat;
+            $data['total'] = $request->total;
+            $data['pay'] = $request->pay;
+            $data['due'] = $request->due;
+            $data['payBy'] = $request->payBy;
+            $data['gift_card_id'] = $request->gift_card_id;
+            $data['order_date'] = date('d/m/Y');
+            $data['order_month'] = date('F');
+            $data['order_year'] = date('Y');
+            $data['created_at'] = Carbon::now();
+            $data['updated_at'] = Carbon::now();
+            $order_id = DB::table('orders')->insertGetId($data);
+
+            $cartContents = DB::table('pos')->get();
+
+            $cartData = [];
+            foreach ($cartContents as $content) {
+                $cartData['order_id'] = $order_id;
+                $cartData['product_id'] = $content->product_id;
+                $cartData['product_quantity'] = $content->product_quantity;
+                $cartData['product_price'] = $content->product_price;
+                $cartData['sub_total'] = $content->sub_total;
+                $cartData['created_at'] = Carbon::now();
+                $cartData['updated_at'] = Carbon::now();
+                DB::table('order_details')->insert($cartData);
+
+                DB::table('products')
+                    ->where('id', $content->product_id)
+                    ->update(['product_quantity' => DB::raw('product_quantity - ' . $content->product_quantity)]);
+            }
+
+            DB::table('pos')->delete();
+            DB::commit();
+            // return response()->json([
+            //     'result' => true
+            // ], 200);
+            return redirect()->route('home.index');
+           
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            // return response()->json([
+            //     'result' => false
+            // ], 200);
+            return redirect()->route('home.index');
+        }
+    }
 }

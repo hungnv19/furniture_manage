@@ -58,7 +58,7 @@ Route::middleware('user')->group(function () {
 
 
     //order
-
+   
     // Route::get('/today-order', [OrderController::class, 'todayOrder']);
     // Route::get('/orders/{id}', [OrderController::class, 'orders']);
     // Route::get('/order/details/{id}', [OrderController::class, 'orderDetails']);
@@ -69,20 +69,15 @@ Route::middleware('user')->group(function () {
 
     //Customer Gift Card Routes
     Route::post('/add-customer-gift-card/{id}', [CustomerGiftCardController::class, 'addGiftCardId'])->name('add-customer-gift-card');
-    // Route::get('list-card-gift/{id}', [CustomerGiftCardController::class,'getListCustomerGift']);
     
 
     //Cart Routes
     Route::get('/gift-card-list', [GiftCardController::class,'getGiftCardList']);
+    Route::post('/cart/orders', [CartController::class, 'order'])->name('cart.orders');
     Route::resource('cart', CartController::class);
     Route::get('/cart/delete/{id}', [CartController::class,'cartDelete']);
     Route::get('/cart-products', [CartController::class,'cartProducts']);
     Route::get('cart/addToCart/{id}', [CartController::class, 'addToCart'])->name('cart.addToCart');
-
-    
-    // Route::get('/cart/increment/{id}', [CartController::class, 'increment']);
-    // Route::get('/cart/decrement/{id}', [CartController::class, 'decrement']);
-
 
 });
 
