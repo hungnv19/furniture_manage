@@ -214,17 +214,12 @@ class CartController extends BaseController
 
             DB::table('pos')->delete();
             DB::commit();
-            // return response()->json([
-            //     'result' => true
-            // ], 200);
-            return redirect()->route('home.index');
+           
+            return redirect()->route('order.index');
            
         } catch (\Exception $ex) {
             DB::rollBack();
-            // return response()->json([
-            //     'result' => false
-            // ], 200);
-            return redirect()->route('home.index');
+            return redirect()->route('order.index');
         }
     }
 }

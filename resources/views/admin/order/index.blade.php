@@ -8,8 +8,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Order</a></li>
+                        <li class="breadcrumb-item"><a href="">Home</a></li>
+                        <li class="breadcrumb-item"><a href="">Order</a></li>
 
                     </ol>
                 </div>
@@ -31,87 +31,42 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <div class="table-responsive-sm">
-                                <table class="table  align-items-center table-flush">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Total Amount</th>
-                                            <th>Pay</th>
-                                            <th>Due</th>
-                                            <th>Pay By</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                   
-                                </table>
-                            </div>
-                            {{-- @if ($products->count() > 0)
+                            @if ($orders->count() > 0)
                                 <div class="table-responsive-sm">
                                     <table class="table  align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Category</th>
                                                 <th>Name</th>
-                                                <th>Code</th>
-                                                <th>Root</th>
-                                                <th>Buying Price</th>
-                                                <th>Selling Price</th>
-                                                <th>Buying Date</th>
-                                                <th>Image</th>
-                                                <th>Quantity</th>
+                                                <th>Total Amount</th>
+                                                <th>Pay</th>
+                                                <th>Due</th>
+                                                <th>Pay By</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($products as $product)
+                                            @foreach ($orders as $order)
                                                 <tr>
-
                                                     <td>
-                                                        {{ $product->id }}
-
-                                                    </td>
-                                                    <td>
-                                                        {{ $product->categories_name }}
+                                                        {{ $order->customer_name }}
 
                                                     </td>
                                                     <td>
-                                                        {{ $product->product_name }}
-
+                                                        {{ number_format($order->total) . ' Đ' }}
                                                     </td>
                                                     <td>
-                                                        {{ $product->product_code }}
-
+                                                        {{ number_format($order->pay) . ' Đ' }}
                                                     </td>
                                                     <td>
-                                                        {{ $product->root }}
-
+                                                        {{ number_format($order->due) . ' Đ' }}
                                                     </td>
                                                     <td>
-                                                        {{ number_format($product->buying_price) . ' Đ' }}
-                                                    </td>
-                                                    <td>
-                                                        {{ number_format($product->selling_price) . ' Đ' }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $product->buying_date }}
-
-                                                    </td>
-                                                    <td>
-                                                        <img src=" {{ Storage::url($product->image) }}"
-                                                            style="width: 50px;" />
-
-                                                    </td>
-                                                    <td>
-                                                        {{ $product->product_quantity }}
-
+                                                        {{ $order->payBy }}
                                                     </td>
                                                     <td>
                                                         <a class="btn btn-sm btn-primary"
-                                                            href="{{ route('product.edit', $product->id) }}">Edit</a>
-                                                        <form action="{{ route('product.destroy', $product->id) }}"
+                                                            href="{{ route('order.show', $order->id) }}">Detail</a>
+                                                        <form action="{{ route('order.destroy', $order->id) }}"
                                                             method="Post" style="display: inline-block; margin-left: 10px">
                                                             @csrf
                                                             @method('DELETE')
@@ -130,24 +85,20 @@
                                     <table class="table  align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Category</th>
+
                                                 <th>Name</th>
-                                                <th>Code</th>
-                                                <th>Root</th>
-                                                <th>Buying Price</th>
-                                                <th>Selling Price</th>
-                                                <th>Buying Date</th>
-                                                <th>Image</th>
-                                                <th>Quantity</th>
+                                                <th>Total Amount</th>
+                                                <th>Pay</th>
+                                                <th>Due</th>
+                                                <th>Pay By</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                       
+
                                     </table>
                                 </div>
                                 <data-empty></data-empty>
-                            @endif --}}
+                            @endif
 
 
                         </div>

@@ -8,8 +8,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Booking</a></li>
+                        <li class="breadcrumb-item"><a href="">Home</a></li>
+                        <li class="breadcrumb-item"><a href="">Booking</a></li>
 
                     </ol>
                 </div>
@@ -37,26 +37,27 @@
                       justify-content-between
                     ">
                             <h5 class="m-0 font-weight-bold text-primary">
-                                title
+                                Dashboard
                             </h5>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <ul class="list-group">
                                     <li class="list-group-item">
-                                        <b> name : </b> orders . name
+                                        <b> Name : </b>
+                                        {{ $orders->name }}
                                     </li>
                                     <li class="list-group-item">
-                                        <b> phone : </b>orders . phone
+                                        <b> Phone : </b> {{ $orders->phone }}
                                     </li>
                                     <li class="list-group-item">
-                                        <b> address : </b> orders . address
+                                        <b> Address : </b> {{ $orders->address }}
                                     </li>
                                     <li class="list-group-item">
-                                        <b> date : </b> orders . order_date
+                                        <b> Date : </b> {{ $orders->order_date }}
                                     </li>
                                     <li class="list-group-item">
-                                        <b> pay_through : </b> orders . payBy
+                                        <b> Pay Through : </b> {{ $orders->payBy }}
                                     </li>
                                 </ul>
                             </div>
@@ -64,7 +65,7 @@
                     </div>
                 </div>
 
-                <!-- Table 2 -->
+
                 <div class="col-xl-6 col-lg-6">
                     <div class="card mb-4">
                         <div
@@ -77,30 +78,30 @@
                       justify-content-between
                     ">
                             <h5 class="m-0 font-weight-bold text-primary">
-                                title
+                                Dashboard
                             </h5>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <ul class="list-group">
                                     <li class="list-group-item">
-                                        <b>sub_total :
-                                        </b>orders . sub_total
+                                        <b>Sub Total :
+                                        </b> {{ $orders->sub_total }}
                                     </li>
                                     <li class="list-group-item">
-                                        <b>vat : </b>orders . vat %
+                                        <b>Vat : </b> {{ $orders->vat }} %
                                     </li>
                                     <li class="list-group-item">
-                                        <b>total :
-                                        </b>orders . total
+                                        <b>Total :
+                                        </b>{{ $orders->total }}
                                     </li>
                                     <li class="list-group-item">
-                                        <b>pay_amount :
-                                        </b>orders . pay
+                                        <b>Pay Amount :
+                                        </b>{{ $orders->pay }}
                                     </li>
                                     <li class="list-group-item">
-                                        <b>due_amount :
-                                        </b>orders . due
+                                        <b>Due Amount :
+                                        </b>{{ $orders->due }}
                                     </li>
                                 </ul>
                             </div>
@@ -123,7 +124,7 @@
                       justify-content-between
                     ">
                             <h5 class="m-0 font-weight-bold text-primary">
-                                ordered_products
+                                Ordered Products
                             </h5>
                         </div>
                         <div class="card-body">
@@ -132,31 +133,40 @@
                                     <thead class="thead-light">
                                         <tr>
                                             <th>
-                                                product_name
+                                                Product Name
                                             </th>
-                                            <th>code</th>
+                                            <th>Code</th>
                                             <th>
-                                                image
+                                                Image
                                             </th>
-                                            <th>quantity</th>
-                                            <th>unit_price</th>
-                                            <th>total</th>
+                                            <th>Quantity</th>
+                                            <th>Unit_price</th>
+                                            <th>Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- <tr v-for="product in details" :key="product.id">
-                                            <td>{{ product . product_name }}</td>
-                                            <td>{{ product . product_code }}</td>
-                                            <td>
-                                                <img :src="product.image ?
-                                                    product.image :
-                                                    '/backend/img/none-img.jpg'"
-                                                    id="image_size" />
-                                            </td>
-                                            <td>{{ product . product_quantity }}</td>
-                                            <td>{{ number_format(product . product_price) }}</td>
-                                            <td>{{ number_format(product . sub_total) }}</td>
-                                        </tr> --}}
+                                        @foreach ($details as $detail)
+                                            <tr>
+                                                <td>
+                                                    {{ $detail->product_name }}
+                                                </td>
+                                                <td>
+                                                    {{ $detail->product_code }}
+                                                </td>
+                                                <td>
+                                                    <img src=" {{ Storage::url($detail->image) }}" style="width: 50px;" />
+                                                </td>
+                                                <td>
+                                                    {{ $detail->product_quantity }}
+                                                </td>
+                                                <td>
+                                                    {{ number_format($detail->product_price) . ' Đ' }}
+                                                </td>
+                                                <td>
+                                                    {{ number_format($detail->sub_total) . ' Đ' }}
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
