@@ -115,7 +115,9 @@ class CustomerController extends BaseController
             $customer->email = $request->email;
             $customer->phone = $request->phone;
             $customer->address = $request->address;
-
+            if ($request->hasFile('photo')) {
+                $customer->photo = $request->photo->storeAs('public/images', $request->photo->hashName());
+            }
             $customer->save();
             $this->setFlash(__('Cập nhật  thành công'));
             return redirect()->route('customer.index');

@@ -20,7 +20,7 @@
                 <Field type="hidden" :value="csrfToken" name="_token" />
 
                 <div class="form-group">
-                  <label class="" require>name</label>
+                  <label class="" require>Name</label>
                   <Field
                     type="text"
                     name="name"
@@ -34,7 +34,7 @@
                   <ErrorMessage class="error" name="name" />
                 </div>
                 <div class="form-group">
-                  <label class="" require>email</label>
+                  <label class="" require>Email</label>
                   <Field
                     type="text"
                     name="email"
@@ -48,7 +48,7 @@
                   <ErrorMessage class="error" name="email" />
                 </div>
                 <div class="form-group">
-                  <label class="" require>phone</label>
+                  <label class="" require>Phone</label>
                   <Field
                     type="text"
                     name="phone"
@@ -62,7 +62,7 @@
                   <ErrorMessage class="error" name="phone" />
                 </div>
                 <div class="form-group">
-                  <label class="" require>address</label>
+                  <label class="" require>Address</label>
                   <Field
                     type="text"
                     name="address"
@@ -236,6 +236,13 @@ export default {
     });
   },
   methods: {
+    deleteImage() {
+      this.typeFile = "hidden";
+      this.filePreview = "";
+      this.media = null;
+      this.ImageNotUser = 1;
+      this.hasErrImg = false;
+    },
     chooseImage() {
       if (this.typeFile == "hidden") {
         this.typeFile = "file";

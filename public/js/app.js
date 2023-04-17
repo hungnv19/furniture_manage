@@ -24956,6 +24956,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     });
   },
   methods: {
+    deleteImage: function deleteImage() {
+      this.typeFile = "hidden";
+      this.filePreview = "";
+      this.media = null;
+      this.ImageNotUser = 1;
+      this.hasErrImg = false;
+    },
     chooseImage: function chooseImage() {
       if (this.typeFile == "hidden") {
         this.typeFile = "file";
@@ -25060,6 +25067,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   data: function data() {
     return {
       csrfToken: Laravel.csrfToken,
+      filePreview: "",
+      typeFile: "file",
+      errMsgImage: "",
+      hasErrImg: false,
+      image: "",
       model: this.data.customer,
       categories: []
     };
@@ -25103,6 +25115,47 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     });
   },
   methods: {
+    deleteImage: function deleteImage() {
+      this.typeFile = "hidden";
+      this.filePreview = "";
+      this.media = null;
+      this.ImageNotUser = 1;
+      this.hasErrImg = false;
+    },
+    chooseImage: function chooseImage() {
+      if (this.typeFile == "hidden") {
+        this.typeFile = "file";
+      }
+      this.$refs["fileInput"].click();
+    },
+    onChange: function onChange(e) {
+      var _this = this;
+      var Image = e.target.files[0];
+      if (Image.type.includes("image/jpeg") || Image.type.includes("image/png") || Image.type.includes("image/jpg")) {
+        this.errMsgImage = "";
+        this.hasErrImg = false;
+      } else {
+        this.errMsgImage = "Định dạng hình ảnh không chính xác.";
+        this.hasErrImg = true;
+        return;
+      }
+      if (Image.size >= 20971520) {
+        this.errMsgImage = "Ảnh quá lớn.";
+        this.hasErrImg = true;
+      } else {
+        this.hasErrImg = false;
+      }
+      this.model.image = e.target.files[0];
+      var fileInput = this.$refs.fileInput;
+      var imgFile = fileInput.files;
+      if (imgFile && imgFile[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          _this.filePreview = e.target.result;
+        };
+        reader.readAsDataURL(imgFile[0]);
+      }
+    },
     updateSelected: function updateSelected(e) {
       var array = [];
       e.map(function (x) {
@@ -28358,28 +28411,28 @@ var _hoisted_7 = {
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "",
   require: ""
-}, "name", -1 /* HOISTED */);
+}, "Name", -1 /* HOISTED */);
 var _hoisted_9 = {
   "class": "form-group"
 };
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "",
   require: ""
-}, "email", -1 /* HOISTED */);
+}, "Email", -1 /* HOISTED */);
 var _hoisted_11 = {
   "class": "form-group"
 };
 var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "",
   require: ""
-}, "phone", -1 /* HOISTED */);
+}, "Phone", -1 /* HOISTED */);
 var _hoisted_13 = {
   "class": "form-group"
 };
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "",
   require: ""
-}, "address", -1 /* HOISTED */);
+}, "Address", -1 /* HOISTED */);
 var _hoisted_15 = {
   "class": "form-group"
 };
@@ -28533,7 +28586,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8 /* PROPS */, _hoisted_22)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.filePreview ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
         key: 1,
         onClick: _cache[5] || (_cache[5] = function () {
-          return _ctx.deleteImage && _ctx.deleteImage.apply(_ctx, arguments);
+          return $options.deleteImage && $options.deleteImage.apply($options, arguments);
         }),
         "class": "icon_delete"
       }, _hoisted_24)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
@@ -28605,33 +28658,68 @@ var _hoisted_12 = {
 var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "",
   require: ""
-}, "name", -1 /* HOISTED */);
+}, "Name", -1 /* HOISTED */);
 var _hoisted_14 = {
   "class": "form-group"
 };
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "",
   require: ""
-}, "email", -1 /* HOISTED */);
+}, "Email", -1 /* HOISTED */);
 var _hoisted_16 = {
   "class": "form-group"
 };
 var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "",
   require: ""
-}, "phone", -1 /* HOISTED */);
+}, "Phone", -1 /* HOISTED */);
 var _hoisted_18 = {
   "class": "form-group"
 };
 var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "",
   require: ""
-}, "address", -1 /* HOISTED */);
+}, "Address", -1 /* HOISTED */);
 var _hoisted_20 = {
+  "class": "form-group"
+};
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "form-label",
+  "for": "image"
+}, "Image", -1 /* HOISTED */);
+var _hoisted_22 = {
+  key: 0,
+  "class": "align-center-text"
+};
+var _hoisted_23 = {
+  key: 0
+};
+var _hoisted_24 = {
+  style: {
+    "display": "none"
+  }
+};
+var _hoisted_25 = ["type"];
+var _hoisted_26 = {
+  "class": "d-flex justify-content-center"
+};
+var _hoisted_27 = ["src"];
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fa fa-trash"
+}, null, -1 /* HOISTED */);
+var _hoisted_29 = [_hoisted_28];
+var _hoisted_30 = {
+  "class": "text-center mt-3"
+};
+var _hoisted_31 = {
+  key: 0,
+  "class": "error"
+};
+var _hoisted_32 = {
   "class": "col-md-12 text-center btn-box"
 };
-var _hoisted_21 = ["href"];
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_33 = ["href"];
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary"
 }, "Submit", -1 /* HOISTED */);
@@ -28725,13 +28813,62 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8 /* PROPS */, ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
         "class": "error",
         name: "address"
-      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
+        type: "hidden",
+        modelValue: _ctx.image,
+        "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+          return _ctx.image = $event;
+        }),
+        name: "image_old"
+      }, null, 8 /* PROPS */, ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+        "class": "display-image",
+        id: "img-preview",
+        onClick: _cache[8] || (_cache[8] = function ($event) {
+          return $options.chooseImage();
+        }),
+        role: "button",
+        onDragover: _cache[9] || (_cache[9] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["prevent"])),
+        onDrop: _cache[10] || (_cache[10] = function (e) {
+          return _ctx.onDrop(e);
+        })
+      }, [!_ctx.filePreview ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_22, [!_ctx.filePreview ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_23, "Đăng ký bằng cách click hoặc kéo thả")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        type: _ctx.typeFile,
+        onChange: _cache[5] || (_cache[5] = function () {
+          return $options.onChange && $options.onChange.apply($options, arguments);
+        }),
+        ref: "fileInput",
+        accept: "image/*",
+        name: "image",
+        id: "image"
+      }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_25)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [_ctx.filePreview ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
+        key: 0,
+        src: _ctx.filePreview,
+        "class": "img",
+        style: {
+          "width": "300px"
+        }
+      }, null, 8 /* PROPS */, _hoisted_27)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.filePreview ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
+        key: 1,
+        onClick: _cache[6] || (_cache[6] = function () {
+          return $options.deleteImage && $options.deleteImage.apply($options, arguments);
+        }),
+        "class": "icon_delete"
+      }, _hoisted_29)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        "class": "rounded",
+        onClick: _cache[7] || (_cache[7] = function ($event) {
+          return $options.chooseImage();
+        }),
+        type: "button",
+        style: {
+          "display": "none"
+        }
+      }, " アップロード ")])], 32 /* HYDRATE_EVENTS */)]), _ctx.hasErrImg == true ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.errMsgImage), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
         href: $props.data.urlBack,
         "class": "btn btn-outline-secondary",
         style: {
           "margin-right": "10px"
         }
-      }, " Back ", 8 /* PROPS */, _hoisted_21), _hoisted_22])], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_11)];
+      }, " Back ", 8 /* PROPS */, _hoisted_33), _hoisted_34])], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_11)];
     }),
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["onInvalidSubmit"])])])])])]);
