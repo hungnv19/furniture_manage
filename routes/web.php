@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerGiftCardController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\GiftCardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -44,6 +45,7 @@ Route::get('/logout', [LoginController::class, 'destroy']);
 Route::middleware('user')->group(function () {
     Route::get('dashboard', [HomeController::class, 'index'])->name('home.index');
     Route::resource('user', UserController::class);
+    Route::resource('expense', ExpenseController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('customer', CustomerController::class);
     Route::resource('customer-gift-card', CustomerGiftCardController::class);

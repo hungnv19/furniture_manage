@@ -51,7 +51,7 @@ class CustomerController extends BaseController
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+      
         $customer = new Customer();
         $customer->name = $request->name;
         $customer->email = $request->email;

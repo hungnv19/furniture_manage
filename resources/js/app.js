@@ -15,6 +15,9 @@ import CategoryEdit from './components/category/edit.vue';
 import UserCreate from './components/user/create.vue';
 import UserEdit from './components/user/edit.vue';
 
+import ExpenseCreate from './components/expense/create.vue';
+import ExpenseEdit from './components/expense/edit.vue';
+
 import ProductCreate from './components/product/create.vue';
 import ProductEdit from './components/product/edit.vue';
 
@@ -60,6 +63,9 @@ app.component("booking-edit", BookingEdit);
 
 app.component("user-create", UserCreate);
 app.component("user-edit", UserEdit);
+
+app.component("expense-create", ExpenseCreate);
+app.component("expense-edit", ExpenseEdit);
 
 app.component("product-create", ProductCreate);
 app.component("product-edit", ProductEdit);
