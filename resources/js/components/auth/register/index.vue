@@ -64,7 +64,7 @@
 
                 <div class="col-md-12 text-center btn-box">
                   <a
-                    :action="data.urlBack"
+                    :href="data.urlBack"
                     class="btn btn-outline-secondary"
                     style="margin-right: 10px"
                   >

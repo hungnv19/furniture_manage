@@ -5,7 +5,7 @@
         <register-form
             :data="{{ json_encode([
                 'urlStore' => route('register.store'),
-                'urlBack' => route('home.index'),
+                'urlBack' => route('login.create'),
                 'urlCheckEmail' => route('register.checkMail'),
             ]) }}">
         </register-form>

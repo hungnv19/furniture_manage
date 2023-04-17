@@ -26565,7 +26565,7 @@ var _hoisted_13 = {
 var _hoisted_14 = {
   "class": "col-md-12 text-center btn-box"
 };
-var _hoisted_15 = ["action"];
+var _hoisted_15 = ["href"];
 var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary"
@@ -26623,7 +26623,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "error",
         name: "password"
       })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_ctx.showError ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.messageError), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-        action: $props.data.urlRegister,
+        href: $props.data.urlRegister,
         "class": "btn btn-outline-secondary",
         style: {
           "margin-right": "10px"
@@ -26689,7 +26689,7 @@ var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_13 = {
   "class": "col-md-12 text-center btn-box"
 };
-var _hoisted_14 = ["action"];
+var _hoisted_14 = ["href"];
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary"
@@ -26761,7 +26761,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "error",
         name: "password"
       })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-        action: $props.data.urlBack,
+        href: $props.data.urlBack,
         "class": "btn btn-outline-secondary",
         style: {
           "margin-right": "10px"

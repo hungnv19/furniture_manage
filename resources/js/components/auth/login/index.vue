@@ -57,7 +57,7 @@
 
                 <div class="col-md-12 text-center btn-box">
                   <a
-                    :action="data.urlRegister"
+                    :href="data.urlRegister"
                     class="btn btn-outline-secondary"
                     style="margin-right: 10px"
                   >
