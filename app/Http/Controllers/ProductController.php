@@ -7,6 +7,7 @@ use Intervention\Image\Facades\Image;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends BaseController
@@ -54,7 +55,7 @@ class ProductController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
        
         $product = new Product;
@@ -114,7 +115,7 @@ class ProductController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
         try {
            
@@ -153,5 +154,26 @@ class ProductController extends BaseController
             session()->flash('comment', 'Xóa  thành công!');
             return redirect()->back();
         }
+    }
+    public function checkProductCode(Request $request)
+    {
+        $data = $request->all();
+        $data['id'] = $request->id;
+        return response()->json([
+            'valid' => $this->checkCode($data),
+        ], 200);
+    }
+    protected function checkCode($request)
+    {
+        if ($request['value'] != '') {
+            return !$this->product->where(function ($query) use ($request) {
+                if (isset($request['id'])) {
+                    $query->where('id', '!=', $request['id']);
+                }
+                $query->where(['product_code' => $request['value']]);
+            })->exists();
+        }
+
+        return true;
     }
 }

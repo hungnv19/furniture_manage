@@ -25,6 +25,7 @@
             :data="{{ json_encode([
                 'urlUpdate' => route('product.update', $product->id),
                 'urlBack' => route('product.index'),
+                'urlCheckCode' => route('product.checkCode'),
                 'categories' => $categories,
                 'product' => $product,
             ]) }}">

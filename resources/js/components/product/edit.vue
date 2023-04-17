@@ -64,7 +64,7 @@
                         name="product_code"
                         autocomplete="off"
                         v-model="model.product_code"
-                        rules="required|max:128"
+                        rules="required|max:128|unique_code"
                         class="form-control"
                         placeholder="Enter product code"
                       />
@@ -142,7 +142,7 @@
                         name="product_quantity"
                         autocomplete="off"
                         v-model="model.product_quantity"
-                        rules="required"
+                        rules="required|min_value:1"
                         class="form-control"
                         placeholder="Enter product quantity"
                       />
@@ -268,27 +268,55 @@ export default {
     };
   },
   created() {
-    
     let messError = {
       en: {
         fields: {
-          name: {
-            required: "The name field is required.",
-            max: "The name may not be greater than 128.",
+          product_name: {
+            required: "The product_name field is required.",
+            max: "The product_name may not be greater than 128.",
           },
-          email: {
-            required: "The email field is required.",
-            max: "The email may not be greater than 128.",
+          root: {
+            required: "The root  field is required.",
+            max: "The root  may not be greater than 128.",
           },
-          password: {
-            required: "The password field is required.",
-            max: "The password may not be greater than 128.",
+          buying_price: {
+            required: "The buying_price field is required.",
+            max: "The buying_price may not be greater than 128.",
+          },
+          selling_price: {
+            required: "The selling_price field is required.",
+            max: "The selling_price may not be greater than 128.",
+          },
+          buying_date: {
+            required: "The buying_date  field is required.",
+            max: "The buying_date  may not be greater than 128.",
+          },
+          product_code: {
+            required: "The product_code field is required.",
+            max: "The product_code may not be greater than 128.",
+            unique_code: "The product_code field is already exists ",
+          },
+          product_quantity: {
+            required: "The product_quantity field is required.",
+            min_value: "The product_quantity must be at least 1.",
           },
         },
       },
     };
     configure({
       generateMessage: localize(messError),
+    });
+     let that = this;
+    defineRule("unique_code", (value) => {
+      return axios
+        .post(that.data.urlCheckCode, {
+          value: value,
+          id: that.data.product.id,
+        })
+        .then(function (response) {
+          return response.data.valid;
+        })
+        .catch((error) => {});
     });
   },
   methods: {

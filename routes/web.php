@@ -82,4 +82,5 @@ Route::middleware('user')->group(function () {
 });
 
 Route::post('check-mail-register', [RegisterController::class, 'checkMailRegister'])->name('register.checkMail');
+Route::post('/product/checkCode', [ProductController::class, 'checkProductCode'])->name('product.checkCode');
 Route::post('check-user-login', [LoginController::class, 'checkUserLogin'])->name('login.checkUserLogin');

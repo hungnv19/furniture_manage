@@ -25950,23 +25950,48 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     var messError = {
       en: {
         fields: {
-          name: {
-            required: "The name field is required.",
-            max: "The name may not be greater than 128."
+          product_name: {
+            required: "The product_name field is required.",
+            max: "The product_name may not be greater than 128."
           },
-          email: {
-            required: "The email field is required.",
-            max: "The email may not be greater than 128."
+          root: {
+            required: "The root  field is required.",
+            max: "The root  may not be greater than 128."
           },
-          password: {
-            required: "The password field is required.",
-            max: "The password may not be greater than 128."
+          buying_price: {
+            required: "The buying_price field is required.",
+            max: "The buying_price may not be greater than 128."
+          },
+          selling_price: {
+            required: "The selling_price field is required.",
+            max: "The selling_price may not be greater than 128."
+          },
+          buying_date: {
+            required: "The buying_date  field is required.",
+            max: "The buying_date  may not be greater than 128."
+          },
+          product_code: {
+            required: "The product_code field is required.",
+            max: "The product_code may not be greater than 128.",
+            unique_code: "The product_code field is already exists "
+          },
+          product_quantity: {
+            required: "The product_quantity field is required.",
+            min_value: "The product_quantity must be at least 1."
           }
         }
       }
     };
     (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.configure)({
       generateMessage: (0,_vee_validate_i18n__WEBPACK_IMPORTED_MODULE_3__.localize)(messError)
+    });
+    var that = this;
+    (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.defineRule)("unique_code", function (value) {
+      return axios.post(that.data.urlCheckCode, {
+        value: value
+      }).then(function (response) {
+        return response.data.valid;
+      })["catch"](function (error) {});
     });
   },
   methods: {
@@ -26094,23 +26119,49 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     var messError = {
       en: {
         fields: {
-          name: {
-            required: "The name field is required.",
-            max: "The name may not be greater than 128."
+          product_name: {
+            required: "The product_name field is required.",
+            max: "The product_name may not be greater than 128."
           },
-          email: {
-            required: "The email field is required.",
-            max: "The email may not be greater than 128."
+          root: {
+            required: "The root  field is required.",
+            max: "The root  may not be greater than 128."
           },
-          password: {
-            required: "The password field is required.",
-            max: "The password may not be greater than 128."
+          buying_price: {
+            required: "The buying_price field is required.",
+            max: "The buying_price may not be greater than 128."
+          },
+          selling_price: {
+            required: "The selling_price field is required.",
+            max: "The selling_price may not be greater than 128."
+          },
+          buying_date: {
+            required: "The buying_date  field is required.",
+            max: "The buying_date  may not be greater than 128."
+          },
+          product_code: {
+            required: "The product_code field is required.",
+            max: "The product_code may not be greater than 128.",
+            unique_code: "The product_code field is already exists "
+          },
+          product_quantity: {
+            required: "The product_quantity field is required.",
+            min_value: "The product_quantity must be at least 1."
           }
         }
       }
     };
     (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.configure)({
       generateMessage: (0,_vee_validate_i18n__WEBPACK_IMPORTED_MODULE_3__.localize)(messError)
+    });
+    var that = this;
+    (0,vee_validate__WEBPACK_IMPORTED_MODULE_2__.defineRule)("unique_code", function (value) {
+      return axios.post(that.data.urlCheckCode, {
+        value: value,
+        id: that.data.product.id
+      }).then(function (response) {
+        return response.data.valid;
+      })["catch"](function (error) {});
     });
   },
   methods: {
@@ -29478,7 +29529,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           key: item.id,
           value: item.id
         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.label), 9 /* TEXT, PROPS */, _hoisted_14);
-      }), 128 /* KEYED_FRAGMENT */))], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.model.category_id]])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
+      }), 128 /* KEYED_FRAGMENT */))], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.model.category_id]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
+        "class": "error",
+        name: "category_id"
+      })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
         type: "text",
         name: "product_code",
         autocomplete: "off",
@@ -29486,7 +29540,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
           return _ctx.model.product_code = $event;
         }),
-        rules: "required|max:128",
+        rules: "required|max:128|unique_code",
         "class": "form-control",
         placeholder: "Enter product code"
       }, null, 8 /* PROPS */, ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
@@ -29556,7 +29610,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
           return _ctx.model.product_quantity = $event;
         }),
-        rules: "required",
+        rules: "required|min_value:1",
         "class": "form-control",
         placeholder: "Enter product quantity"
       }, null, 8 /* PROPS */, ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
@@ -29838,7 +29892,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
           return _ctx.model.product_code = $event;
         }),
-        rules: "required|max:128",
+        rules: "required|max:128|unique_code",
         "class": "form-control",
         placeholder: "Enter product code"
       }, null, 8 /* PROPS */, ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
@@ -29908,7 +29962,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
           return _ctx.model.product_quantity = $event;
         }),
-        rules: "required",
+        rules: "required|min_value:1",
         "class": "form-control",
         placeholder: "Enter product quantity"
       }, null, 8 /* PROPS */, ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
