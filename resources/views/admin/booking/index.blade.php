@@ -28,6 +28,8 @@
                             <h3 class="card-title">All Booking </h3>
                             <a class="btn btn-sm btn-primary" href="{{ route('booking.create') }}"
                                 style="float: right;">Create</a>
+                            <a class="btn btn-sm btn-primary" href="{{ route('booking.calendar') }}"
+                                style="float: right; margin-right: 10px">Calendar</a>
                         </div>
 
                         <div class="card-body">

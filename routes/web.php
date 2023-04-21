@@ -51,7 +51,7 @@ Route::middleware('user')->group(function () {
     Route::resource('customer-gift-card', CustomerGiftCardController::class);
     Route::resource('product', ProductController::class);
     Route::resource('pos', PosController::class);
-    Route::get('booking/calendar', [BookingController::class, 'calendar'])->name('booking.calendar');
+    
     Route::resource('booking', BookingController::class);
     Route::resource('stock', StockController::class);
     Route::resource('gift-card', GiftCardController::class);
@@ -65,6 +65,9 @@ Route::middleware('user')->group(function () {
     // Route::get('/orders/{id}', [OrderController::class, 'orders']);
     // Route::get('/order/details/{id}', [OrderController::class, 'orderDetails']);
 
+    //booking
+    Route::get('calendar-booking', [BookingController::class, 'calendar'])->name('booking.calendar');
+    Route::get('get-booking', [BookingController::class, 'getBooking'])->name('booking.getBooking');
 
     //gift card
     Route::get('customer-gift-card-list', [GiftCardController::class, 'getGiftCardList'])->name('customer-gift-card-list');

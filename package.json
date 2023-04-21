@@ -22,10 +22,12 @@
     "dependencies": {
         "@coreui/coreui": "^4.2.6",
         "@coreui/vue": "^4.7.0",
+        "@fullcalendar/vue3": "^6.1.5",
         "@vee-validate/i18n": "^4.8.3",
         "@vee-validate/rules": "^4.8.3",
         "config": "^3.3.9",
         "coreui": "^0.1.5",
+        "fullcalendar": "^6.1.5",
         "jquery": "^3.6.4",
         "sass": "^1.59.3",
         "v-toaster": "^1.0.3",

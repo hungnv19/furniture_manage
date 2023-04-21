@@ -145,9 +145,16 @@ class BookingController extends BaseController
     }
     public function calendar()
     {
-       
         return view('admin.booking.calendar', [
             'title' => 'Lịch',
         ]);
+    }
+    public function getBooking()
+    {
+        $appointments = $this->appointments->join('customers', 'customers.id', '=', 'appointments.customer_id')
+        ->select('appointments.*', 'customers.name as customer_name')
+        ->orderBy('appointments.id', 'desc')
+        ->get();
+        return response()->json($appointments);
     }
 }

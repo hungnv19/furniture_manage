@@ -5,8 +5,7 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Booking Edit</h1>
-                    <a class="btn btn-sm btn-primary" href="{{ route('booking.calendar') }}"
-                    style="float: right;">calendar</a>
+                  
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">

@@ -51,7 +51,12 @@ class CustomerController extends BaseController
      */
     public function store(Request $request)
     {
-      
+        $request->validate([
+            'name' => 'required|max:80',
+            'email' => 'required',
+            'phone' => 'required',
+        ]);
+
         $customer = new Customer();
         $customer->name = $request->name;
         $customer->email = $request->email;
@@ -92,7 +97,7 @@ class CustomerController extends BaseController
     {
 
         $customer = Customer::where('id', $id)->first();
-       
+
         return view('admin.customer.edit', [
             'customer' => $customer,
             'title' => 'Sua danh mục'
@@ -108,8 +113,15 @@ class CustomerController extends BaseController
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|max:80',
+            'email' => 'required',
+            'phone' => 'required',
+        ]);
+
+        dd($request->all());
         try {
-           
+
             $customer =  $this->customer->where('id', $id)->first();
             $customer->name = $request->name;
             $customer->email = $request->email;
