@@ -13,7 +13,7 @@
                     <div class="header__top__right">
                         <div class="header__top__links">
                             @if (!Auth::check())
-                                <a href="{{ asset('/auth/login') }}">Sign in</a>
+                                <a href="{{ asset('/login') }}">Sign in</a>
                             @endif
 
 

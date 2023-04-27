@@ -32,5 +32,5 @@ class Order extends Model
     /**
      * @var array
      */
-    protected $fillable = ['customer_id', 'qty', 'sub_total', 'vat', 'total', 'pay', 'due', 'payBy', 'order_date', 'order_month', 'order_year', 'created_at', 'updated_at'];
+    protected $fillable = ['user_id', 'qty', 'sub_total', 'vat', 'total', 'pay', 'due', 'payBy', 'order_date', 'order_month', 'order_year', 'created_at', 'updated_at'];
 }

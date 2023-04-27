@@ -30,10 +30,10 @@ class HomeController extends Controller
             ->get();
         $user = User::count();
         $category = Category::count();
-        $customer = Customer::count();
+        // $customer = Customer::count();
         return view('dashboard', [
             'title' => 'Trang quản trị',
-            'customer' => $customer,
+            // 'customer' => $customer,
             'products' => $products,
             'product' => $product,
             'user' => $user,

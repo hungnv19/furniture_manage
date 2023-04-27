@@ -57,6 +57,13 @@
 
                 <div class="col-md-12 text-center btn-box">
                   <a
+                    :href="data.urlBack"
+                    class="btn btn-outline-secondary"
+                    style="margin-right: 10px"
+                  >
+                   Home
+                  </a>
+                  <a
                     :href="data.urlRegister"
                     class="btn btn-outline-secondary"
                     style="margin-right: 10px"
