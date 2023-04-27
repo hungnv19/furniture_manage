@@ -17,9 +17,15 @@ class CheckUserLogin
      */
     public function handle(Request $request, Closure $next)
     {
+
         if (Auth::check()) {
-            return $next($request);
+            if (Auth::user()->role == 1) {
+                return $next($request);
+            } else {
+                return redirect('/');
+            }
+        } else {
+            return abort('403');
         }
-        return abort('403');
     }
 }

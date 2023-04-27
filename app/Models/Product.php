@@ -32,4 +32,9 @@ class Product extends Model
      * @var array
      */
     protected $fillable = ['category_id', 'supplier_id', 'product_name', 'product_code', 'root', 'buying_price', 'selling_price', 'buying_date', 'image', 'product_quantity', 'created_at', 'updated_at'];
+
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category', 'category_id', 'id');
+    }
 }
