@@ -11,8 +11,10 @@ class ClientController extends Controller
 {
     public function index()
     {
-
-        return view('client.layouts.main');
+        $products = Product::get();
+        return view('client.layouts.main', [
+            'products' => $products,
+        ]);
     }
     public function shop()
     {
