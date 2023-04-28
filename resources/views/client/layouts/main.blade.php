@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/elegant-icons.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}" type="text/css">
@@ -60,8 +61,6 @@
                                 @if (!Auth::check())
                                     <a href="{{ asset('/login') }}">Sign in</a>
                                 @endif
-
-                                <a href="">FAQs</a>
                             </div>
 
                         </div>
@@ -90,13 +89,21 @@
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
-                        <a href="" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                        <a href="{{ asset('/cart') }}"><img src="img/icon/cart.png" alt=""> </a>
                         @if (Auth::check())
-                            {{ Auth::user()->name }}
-                            <a href="{{ asset('/logout') }}"><i class="fa-solid fa-right-from-bracket"></i></a>
-                        @endif
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+                                    aria-expanded="false">
 
+                                    {{ Auth::user()->name }}
+
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{{ asset('/profile') }}">Profile</a>
+                                    <a class="dropdown-item" href="{{ asset('/cart') }}">Cart</a>
+                                    <a class="dropdown-item" href="{{ asset('/logout') }}">Logout</a>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -722,8 +729,14 @@
     <!-- Search End -->
 
     <!-- Js Plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
+    </script>
     <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/jquery.nicescroll.min.js"></script>
     <script src="js/jquery.magnific-popup.min.js"></script>

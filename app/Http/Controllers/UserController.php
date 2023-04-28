@@ -104,9 +104,6 @@ class UserController extends BaseController
             $user =  $this->user->where('id', $id)->first();
             $user->name = $request->name;
             $user->email = $request->email;
-          
-            
-            
             $user->save();
             $this->setFlash(__('Cập nhật tin tuyển dụng thành công'));
             return redirect()->route('user.index');

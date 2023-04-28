@@ -59,6 +59,10 @@ Route::middleware('user')->group(function () {
 
     //Order
     Route::resource('order', OrderController::class);
+
+    //profile
+    Route::get('/profile', [ClientController::class, 'profile'])->name('profile');
+    Route::post('/profile', [ClientController::class, 'updateProfile'])->name('profile-update');
 });
 
 

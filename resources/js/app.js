@@ -9,6 +9,8 @@ import { configure, defineRule } from "vee-validate";
 
 import DashBroad from './components/DashBroad.vue';
 
+import UserProfile from './components/profile/index.vue';
+
 import CategoryCreate from './components/category/create.vue';
 import CategoryEdit from './components/category/edit.vue';
 
@@ -85,6 +87,8 @@ app.component("cart-list", CartList);
 app.component("calendar-show", CalendarShow);
 
 app.component("data-empty", DataEmpty);
+
+app.component("user-profile", UserProfile);
 
 app.component("login-form", LoginForm);
 app.component("register-form", RegisterForm);
