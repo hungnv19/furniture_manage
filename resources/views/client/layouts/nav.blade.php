@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-3">
                 <div class="header__logo">
-                    <a href="{{ asset('/') }}"><img src="img/noi-that/logo.png" width="160px" alt=""></a>
+                    <a href="{{ asset('/') }}"><img src="{{ asset('img/noi-that/logo.png') }}" width="160px" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">

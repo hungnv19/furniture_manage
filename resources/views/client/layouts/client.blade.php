@@ -33,6 +33,16 @@
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
+    <script>
+        window.Laravel = {!! json_encode(
+            [
+                'csrfToken' => csrf_token(),
+                'baseUrl' => url('/'),
+            ],
+            JSON_UNESCAPED_UNICODE,
+        ) !!};
+    </script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <style>
         .error {
             color: red;
@@ -112,21 +122,21 @@
 
 
     <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
+    {{-- <script src="js/jquery-3.3.1.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
     </script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.nicescroll.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
+    {{-- <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script> --}}
+    {{-- <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/jquery.countdown.min.js"></script>
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/owl.carousel.min.js"></script> --}}
+    {{-- <script src="js/main.js"></script> --}}
 </body>
 
 </html>
