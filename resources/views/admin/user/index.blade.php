@@ -72,6 +72,8 @@
                                                             </form>
                                                         </td>
                                                     </tr>
+                                                @else
+                                                    <data-empty></data-empty>
                                                 @endif
                                             @endforeach
 
@@ -107,8 +109,3 @@
         </div>
     </section>
 @endsection
-
-
-
-
-

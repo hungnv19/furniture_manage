@@ -157,6 +157,7 @@ class CartController extends BaseController
 				'pos.*'
 			])
 			->get();
+		dd($products);
 		return response()->json($products);
 	}
 	public function order(Request $request)
