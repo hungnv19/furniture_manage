@@ -124,9 +124,9 @@ export default {
     });
 
   },
-  // mounted() {
-  //   this.checkLogin();
-  // },
+  mounted() {
+    this.checkLogin();
+  },
   methods: {
     updateSelected(e) {
       let array = [];
@@ -147,23 +147,22 @@ export default {
         500
       );
     },
-
-    onSubmit() {
-
-
-      let that = this;
+    checkLogin() {
       axios
-        .post(that.data.urlUserLogin)
+        .post(this.data.urlUserLogin)
         .then((res) => {
           if (res.data.error) {
-            that.messageError = res.data.error;
-            that.showError = true;
-            console.log(res);
+            this.messageError = res.data.error;
+            this.showError = true;
+            console.log(res.data);
           }
         })
         .catch((res) => {
           this.errors = res.response.data.res;
         });
+    },
+
+    onSubmit() {
 
 
       this.$refs.formData.submit();
