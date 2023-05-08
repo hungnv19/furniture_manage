@@ -4,46 +4,22 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <VeeForm
-              as="div"
-              v-slot="{ handleSubmit }"
-              class="form-owner"
-              @invalid-submit="onInvalidSubmit"
-            >
-              <form
-                method="POST"
-                @submit="handleSubmit($event, onSubmit)"
-                ref="formData"
-                enctype="multipart/form-data"
-                :action="data.urlStore"
-              >
+            <VeeForm as="div" v-slot="{ handleSubmit }" class="form-owner" @invalid-submit="onInvalidSubmit">
+              <form method="POST" @submit="handleSubmit($event, onSubmit)" ref="formData" enctype="multipart/form-data"
+                :action="data.urlStore">
                 <Field type="hidden" :value="csrfToken" name="_token" />
 
                 <div class="form-group">
                   <label class="" require>Email</label>
-                  <Field
-                    type="text"
-                    name="email"
-                    autocomplete="off"
-                    v-model="model.email"
-                    rules="required|max:128"
-                    class="form-control"
-                    placeholder="Enter email"
-                  />
+                  <Field type="text" name="email" autocomplete="off" v-model="model.email" rules="required|max:128"
+                    class="form-control" placeholder="Enter email" />
 
                   <ErrorMessage class="error" name="email" />
                 </div>
                 <div class="form-group">
                   <label class="" require>Password</label>
-                  <Field
-                    type="password"
-                    name="password"
-                    autocomplete="off"
-                    v-model="model.password"
-                    rules="required|max:128"
-                    class="form-control"
-                    placeholder="Enter password"
-                  />
+                  <Field type="password" name="password" autocomplete="off" v-model="model.password"
+                    rules="required|max:128" class="form-control" placeholder="Enter password" />
 
                   <ErrorMessage class="error" name="password" />
                 </div>
@@ -56,18 +32,10 @@
                 </div>
 
                 <div class="col-md-12 text-center btn-box">
-                  <a
-                    :href="data.urlBack"
-                    class="btn btn-outline-secondary"
-                    style="margin-right: 10px"
-                  >
-                   Home
+                  <a :href="data.urlBack" class="btn btn-outline-secondary" style="margin-right: 10px">
+                    Home
                   </a>
-                  <a
-                    :href="data.urlRegister"
-                    class="btn btn-outline-secondary"
-                    style="margin-right: 10px"
-                  >
+                  <a :href="data.urlRegister" class="btn btn-outline-secondary" style="margin-right: 10px">
                     Register
                   </a>
                   <button type="submit" class="btn btn-primary">Submit</button>
@@ -137,6 +105,10 @@ export default {
     configure({
       generateMessage: localize(messError),
     });
+
+  },
+  mounted() {
+    this.checkLogin();
   },
   methods: {
     updateSelected(e) {
@@ -158,19 +130,24 @@ export default {
         500
       );
     },
+    checkLogin() {
+      axios
+        .post(this.data.urlUserLogin)
+        .then((res) => {
+          if (res.data.error) {
+            this.messageError = res.data.error;
+            this.showError = true;
+            console.log(res.data);
+          }
+        })
+        .catch((res) => {
+          this.errors = res.response.data.res;
+        });
+    },
+
     onSubmit() {
-      // let that = this;
-      // axios
-      //   .post(that.data.urlUserLogin)
-      //   .then((res) => {
-      //     if (res.data.error) {
-      //       that.messageError = res.data.error;
-      //       that.showError = true;
-      //     }
-      //   })
-      //   .catch((res) => {
-      //     this.errors = res.response.data.res;
-      //   });
+
+
       this.$refs.formData.submit();
     },
   },

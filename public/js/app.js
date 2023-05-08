@@ -23888,6 +23888,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       generateMessage: (0,_vee_validate_i18n__WEBPACK_IMPORTED_MODULE_3__.localize)(messError)
     });
   },
+  mounted: function mounted() {
+    this.checkLogin();
+  },
   methods: {
     updateSelected: function updateSelected(e) {
       var array = [];
@@ -23907,19 +23910,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         scrollTop: jquery__WEBPACK_IMPORTED_MODULE_0___default()("input[name=" + firstInputError + "]").offset().top - 150
       }, 500);
     },
+    checkLogin: function checkLogin() {
+      var _this = this;
+      axios.post(this.data.urlUserLogin).then(function (res) {
+        if (res.data.error) {
+          _this.messageError = res.data.error;
+          _this.showError = true;
+          console.log(res.data);
+        }
+      })["catch"](function (res) {
+        _this.errors = res.response.data.res;
+      });
+    },
     onSubmit: function onSubmit() {
-      // let that = this;
-      // axios
-      //   .post(that.data.urlUserLogin)
-      //   .then((res) => {
-      //     if (res.data.error) {
-      //       that.messageError = res.data.error;
-      //       that.showError = true;
-      //     }
-      //   })
-      //   .catch((res) => {
-      //     this.errors = res.response.data.res;
-      //   });
       this.$refs.formData.submit();
     }
   }
