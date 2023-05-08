@@ -341,9 +341,9 @@ export default {
   methods: {
     cartProducts() {
       axios
-        .get("/cart-products")
+        .get("/cart-hung")
         .then(({ data }) => (this.cartProduct = data))
-        .catch();
+        .catch(console.log('errror'));
     },
     onInvalidSubmit({ values, errors, results }) {
       let firstInputError = Object.entries(errors)[0][0];
