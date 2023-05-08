@@ -633,7 +633,7 @@ export default {
     },
     cartProducts() {
       axios
-        .get("/cart-products")
+        .get("/cart-product")
         .then(({ data }) => (this.cartProduct = data))
         .catch();
     },

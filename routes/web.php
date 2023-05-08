@@ -54,7 +54,7 @@ Route::middleware('user')->group(function () {
     Route::post('/cart/orders', [CartController::class, 'order'])->name('cart.orders');
     Route::resource('cart', CartController::class);
     Route::get('/cart/delete/{id}', [CartController::class, 'cartDelete']);
-    Route::get('/cart-hung', [CartController::class, 'cartProducts']);
+    Route::get('/cart-products', [CartController::class, 'cartProducts']);
     Route::get('cart/addToCart/{id}', [CartController::class, 'addToCart'])->name('cart.addToCart');
 
     //Order

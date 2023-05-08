@@ -262,8 +262,15 @@
                                 <h6> {{ $product->product_name }}</h6>
                                 <a href="{{ route('cart.addToCart', $product->id) }}" class="add-cart">+ Add To
                                     Cart</a>
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
 
-                                <h5> {{ $product->selling_price }}</h5>
+                                <h5> {{ number_format($product->selling_price) . ' Đ' }}</h5>
                             </div>
                         </div>
 
@@ -650,7 +657,8 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__logo">
-                            <a href="#"><img src="img/noi-that/logo.png" width="100px" alt=""></a>
+                            <a href="#"><img src="{{ asset('img/noi-that/logo.png') }}" width="100px"
+                                alt=""></a>
                         </div>
                         <p>Nội thất Hàn Quốc Online Số 1 Tại Việt Nam.</p>
                         <p>Địa chỉ: Nam Từ Liêm - Hà Nội</p>

@@ -191,10 +191,11 @@ export default {
     return {
       csrfToken: Laravel.csrfToken,
 
-      model: this.data.user,
+      model: this.data.user ,
     };
   },
   created() {
+   
     let messError = {
       en: {
         fields: {
@@ -216,6 +217,7 @@ export default {
     configure({
       generateMessage: localize(messError),
     });
+    console.log(this.model.email);
   },
   methods: {
     onInvalidSubmit({ values, errors, results }) {
